@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ads-Fg-BCQ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="hWT-a2-g5O">
+            <objects>
+                <tabBarController id="ads-Fg-BCQ" customClass="ViewController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="68I-Bc-bRS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="0sz-s2-UMB" kind="relationship" relationship="viewControllers" id="nXZ-cp-pR7"/>
+                        <segue destination="aFx-Wl-3Zr" kind="relationship" relationship="viewControllers" id="pS1-mf-stQ"/>
+                        <segue destination="rE3-7A-oEa" kind="relationship" relationship="viewControllers" id="YAB-Wl-2nP"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lD4-yw-99A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3077" y="-17"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="FNL-8r-UPC">
+            <objects>
+                <viewController id="0sz-s2-UMB" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PIZ-09-t5R">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="SeZ-td-hhE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" id="tjn-HJ-S0c">
+                        <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="house" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z9x-nV-9OR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3510" y="753"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Xbq-lX-ZSD">
+            <objects>
+                <viewController id="aFx-Wl-3Zr" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b1m-Bj-x67">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="QSm-6h-5Kb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" selectedImage="paperplane" catalog="system" id="vAj-DK-nV1">
+                        <imageReference key="image" image="paperplane" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DeW-K4-uvW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2651" y="753"/>
+        </scene>
+        <!--SettingsStoryboard-->
+        <scene sceneID="4Y3-nX-00B">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SettingsStoryboard" id="rE3-7A-oEa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="wpz-x2-Zxg">
+                        <imageReference key="image" image="gear" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="gear" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="du8-fk-zz2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1880" y="422"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="paperplane" catalog="system" width="128" height="118"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

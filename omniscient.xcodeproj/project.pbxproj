@@ -16,6 +16,7 @@
 		A9307B3F2810A10400939356 /* omniscientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B3E2810A10400939356 /* omniscientTests.swift */; };
 		A9307B492810A10400939356 /* omniscientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B482810A10400939356 /* omniscientUITests.swift */; };
 		A9307B4B2810A10400939356 /* omniscientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */; };
+		A9BEE9E72813042D005E0669 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		A9307B442810A10400939356 /* omniscientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = omniscientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9307B482810A10400939356 /* omniscientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITests.swift; sourceTree = "<group>"; };
 		A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +101,10 @@
 		A9307B262810A10200939356 /* omniscient */ = {
 			isa = PBXGroup;
 			children = (
+				A9BEE9E5281303F8005E0669 /* controllers */,
+				A9BEE9E42813037D005E0669 /* storyboard */,
 				A9307B272810A10200939356 /* AppDelegate.swift */,
 				A9307B292810A10200939356 /* SceneDelegate.swift */,
-				A9307B2B2810A10200939356 /* ViewController.swift */,
-				A9307B2D2810A10200939356 /* Main.storyboard */,
 				A9307B302810A10400939356 /* Assets.xcassets */,
 				A9307B322810A10400939356 /* LaunchScreen.storyboard */,
 				A9307B352810A10400939356 /* Info.plist */,
@@ -125,6 +127,23 @@
 				A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */,
 			);
 			path = omniscientUITests;
+			sourceTree = "<group>";
+		};
+		A9BEE9E42813037D005E0669 /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A9307B2D2810A10200939356 /* Main.storyboard */,
+				A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */,
+			);
+			path = storyboard;
+			sourceTree = "<group>";
+		};
+		A9BEE9E5281303F8005E0669 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A9307B2B2810A10200939356 /* ViewController.swift */,
+			);
+			path = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +252,7 @@
 			files = (
 				A9307B342810A10400939356 /* LaunchScreen.storyboard in Resources */,
 				A9307B312810A10400939356 /* Assets.xcassets in Resources */,
+				A9BEE9E72813042D005E0669 /* SettingsStoryboard.storyboard in Resources */,
 				A9307B2F2810A10200939356 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
