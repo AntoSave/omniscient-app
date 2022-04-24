@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C47E4B8281554E000C1F793 /* SettingsStoryboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C47E4B7281554E000C1F793 /* SettingsStoryboardController.swift */; };
+		7C47E4B8281554E000C1F793 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C47E4B7281554E000C1F793 /* SettingsController.swift */; };
 		A9307B282810A10200939356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B272810A10200939356 /* AppDelegate.swift */; };
 		A9307B2A2810A10200939356 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B292810A10200939356 /* SceneDelegate.swift */; };
 		A9307B2C2810A10200939356 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B2B2810A10200939356 /* ViewController.swift */; };
@@ -39,7 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7C47E4B7281554E000C1F793 /* SettingsStoryboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStoryboardController.swift; sourceTree = "<group>"; };
+		7C47E4B7281554E000C1F793 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		A9307B242810A10200939356 /* omniscient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = omniscient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9307B272810A10200939356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9307B292810A10200939356 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			children = (
 				A9307B2B2810A10200939356 /* ViewController.swift */,
 				A9E2A1A42815517A00315C16 /* MainController.swift */,
-				7C47E4B7281554E000C1F793 /* SettingsStoryboardController.swift */,
+				7C47E4B7281554E000C1F793 /* SettingsController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -296,7 +296,7 @@
 				A9307B2C2810A10200939356 /* ViewController.swift in Sources */,
 				A9307B282810A10200939356 /* AppDelegate.swift in Sources */,
 				A9307B2A2810A10200939356 /* SceneDelegate.swift in Sources */,
-				7C47E4B8281554E000C1F793 /* SettingsStoryboardController.swift in Sources */,
+				7C47E4B8281554E000C1F793 /* SettingsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
