@@ -105,6 +105,7 @@
 		A9307B262810A10200939356 /* omniscient */ = {
 			isa = PBXGroup;
 			children = (
+				A9E2A1A6281554C500315C16 /* views */,
 				A9BEE9E5281303F8005E0669 /* controllers */,
 				A9BEE9E42813037D005E0669 /* storyboard */,
 				A9307B272810A10200939356 /* AppDelegate.swift */,
@@ -150,6 +151,13 @@
 				7C47E4B7281554E000C1F793 /* SettingsStoryboardController.swift */,
 			);
 			path = controllers;
+			sourceTree = "<group>";
+		};
+		A9E2A1A6281554C500315C16 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
