@@ -28,13 +28,26 @@
             </objects>
             <point key="canvasLocation" x="-3077" y="-17"/>
         </scene>
-        <!--View Controller-->
+        <!--Main Controller-->
         <scene sceneID="FNL-8r-UPC">
             <objects>
-                <viewController id="0sz-s2-UMB" sceneMemberID="viewController">
+                <viewController id="0sz-s2-UMB" customClass="MainController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PIZ-09-t5R">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g2V-S1-8eP">
+                                <rect key="frame" x="0.0" y="44" width="41.5" height="20.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIe-5H-fW4">
+                                <rect key="frame" x="234" y="251" width="42" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="SeZ-td-hhE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -42,10 +55,13 @@
                         <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
                         <imageReference key="selectedImage" image="house" catalog="system" symbolScale="large"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="myLabel" destination="rIe-5H-fW4" id="EDk-nq-eKv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z9x-nV-9OR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3510" y="753"/>
+            <point key="canvasLocation" x="-3510.144927536232" y="752.67857142857144"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Xbq-lX-ZSD">
