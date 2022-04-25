@@ -22,23 +22,10 @@
                     <navigationItem key="navigationItem" id="VXd-0Z-CeA"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <segue destination="Kch-bY-tvj" kind="push" id="AXq-lY-cxl"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="939.13043478260875" y="97.767857142857139"/>
-        </scene>
-        <!--Option1-->
-        <scene sceneID="Mjc-t2-oMe">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Option1" id="Kch-bY-tvj" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="acs-gL-pHH"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tmp-vP-KnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1740" y="25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rah-ge-A8H">
