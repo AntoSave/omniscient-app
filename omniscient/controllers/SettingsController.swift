@@ -40,7 +40,6 @@ struct SettingsOption {
 
 class SettingsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var SettingsTableview: UITableView!
     
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
