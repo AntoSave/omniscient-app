@@ -7,9 +7,7 @@
 
 import UIKit
 
-class SettingsStoryboardController: UIViewController {
-
-    @IBOutlet weak var myLabel: UILabel!
+class SettingsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

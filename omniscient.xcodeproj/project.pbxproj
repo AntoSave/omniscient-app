@@ -19,6 +19,7 @@
 		A9307B4B2810A10400939356 /* omniscientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */; };
 		A9BEE9E72813042D005E0669 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */; };
 		A9E2A1A52815517A00315C16 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E2A1A42815517A00315C16 /* MainController.swift */; };
+		A9E2A1A9281558E500315C16 /* CameraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E2A1A8281558E500315C16 /* CameraList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
 		A9E2A1A42815517A00315C16 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		A9E2A1A8281558E500315C16 /* CameraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		A9307B262810A10200939356 /* omniscient */ = {
 			isa = PBXGroup;
 			children = (
+				A9E2A1A72815587400315C16 /* models */,
 				A9E2A1A6281554C500315C16 /* views */,
 				A9BEE9E5281303F8005E0669 /* controllers */,
 				A9BEE9E42813037D005E0669 /* storyboard */,
@@ -158,6 +161,14 @@
 			children = (
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		A9E2A1A72815587400315C16 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				A9E2A1A8281558E500315C16 /* CameraList.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +307,7 @@
 				A9307B2C2810A10200939356 /* ViewController.swift in Sources */,
 				A9307B282810A10200939356 /* AppDelegate.swift in Sources */,
 				A9307B2A2810A10200939356 /* SceneDelegate.swift in Sources */,
+				A9E2A1A9281558E500315C16 /* CameraList.swift in Sources */,
 				7C47E4B8281554E000C1F793 /* SettingsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
