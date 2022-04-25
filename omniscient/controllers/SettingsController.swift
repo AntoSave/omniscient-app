@@ -67,7 +67,14 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.frame = view.bounds
+        let tableRect: CGRect = CGRect(x: 20, y: 44, width: 374, height: 769) //mi determina il rettangolo della table view
+        tableView.frame = tableRect /*view.bounds*/ //Se mettto view.bounds diventa full screen
+        tableView.layer.cornerRadius = 10  // regolo lo smussamento dei bordi
+        tableView.separatorInset.left = 15 //regolo la linea di separazione
+        
+        tableView.clipsToBounds = true
+
+        
     }
     
     //Dispone i titoli delle sezioni definite nello schermo
