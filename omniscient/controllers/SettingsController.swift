@@ -29,7 +29,6 @@ struct SettingsSwitchOption {
     var isOn: Bool
 }
 
-
 //Creaiamo la struttura delle opzioni di settings
 struct SettingsOption {
     let title: String
@@ -71,8 +70,8 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.layer.cornerRadius = 10  // regolo lo smussamento dei bordi
         tableView.separatorInset.left = 15 //regolo la linea di separazione
         
-        tableView.clipsToBounds = true
-
+        tableView.clipsToBounds = true //cambiamenti impercettibili
+        tableView.backgroundColor = .systemBackground //Colore della tableview
         
     }
     
@@ -104,6 +103,8 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
             ) as? SettingsTableViewCell else {
                 return UITableViewCell()
             }
+            cell.backgroundColor = .tertiarySystemFill // .secondarySystemFill //Setto il colore delle celle
+//            cell.layer.cornerRadius = 10
             cell.configure(with: model)
             return cell
         case .switchCell(let model):
@@ -113,6 +114,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
             ) as? SwitchTableViewCell else {
                 return UITableViewCell()
             }
+            cell.backgroundColor = .tertiarySystemFill // .secondarySystemFill //Setto il colore delle celle
             cell.configure(with: model)
             return cell
         }
@@ -120,16 +122,46 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.top)
         let type = models[indexPath.section].options[indexPath.row]
         switch type.self {
         case .staticCell(let model):
+            print("You've selected an option")
             model.handler()
         case .switchCell(let model):
+            print("You've selected a switch")
             model.handler()
         }
     }
+//Non mi interessa quando viene deselezionata
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        let type = models[indexPath.section].options[indexPath.row]
+//        switch type.self {
+//        case .staticCell(let model):
+//            print("Deselected")
+//            model.handler()
+//        case .switchCell(let model):
+//            print("Deselected")
+//            model.handler()
+//        }
+//    }
+    
+    @objc func option1PushPressed(){
+        if let navigationController = navigationController {
+            let vc = Option1Controller()
+            navigationController.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @objc func option1PopPressed(){
+        if let navigationController = navigationController {
+            let vc = Option1Controller()
+            navigationController.pushViewController(vc, animated: true)
+        }
+    }
+    
     
     //crea le varie impostazioni nella schermata
     func configure() {
@@ -139,7 +171,16 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
                                 
                     [
                         .staticCell(model: SettingsOption(title: "Opzione 1", icon: UIImage(systemName: "gear"), iconBackgroundColor: .systemCyan){
-                            print("CASA BLUUUUUU")
+                            print("Ora apro opzione 1")
+                            self.option1PushPressed()
+//                            let vc = Option1Controller()
+//                            vc.title = "option 1"
+//                            vc.navigationItem.largeTitleDisplayMode = .never
+//                            //vc.navigationController?.pushViewController(vc, animated: true)
+//                            self.navigationController?.pushViewController(vc, animated: true)
+                            print("Fatto")
+                            
+                            
                         }),
                         .staticCell(model:SettingsOption(title: "Opzione 2", icon: UIImage(systemName: "house"), iconBackgroundColor: .systemCyan){}),
                         .staticCell(model:SettingsOption(title: "Opzione 3", icon: UIImage(systemName: "gear"), iconBackgroundColor: .systemCyan){})
