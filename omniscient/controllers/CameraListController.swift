@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class CameraListController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet var cameraTableView: UITableView!
     let cellReuseIdentifier = "cameraCell"
     
@@ -19,11 +19,11 @@ class MainController: UIViewController,UITableViewDataSource,UITableViewDelegate
         cameraTableView.dataSource = self
         cameraTableView.delegate = self
     }
-
+    //Restituisce il numero di righe
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
-    
+    //Funzione generatrice di righe
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:CameraCell = self.cameraTableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath) as! CameraCell
            
@@ -31,12 +31,19 @@ class MainController: UIViewController,UITableViewDataSource,UITableViewDelegate
            cell.textLabel!.text = "Cell text"
            return cell
     }
+    //Funzione chiamata al click
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print("You tapped cell number \(indexPath.row).")
-        }
-    
-}
+        print("You tapped cell number \(indexPath.row).")
+    }
+    //Funzione chiamata prima del segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cameraVC = segue.destination as? CameraController {
 
+            //cameraVC.link="ciao"
+           }
+    }
+}
+//Riga personalizzata
 class CameraCell: UITableViewCell{
     
 }

@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="-3077" y="-17"/>
         </scene>
-        <!--Main Controller-->
+        <!--Camera List Controller-->
         <scene sceneID="FNL-8r-UPC">
             <objects>
-                <viewController id="0sz-s2-UMB" customClass="MainController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0sz-s2-UMB" customClass="CameraListController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PIZ-09-t5R">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,6 +61,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="fpX-jf-a8t" kind="presentation" modalPresentationStyle="fullScreen" id="Ezl-9f-Ifd"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -78,7 +81,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z9x-nV-9OR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3510.144927536232" y="752.67857142857144"/>
+            <point key="canvasLocation" x="-3641" y="723"/>
+        </scene>
+        <!--Camera Controller-->
+        <scene sceneID="hbU-dM-heY">
+            <objects>
+                <viewController id="fpX-jf-a8t" customClass="CameraController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LM8-Zd-Jfw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="pjk-fo-VHh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Any-Gt-Txe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3642" y="1547"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Xbq-lX-ZSD">
