@@ -21,9 +21,10 @@
 		A9307B3F2810A10400939356 /* omniscientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B3E2810A10400939356 /* omniscientTests.swift */; };
 		A9307B492810A10400939356 /* omniscientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B482810A10400939356 /* omniscientUITests.swift */; };
 		A9307B4B2810A10400939356 /* omniscientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */; };
+		A989289328271C9A004D4DB2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A989289128271C9A004D4DB2 /* Model.xcdatamodeld */; };
+		A989289528271E7F004D4DB2 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989289428271E7F004D4DB2 /* PersistanceController.swift */; };
 		A9BEE9E72813042D005E0669 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */; };
 		A9E2A1A52815517A00315C16 /* CameraListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E2A1A42815517A00315C16 /* CameraListController.swift */; };
-		A9E2A1A9281558E500315C16 /* CameraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E2A1A8281558E500315C16 /* CameraList.swift */; };
 		A9E9F7EB281C90DA00F53B91 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9F7EA281C90DA00F53B91 /* CameraController.swift */; };
 		A9E9F7F3281D3FD700F53B91 /* AddCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9F7F2281D3FD700F53B91 /* AddCameraController.swift */; };
 		D9127002D94240CCF61A0278 /* Pods_omniscient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4494B50557C792FA7ACF35AB /* Pods_omniscient.framework */; };
@@ -70,9 +71,10 @@
 		A9307B442810A10400939356 /* omniscientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = omniscientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9307B482810A10400939356 /* omniscientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITests.swift; sourceTree = "<group>"; };
 		A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A989289228271C9A004D4DB2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		A989289428271E7F004D4DB2 /* PersistanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
 		A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
 		A9E2A1A42815517A00315C16 /* CameraListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraListController.swift; sourceTree = "<group>"; };
-		A9E2A1A8281558E500315C16 /* CameraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraList.swift; sourceTree = "<group>"; };
 		A9E9F7EA281C90DA00F53B91 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		A9E9F7EF281C9EF300F53B91 /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
 		A9E9F7F2281D3FD700F53B91 /* AddCameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCameraController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		A9307B262810A10200939356 /* omniscient */ = {
 			isa = PBXGroup;
 			children = (
+				A989289428271E7F004D4DB2 /* PersistanceController.swift */,
 				A9E2A1A72815587400315C16 /* models */,
 				A9E2A1A6281554C500315C16 /* views */,
 				A9BEE9E5281303F8005E0669 /* controllers */,
@@ -213,7 +216,7 @@
 		A9E2A1A72815587400315C16 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				A9E2A1A8281558E500315C16 /* CameraList.swift */,
+				A989289128271C9A004D4DB2 /* Model.xcdatamodeld */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -477,8 +480,9 @@
 				A9307B2A2810A10200939356 /* SceneDelegate.swift in Sources */,
 				A91422562816D750004A9170 /* SwitchTableViewCell.swift in Sources */,
 				A91422522816D737004A9170 /* Option1Controller.swift in Sources */,
-				A9E2A1A9281558E500315C16 /* CameraList.swift in Sources */,
+				A989289328271C9A004D4DB2 /* Model.xcdatamodeld in Sources */,
 				7C47E4B8281554E000C1F793 /* SettingsController.swift in Sources */,
+				A989289528271E7F004D4DB2 /* PersistanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +836,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A989289128271C9A004D4DB2 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A989289228271C9A004D4DB2 /* Model.xcdatamodel */,
+			);
+			currentVersion = A989289228271C9A004D4DB2 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A9307B1C2810A10200939356 /* Project object */;
 }
