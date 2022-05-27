@@ -23,6 +23,9 @@
 		A9307B4B2810A10400939356 /* omniscientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */; };
 		A989289328271C9A004D4DB2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A989289128271C9A004D4DB2 /* Model.xcdatamodeld */; };
 		A989289528271E7F004D4DB2 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989289428271E7F004D4DB2 /* PersistanceController.swift */; };
+		A9A536872840C48B0018C71F /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A536862840C48B0018C71F /* HomeStoryboard.storyboard */; };
+		A9A536892840CF9F0018C71F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A536882840CF9F0018C71F /* HomeController.swift */; };
+		A9A5368B2840CFA90018C71F /* RoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5368A2840CFA90018C71F /* RoomController.swift */; };
 		A9BEE9E72813042D005E0669 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */; };
 		A9E2A1A52815517A00315C16 /* CameraListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E2A1A42815517A00315C16 /* CameraListController.swift */; };
 		A9E9F7EB281C90DA00F53B91 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9F7EA281C90DA00F53B91 /* CameraController.swift */; };
@@ -73,6 +76,9 @@
 		A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A989289228271C9A004D4DB2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		A989289428271E7F004D4DB2 /* PersistanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
+		A9A536862840C48B0018C71F /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
+		A9A536882840CF9F0018C71F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		A9A5368A2840CFA90018C71F /* RoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomController.swift; sourceTree = "<group>"; };
 		A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
 		A9E2A1A42815517A00315C16 /* CameraListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraListController.swift; sourceTree = "<group>"; };
 		A9E9F7EA281C90DA00F53B91 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
@@ -187,6 +193,7 @@
 			children = (
 				A9307B2D2810A10200939356 /* Main.storyboard */,
 				A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */,
+				A9A536862840C48B0018C71F /* HomeStoryboard.storyboard */,
 			);
 			path = storyboard;
 			sourceTree = "<group>";
@@ -200,6 +207,8 @@
 				7C47E4B7281554E000C1F793 /* SettingsController.swift */,
 				A9E9F7EA281C90DA00F53B91 /* CameraController.swift */,
 				A9E9F7F2281D3FD700F53B91 /* AddCameraController.swift */,
+				A9A536882840CF9F0018C71F /* HomeController.swift */,
+				A9A5368A2840CFA90018C71F /* RoomController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -344,6 +353,7 @@
 				A9307B312810A10400939356 /* Assets.xcassets in Resources */,
 				A9BEE9E72813042D005E0669 /* SettingsStoryboard.storyboard in Resources */,
 				A9307B2F2810A10200939356 /* Main.storyboard in Resources */,
+				A9A536872840C48B0018C71F /* HomeStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,7 +487,9 @@
 				A9307B282810A10200939356 /* AppDelegate.swift in Sources */,
 				A9E9F7F3281D3FD700F53B91 /* AddCameraController.swift in Sources */,
 				A9E9F7EB281C90DA00F53B91 /* CameraController.swift in Sources */,
+				A9A536892840CF9F0018C71F /* HomeController.swift in Sources */,
 				A9307B2A2810A10200939356 /* SceneDelegate.swift in Sources */,
+				A9A5368B2840CFA90018C71F /* RoomController.swift in Sources */,
 				A91422562816D750004A9170 /* SwitchTableViewCell.swift in Sources */,
 				A91422522816D737004A9170 /* Option1Controller.swift in Sources */,
 				A989289328271C9A004D4DB2 /* Model.xcdatamodeld in Sources */,

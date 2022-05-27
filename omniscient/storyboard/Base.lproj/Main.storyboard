@@ -20,13 +20,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="xWj-bI-pbC" kind="relationship" relationship="viewControllers" id="nXZ-cp-pR7"/>
-                        <segue destination="aFx-Wl-3Zr" kind="relationship" relationship="viewControllers" id="pS1-mf-stQ"/>
                         <segue destination="rE3-7A-oEa" kind="relationship" relationship="viewControllers" id="YAB-Wl-2nP"/>
+                        <segue destination="ddA-y1-x8Y" kind="relationship" relationship="viewControllers" id="ZLC-VK-WA1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lD4-yw-99A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3077" y="-17"/>
+            <point key="canvasLocation" x="-3065" y="-93"/>
         </scene>
         <!--Camera List Controller-->
         <scene sceneID="FNL-8r-UPC">
@@ -302,24 +302,6 @@
             </objects>
             <point key="canvasLocation" x="-4500" y="1545.5357142857142"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Xbq-lX-ZSD">
-            <objects>
-                <viewController id="aFx-Wl-3Zr" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="b1m-Bj-x67">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="QSm-6h-5Kb"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" selectedImage="paperplane" catalog="system" id="vAj-DK-nV1">
-                        <imageReference key="image" image="paperplane" catalog="system" symbolScale="large"/>
-                    </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DeW-K4-uvW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1742.0289855072465" y="752.67857142857144"/>
-        </scene>
         <!--SettingsStoryboard-->
         <scene sceneID="4Y3-nX-00B">
             <objects>
@@ -332,6 +314,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="du8-fk-zz2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-970.28985507246387" y="421.875"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="UUt-5c-EIv">
+            <objects>
+                <viewControllerPlaceholder id="ddA-y1-x8Y" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="bbX-9c-hJw"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dP7-Qz-gcN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2085" y="538"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MuY-Ns-uLd">
@@ -364,7 +356,6 @@
         <image name="CameraPreview" width="370" height="201"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="house" catalog="system" width="128" height="106"/>
-        <image name="paperplane" catalog="system" width="128" height="118"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
