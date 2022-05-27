@@ -305,7 +305,7 @@
         <!--SettingsStoryboard-->
         <scene sceneID="4Y3-nX-00B">
             <objects>
-                <viewControllerPlaceholder storyboardName="SettingsStoryboard" id="rE3-7A-oEa" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="SettingsStoryboard" id="rE3-7A-oEa" userLabel="SettingsStoryboard" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="wpz-x2-Zxg">
                         <imageReference key="image" image="gear" catalog="system" symbolScale="large"/>
                         <imageReference key="selectedImage" image="gear" catalog="system" symbolScale="large"/>
@@ -315,10 +315,10 @@
             </objects>
             <point key="canvasLocation" x="-970.28985507246387" y="421.875"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--HomeStoryboard-->
         <scene sceneID="UUt-5c-EIv">
             <objects>
-                <viewControllerPlaceholder id="ddA-y1-x8Y" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="HomeStoryboard" id="ddA-y1-x8Y" userLabel="HomeStoryboard" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="bbX-9c-hJw"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dP7-Qz-gcN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
