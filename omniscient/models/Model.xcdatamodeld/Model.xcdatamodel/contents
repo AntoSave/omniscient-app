@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21D49" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Camera" representedClassName="Camera" syncable="YES" codeGenerationType="class">
         <attribute name="domain" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -11,9 +11,17 @@
     <entity name="Room" representedClassName="Room" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="composition" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Camera" inverseName="composition" inverseEntity="Camera"/>
+        <relationship name="sensors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sensor" inverseName="room" inverseEntity="Sensor"/>
+    </entity>
+    <entity name="Sensor" representedClassName="Sensor" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
+        <relationship name="room" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Room" inverseName="sensors" inverseEntity="Room"/>
     </entity>
     <elements>
         <element name="Camera" positionX="-63" positionY="-18" width="128" height="119"/>
-        <element name="Room" positionX="-54" positionY="-9" width="128" height="14"/>
+        <element name="Room" positionX="-54" positionY="-9" width="128" height="74"/>
+        <element name="Sensor" positionX="-54" positionY="36" width="128" height="89"/>
     </elements>
 </model>

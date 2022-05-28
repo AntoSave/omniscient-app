@@ -8,19 +8,48 @@
 import UIKit
 import CoreData
 
-//Ho una variabile room
+//Ho una variabile room nel CoreData
 
-class RoomController: UIViewController {
+//struct Sensor {
+//    let titleSensor: String
+//    let info: String
+//}
+
+class RoomController: UIViewController /*, UICollectionViewDataSource, UICollectionViewDelegate  */ {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        title = "Option 1"
-//        view.backgroundColor = .systemBackground
-    }
     
+    @IBOutlet weak var roomCollectionView: UICollectionView!
+    
+//    let sensors: [Sensor] = [
+//        Sensor(titleSensor: "Sensore di Temperatura", info: "30 Gradi"),
+//        Sensor(titleSensor: "Sensore di Movimento", info: "No Movement"),
+//        Sensor(titleSensor: "Sensore di Luce", info: "400 lux"),
+//        Sensor(titleSensor: "Sensore di Porta", info: "closed")
+//    ]
+        
+    
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        roomCollectionView.dataSource = self
+////        roomCollectionView.delegate = self
+//    }
+//
+//    //Numero di Item per ogni sezione
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    //Numero di celle per oggetto
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
     
 }
 
-class SensorTableCell: UITableViewCell { //nota: provare prima con CollectionView
+class SensorTableCell: UICollectionViewCell  { //nota: provare prima con CollectionView UITableViewCell
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
     
 }

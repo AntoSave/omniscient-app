@@ -1,16 +1,20 @@
 PODS:
+  - GaugeKit (0.5.1)
   - MobileVLCKit (3.3.17)
 
 DEPENDENCIES:
+  - GaugeKit
   - MobileVLCKit (~> 3.3.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - GaugeKit
     - MobileVLCKit
 
 SPEC CHECKSUMS:
+  GaugeKit: b09f41f141511c172a606403e71adf8e9b6008b3
   MobileVLCKit: c5dd1b0ae933dc9c2348099840e753496dcdd908
 
-PODFILE CHECKSUM: 6d87548e4b233e92025c9b6e187898862398e0cd
+PODFILE CHECKSUM: b0e68cbd98fe14dd58458d919d34d7916e9908b4
 
 COCOAPODS: 1.11.3
