@@ -39,8 +39,8 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let roomControllerVC = segue.destination as? RoomController {
 
-            //cameraVC.link="ciao"
-           }
+
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
