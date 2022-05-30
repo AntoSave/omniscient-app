@@ -61,7 +61,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         
         //chiamo la funzione per configurare le varie opzioni delle impostazioni
         configure()
-        title = "Settings"
+        navigationItem.title = "Settings"
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
