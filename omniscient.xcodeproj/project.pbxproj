@@ -22,6 +22,9 @@
 		A9307B492810A10400939356 /* omniscientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B482810A10400939356 /* omniscientUITests.swift */; };
 		A9307B4B2810A10400939356 /* omniscientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */; };
 		A97D624128425B480061AAFB /* StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D624028425B480061AAFB /* StateModel.swift */; };
+		A97D62452844944C0061AAFB /* AddSensorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D62422844944C0061AAFB /* AddSensorController.swift */; };
+		A97D62462844944C0061AAFB /* AnalogChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D62432844944C0061AAFB /* AnalogChartController.swift */; };
+		A97D62472844944C0061AAFB /* DigitalChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D62442844944C0061AAFB /* DigitalChartController.swift */; };
 		A989289328271C9A004D4DB2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A989289128271C9A004D4DB2 /* Model.xcdatamodeld */; };
 		A989289528271E7F004D4DB2 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989289428271E7F004D4DB2 /* PersistanceController.swift */; };
 		A9A536872840C48B0018C71F /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A536862840C48B0018C71F /* HomeStoryboard.storyboard */; };
@@ -76,6 +79,9 @@
 		A9307B482810A10400939356 /* omniscientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITests.swift; sourceTree = "<group>"; };
 		A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A97D624028425B480061AAFB /* StateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateModel.swift; sourceTree = "<group>"; };
+		A97D62422844944C0061AAFB /* AddSensorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorController.swift; sourceTree = "<group>"; };
+		A97D62432844944C0061AAFB /* AnalogChartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogChartController.swift; sourceTree = "<group>"; };
+		A97D62442844944C0061AAFB /* DigitalChartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalChartController.swift; sourceTree = "<group>"; };
 		A989289228271C9A004D4DB2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		A989289428271E7F004D4DB2 /* PersistanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
 		A9A536862840C48B0018C71F /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
@@ -203,6 +209,9 @@
 		A9BEE9E5281303F8005E0669 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A97D62422844944C0061AAFB /* AddSensorController.swift */,
+				A97D62432844944C0061AAFB /* AnalogChartController.swift */,
+				A97D62442844944C0061AAFB /* DigitalChartController.swift */,
 				A91422512816D737004A9170 /* Option1Controller.swift */,
 				A9307B2B2810A10200939356 /* ViewController.swift */,
 				A9E2A1A42815517A00315C16 /* CameraListController.swift */,
@@ -486,6 +495,7 @@
 			files = (
 				A9E2A1A52815517A00315C16 /* CameraListController.swift in Sources */,
 				A9307B2C2810A10200939356 /* ViewController.swift in Sources */,
+				A97D62462844944C0061AAFB /* AnalogChartController.swift in Sources */,
 				A91422542816D745004A9170 /* SettingsTableViewCell.swift in Sources */,
 				A9307B282810A10200939356 /* AppDelegate.swift in Sources */,
 				A97D624128425B480061AAFB /* StateModel.swift in Sources */,
@@ -495,8 +505,10 @@
 				A9307B2A2810A10200939356 /* SceneDelegate.swift in Sources */,
 				A9A5368B2840CFA90018C71F /* RoomController.swift in Sources */,
 				A91422562816D750004A9170 /* SwitchTableViewCell.swift in Sources */,
+				A97D62452844944C0061AAFB /* AddSensorController.swift in Sources */,
 				A91422522816D737004A9170 /* Option1Controller.swift in Sources */,
 				A989289328271C9A004D4DB2 /* Model.xcdatamodeld in Sources */,
+				A97D62472844944C0061AAFB /* DigitalChartController.swift in Sources */,
 				7C47E4B8281554E000C1F793 /* SettingsController.swift in Sources */,
 				A989289528271E7F004D4DB2 /* PersistanceController.swift in Sources */,
 			);
