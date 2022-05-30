@@ -10,7 +10,7 @@ target 'omniscient' do
   platform :ios, '8.4'
   pod 'MobileVLCKit', '~>3.3.0'
   pod 'GaugeKit'
-
+  pod 'Charts'
   target 'omniscientTests' do
     inherit! :search_paths
     # Pods for testing

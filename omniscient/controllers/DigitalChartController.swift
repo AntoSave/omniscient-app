@@ -31,6 +31,7 @@ class DigitalChartController: UIViewController, ChartViewDelegate  {
         barChart.backgroundColor = .systemGray6
         barChart.rightAxis.enabled = false
         
+        
         let yAxis = barChart.leftAxis
         yAxis.spaceBottom = 0 //Attacca all'asse x gli istogrammi
         yAxis.drawLabelsEnabled = false // Non mostra le label sull'asse y
@@ -55,10 +56,7 @@ class DigitalChartController: UIViewController, ChartViewDelegate  {
         
         
         let set: BarChartDataSet = setData()
-        
 //        set.colors = ChartColorTemplates.material() // Setto un template per le linee. Non fa al nostro caso
-        
-
         
 //      Inserisco i dati nel grafico
         let data = BarChartData(dataSet: set)
@@ -71,27 +69,17 @@ class DigitalChartController: UIViewController, ChartViewDelegate  {
     func setData() -> BarChartDataSet {
         
         //      Creo dei dati per testare
-        
         var entries = [BarChartDataEntry]()
         
-        for x in 0..<30 {
+        
+        //Nota: La distanza fra due barre deve essere almeno 2 unità
+        for x in stride(from: 0, to: 30, by: 2){
             entries.append(BarChartDataEntry(x: Double(x), y: 0))
-            entries.append(BarChartDataEntry(x: Double(x)+0.5, y: 1))
+            entries.append(BarChartDataEntry(x: Double(x)+Double(0.5), y: 1))
         }
         
-        let set = BarChartDataSet(entries: entries)
         
-//        let set = BarChartDataSet(entries: [
-//
-//
-//                BarChartDataEntry(x: 2, y: 1),
-//                BarChartDataEntry(x: 3, y: 0),
-//                BarChartDataEntry(x: 5, y: 1),
-//                BarChartDataEntry(x: 7, y: 1),
-//                BarChartDataEntry(x: 9, y: 0),
-//                BarChartDataEntry(x: 4, y: 0)
-//        ], label: "Movement")
-                
+        let set = BarChartDataSet(entries: entries)
         return set
     }
     
