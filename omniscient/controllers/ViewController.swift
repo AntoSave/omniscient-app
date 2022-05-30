@@ -8,10 +8,11 @@
 import UIKit
 
 class ViewController: UITabBarController {
-
+    let context = PersistanceController.preview.container.viewContext
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        PersistanceController.fetchStaticContent(context: context)
     }
 
 

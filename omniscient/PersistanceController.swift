@@ -56,4 +56,113 @@ struct PersistanceController{
         camera2.password = nil
         camera2.composition = bedroom
     }
+    
+    public static func deleteAllStaticContent(context: NSManagedObjectContext){
+        var fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Camera")
+        var deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try context.execute(deleteRequest)
+        } catch let error as NSError {
+            // TODO: handle the error
+        }
+        fetchRequest = NSFetchRequest(entityName: "Sensor")
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try context.execute(deleteRequest)
+        } catch let error as NSError {
+            // TODO: handle the error
+        }
+        fetchRequest = NSFetchRequest(entityName: "Room")
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try context.execute(deleteRequest)
+        } catch let error as NSError {
+            // TODO: handle the error
+        }
+    }
+    
+    public static func fetchStaticContent(context: NSManagedObjectContext){
+        let cameraEndpoint = URL(string: "https://omniscient-app.herokuapp.com/cameras")!
+        let roomEndpoint = URL(string: "https://omniscient-app.herokuapp.com/rooms")!
+        let sensorEndpoint = URL(string: "https://omniscient-app.herokuapp.com/sensors")!
+        
+        print("FetchStaticContent started")
+        let group = DispatchGroup()
+        var allSuccessful = true
+        var fetchedRooms: [FetchedRoom] = []
+        var fetchedCameras: [FetchedCamera] = []
+        var fetchedSensors: [FetchedSensor] = []
+        
+        group.enter()
+        URLSession.shared.fetchData(for: roomEndpoint) { (result: Result<[FetchedRoom], Error>) in
+            switch result {
+                case .success(let result):
+                print("Rooms fetched successfully",result)
+                fetchedRooms=result
+                case .failure(let error):
+                print("Couldn't fetch rooms",error)
+                allSuccessful = false
+            }
+            group.leave()
+        }
+        group.enter()
+        URLSession.shared.fetchData(for: cameraEndpoint) { (result: Result<[FetchedCamera], Error>) in
+            switch result {
+                case .success(let result):
+                print("Cameras fetched successfully",result)
+                fetchedCameras=result
+                case .failure(let error):
+                print("Couldn't fetch cameras",error)
+                allSuccessful = false
+            }
+            group.leave()
+        }
+        group.enter()
+        URLSession.shared.fetchData(for: sensorEndpoint) { (result: Result<[FetchedSensor], Error>) in
+            switch result {
+                case .success(let result):
+                print("Sensors fetched successfully",result)
+                fetchedSensors = result
+                case .failure(let error):
+                print("Couldn't fetch sensors",error)
+                allSuccessful = false
+            }
+            group.leave()
+        }
+        group.notify(queue: DispatchQueue.global()){ //TODO: Controllare se viene eseguito solo al termine dei 3 task
+            if(!allSuccessful){
+                return
+            }
+            print("All tasks completed successfully")
+            deleteAllStaticContent(context: context)
+            var roomDict = Dictionary<String,Room>()
+            for room in fetchedRooms {
+                roomDict[room.name]=Room(context: context)
+                roomDict[room.name]?.name=room.name
+            }
+            var cameraDict = Dictionary<String,Camera>()
+            for camera in fetchedCameras {
+                cameraDict[camera.name]=Camera(context: context)
+                cameraDict[camera.name]?.name=camera.name
+                cameraDict[camera.name]?.domain=camera.domain
+                cameraDict[camera.name]?.port=Int16(camera.port)!
+                cameraDict[camera.name]?.username=camera.username
+                cameraDict[camera.name]?.password=camera.password
+                cameraDict[camera.name]?.composition=roomDict[camera.room_name]
+            }
+            var sensorDict = Dictionary<String,Sensor>()
+            for sensor in fetchedSensors {
+                sensorDict[sensor.name]=Sensor(context: context)
+                sensorDict[sensor.name]?.name=sensor.name
+                sensorDict[sensor.name]?.remoteID=sensor.id
+                sensorDict[sensor.name]?.type=sensor.type
+                sensorDict[sensor.name]?.room=roomDict[sensor.room_name]
+            }
+            do {
+                try context.save()
+            } catch let error as NSError {
+                // TODO: handle the error
+            }
+        }
+    }
 }

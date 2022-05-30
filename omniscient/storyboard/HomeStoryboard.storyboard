@@ -30,11 +30,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LuR-kq-dkf">
-                                                    <rect key="frame" x="20" y="11" width="374" height="226"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LuR-kq-dkf" userLabel="CellView">
+                                                    <rect key="frame" x="20" y="11" width="374" height="239"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMv-0X-MIQ">
-                                                            <rect key="frame" x="157.5" y="98" width="59" height="30"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMv-0X-MIQ" userLabel="RoomTitle">
+                                                            <rect key="frame" x="157.5" y="104.5" width="59" height="30"/>
                                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="25"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                                                     <color key="tintColor" name="AccentColor"/>
                                                     <constraints>
                                                         <constraint firstItem="DMv-0X-MIQ" firstAttribute="centerY" secondItem="LuR-kq-dkf" secondAttribute="centerY" id="2Fo-pK-Q6n"/>
-                                                        <constraint firstAttribute="height" constant="250" id="VST-9h-KOv"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="VST-9h-KOv"/>
                                                         <constraint firstItem="DMv-0X-MIQ" firstAttribute="centerX" secondItem="LuR-kq-dkf" secondAttribute="centerX" id="rND-Vb-vDS"/>
                                                     </constraints>
                                                 </view>
@@ -55,7 +55,7 @@
                                                 <constraint firstItem="LuR-kq-dkf" firstAttribute="leading" secondItem="Obu-k7-QuV" secondAttribute="leadingMargin" id="PQg-W0-HZp"/>
                                                 <constraint firstItem="LuR-kq-dkf" firstAttribute="top" secondItem="Obu-k7-QuV" secondAttribute="topMargin" id="d5c-4u-Q2y"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="LuR-kq-dkf" secondAttribute="trailing" id="kUr-vs-r3s"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="LuR-kq-dkf" secondAttribute="bottom" constant="2" id="tPh-2l-u1d"/>
+                                                <constraint firstAttribute="bottom" secondItem="LuR-kq-dkf" secondAttribute="bottom" id="yLC-hd-I7q"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

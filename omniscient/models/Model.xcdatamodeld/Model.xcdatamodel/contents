@@ -6,7 +6,7 @@
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="port" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="username" optional="YES" attributeType="String"/>
-        <relationship name="composition" maxCount="1" deletionRule="Deny" destinationEntity="Room" inverseName="composition" inverseEntity="Room"/>
+        <relationship name="composition" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Room" inverseName="composition" inverseEntity="Room"/>
     </entity>
     <entity name="Room" representedClassName="Room" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -14,10 +14,10 @@
         <relationship name="sensors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sensor" inverseName="room" inverseEntity="Sensor"/>
     </entity>
     <entity name="Sensor" representedClassName="Sensor" syncable="YES" codeGenerationType="class">
-        <attribute name="id" attributeType="String"/>
-        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="remoteID" attributeType="String"/>
         <attribute name="type" attributeType="String"/>
-        <relationship name="room" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Room" inverseName="sensors" inverseEntity="Room"/>
+        <relationship name="room" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Room" inverseName="sensors" inverseEntity="Room"/>
     </entity>
     <elements>
         <element name="Camera" positionX="-63" positionY="-18" width="128" height="119"/>

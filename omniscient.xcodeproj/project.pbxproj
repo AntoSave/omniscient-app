@@ -25,6 +25,7 @@
 		A9307B492810A10400939356 /* omniscientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B482810A10400939356 /* omniscientUITests.swift */; };
 		A9307B4B2810A10400939356 /* omniscientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */; };
 		A97D624B2844AC6B0061AAFB /* StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D62492844AC6B0061AAFB /* StateModel.swift */; };
+		A97D624D2844F3880061AAFB /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D624C2844F3880061AAFB /* APIHelper.swift */; };
 		A989289328271C9A004D4DB2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A989289128271C9A004D4DB2 /* Model.xcdatamodeld */; };
 		A989289528271E7F004D4DB2 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989289428271E7F004D4DB2 /* PersistanceController.swift */; };
 		A9A536872840C48B0018C71F /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A536862840C48B0018C71F /* HomeStoryboard.storyboard */; };
@@ -82,6 +83,7 @@
 		A9307B482810A10400939356 /* omniscientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITests.swift; sourceTree = "<group>"; };
 		A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A97D62492844AC6B0061AAFB /* StateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateModel.swift; sourceTree = "<group>"; };
+		A97D624C2844F3880061AAFB /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		A989289228271C9A004D4DB2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		A989289428271E7F004D4DB2 /* PersistanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
 		A9A536862840C48B0018C71F /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		A9307B262810A10200939356 /* omniscient */ = {
 			isa = PBXGroup;
 			children = (
+				A97D624C2844F3880061AAFB /* APIHelper.swift */,
 				A989289428271E7F004D4DB2 /* PersistanceController.swift */,
 				A9E2A1A72815587400315C16 /* models */,
 				A9E2A1A6281554C500315C16 /* views */,
@@ -501,6 +504,7 @@
 				A9E9F7F3281D3FD700F53B91 /* AddCameraController.swift in Sources */,
 				A97D624B2844AC6B0061AAFB /* StateModel.swift in Sources */,
 				A9E9F7EB281C90DA00F53B91 /* CameraController.swift in Sources */,
+				A97D624D2844F3880061AAFB /* APIHelper.swift in Sources */,
 				A9A536892840CF9F0018C71F /* HomeController.swift in Sources */,
 				A9307B2A2810A10200939356 /* SceneDelegate.swift in Sources */,
 				A9A5368B2840CFA90018C71F /* RoomController.swift in Sources */,

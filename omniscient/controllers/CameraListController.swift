@@ -23,6 +23,9 @@ class CameraListController: UIViewController,UITableViewDataSource,UITableViewDe
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+
+        
         self.cameraTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         cameraTableView.dataSource = self
         cameraTableView.delegate = self
@@ -53,6 +56,13 @@ class CameraListController: UIViewController,UITableViewDataSource,UITableViewDe
 
             //cameraVC.link="ciao"
            }
+    }
+    
+    @objc func contextObjectsDidChange(_:Any){
+        print("contextObjectDidChange!!!!!!!!!!!!!!")
+        DispatchQueue.main.async {
+            self.cameraTableView.reloadData()
+        }
     }
 }
 //Riga personalizzata
