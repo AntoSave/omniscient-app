@@ -21,6 +21,7 @@
 		A9307B3F2810A10400939356 /* omniscientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B3E2810A10400939356 /* omniscientTests.swift */; };
 		A9307B492810A10400939356 /* omniscientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B482810A10400939356 /* omniscientUITests.swift */; };
 		A9307B4B2810A10400939356 /* omniscientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */; };
+		A97D624128425B480061AAFB /* StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D624028425B480061AAFB /* StateModel.swift */; };
 		A989289328271C9A004D4DB2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A989289128271C9A004D4DB2 /* Model.xcdatamodeld */; };
 		A989289528271E7F004D4DB2 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989289428271E7F004D4DB2 /* PersistanceController.swift */; };
 		A9A536872840C48B0018C71F /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A536862840C48B0018C71F /* HomeStoryboard.storyboard */; };
@@ -74,6 +75,7 @@
 		A9307B442810A10400939356 /* omniscientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = omniscientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9307B482810A10400939356 /* omniscientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITests.swift; sourceTree = "<group>"; };
 		A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A97D624028425B480061AAFB /* StateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateModel.swift; sourceTree = "<group>"; };
 		A989289228271C9A004D4DB2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		A989289428271E7F004D4DB2 /* PersistanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
 		A9A536862840C48B0018C71F /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				A989289128271C9A004D4DB2 /* Model.xcdatamodeld */,
+				A97D624028425B480061AAFB /* StateModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				A9307B2C2810A10200939356 /* ViewController.swift in Sources */,
 				A91422542816D745004A9170 /* SettingsTableViewCell.swift in Sources */,
 				A9307B282810A10200939356 /* AppDelegate.swift in Sources */,
+				A97D624128425B480061AAFB /* StateModel.swift in Sources */,
 				A9E9F7F3281D3FD700F53B91 /* AddCameraController.swift in Sources */,
 				A9E9F7EB281C90DA00F53B91 /* CameraController.swift in Sources */,
 				A9A536892840CF9F0018C71F /* HomeController.swift in Sources */,
