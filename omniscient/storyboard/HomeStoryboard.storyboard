@@ -299,8 +299,8 @@
         <scene sceneID="wAy-ki-ZPG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bLc-Oi-LkI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" selectedImage="gear" catalog="system" id="kUH-oL-OOb">
-                        <imageReference key="image" image="gear" catalog="system" symbolScale="large"/>
+                    <tabBarItem key="tabBarItem" selectedImage="house" catalog="system" id="kUH-oL-OOb">
+                        <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -320,7 +320,7 @@
     </scenes>
     <resources>
         <image name="chartIconImage" width="1280" height="1280"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="house" catalog="system" width="128" height="106"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
