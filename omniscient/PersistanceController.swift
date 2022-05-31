@@ -8,7 +8,7 @@ import CoreData
 import SwiftUI
 
 struct PersistanceController{
-    static let shared = PersistanceController(inMemory: true) //Singleton. Sto costruendo la classe stessa!!!
+    static let shared = PersistanceController(inMemory: false) //Singleton. Sto costruendo la classe stessa!!!
     //TODO: In fase di produzione togliere inMemory: true
     let container: NSPersistentContainer
     
@@ -160,9 +160,15 @@ struct PersistanceController{
             }
             do {
                 try context.save()
+                NotificationCenter.default.post(name: .staticDataUpdated, object: nil)
             } catch let error as NSError {
                 // TODO: handle the error
             }
         }
     }
+}
+
+
+extension Notification.Name {
+    static let staticDataUpdated = Notification.Name("static-data-updated")
 }

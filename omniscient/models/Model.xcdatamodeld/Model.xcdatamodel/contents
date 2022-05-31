@@ -5,6 +5,8 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="port" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary"/>
+        <attribute name="thumbnailDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="username" optional="YES" attributeType="String"/>
         <relationship name="composition" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Room" inverseName="composition" inverseEntity="Room"/>
     </entity>
@@ -20,7 +22,7 @@
         <relationship name="room" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Room" inverseName="sensors" inverseEntity="Room"/>
     </entity>
     <elements>
-        <element name="Camera" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="Camera" positionX="-63" positionY="-18" width="128" height="149"/>
         <element name="Room" positionX="-54" positionY="-9" width="128" height="74"/>
         <element name="Sensor" positionX="-54" positionY="36" width="128" height="89"/>
     </elements>

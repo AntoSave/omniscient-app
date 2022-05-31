@@ -25,6 +25,8 @@ class CameraController: UIViewController,VLCMediaPlayerDelegate,VLCMediaThumbnai
     var mediaPlayer: VLCMediaPlayer?
     //var mediaThumbnailer: VLCMediaThumbnailer?
     var hasTakenSnapshot: Bool = false
+    var camera: Camera?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Did load")
