@@ -30,6 +30,8 @@ class DigitalChartController: UIViewController, ChartViewDelegate  {
 //      Configuro il chart
         barChart.backgroundColor = .systemGray6
         barChart.rightAxis.enabled = false
+        barChart.doubleTapToZoomEnabled = false //Disattivo la possibilità di zoomare il grafico
+        
         
         
         let yAxis = barChart.leftAxis
