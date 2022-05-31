@@ -32,6 +32,7 @@
 		A9A536892840CF9F0018C71F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A536882840CF9F0018C71F /* HomeController.swift */; };
 		A9A5368B2840CFA90018C71F /* RoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5368A2840CFA90018C71F /* RoomController.swift */; };
 		A9BEE9E72813042D005E0669 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */; };
+		A9C4AB1128461AC50004A899 /* StaticDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C4AB1028461AC50004A899 /* StaticDataModel.swift */; };
 		A9E2A1A52815517A00315C16 /* CameraListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E2A1A42815517A00315C16 /* CameraListController.swift */; };
 		A9E9F7EB281C90DA00F53B91 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9F7EA281C90DA00F53B91 /* CameraController.swift */; };
 		A9E9F7F3281D3FD700F53B91 /* AddCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9F7F2281D3FD700F53B91 /* AddCameraController.swift */; };
@@ -90,6 +91,7 @@
 		A9A536882840CF9F0018C71F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		A9A5368A2840CFA90018C71F /* RoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomController.swift; sourceTree = "<group>"; };
 		A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
+		A9C4AB1028461AC50004A899 /* StaticDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticDataModel.swift; sourceTree = "<group>"; };
 		A9E2A1A42815517A00315C16 /* CameraListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraListController.swift; sourceTree = "<group>"; };
 		A9E9F7EA281C90DA00F53B91 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		A9E9F7EF281C9EF300F53B91 /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			children = (
 				A97D62492844AC6B0061AAFB /* StateModel.swift */,
 				A989289128271C9A004D4DB2 /* Model.xcdatamodeld */,
+				A9C4AB1028461AC50004A899 /* StaticDataModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				A97D624D2844F3880061AAFB /* APIHelper.swift in Sources */,
 				A9A536892840CF9F0018C71F /* HomeController.swift in Sources */,
 				A9307B2A2810A10200939356 /* SceneDelegate.swift in Sources */,
+				A9C4AB1128461AC50004A899 /* StaticDataModel.swift in Sources */,
 				A9A5368B2840CFA90018C71F /* RoomController.swift in Sources */,
 				A91422562816D750004A9170 /* SwitchTableViewCell.swift in Sources */,
 				7CE2239328424EFF00B75F41 /* DigitalChartController.swift in Sources */,
