@@ -30,6 +30,7 @@ class AnalogChartController: UIViewController, ChartViewDelegate   {
 //      Configuro il chart
         lineChart.backgroundColor = .systemGray6
         lineChart.rightAxis.enabled = false
+        lineChart.doubleTapToZoomEnabled = false //Disattivo la possibilità di zoomare il grafico
         
         let yAxis = lineChart.leftAxis
         yAxis.labelFont = .boldSystemFont(ofSize: 12)
