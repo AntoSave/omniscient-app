@@ -70,7 +70,15 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Mod-qO-j6u"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Mod-qO-j6u">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="J92-0o-ISm">
+                            <connections>
+                                <segue destination="u8q-TV-sTQ" kind="show" id="vA1-Kh-kOr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="HomeTableView" destination="7Pp-NY-XCb" id="7RQ-Qo-fSm"/>
                         <outlet property="HomeView" destination="5EZ-qb-Rvc" id="FpA-dp-Wz1"/>
@@ -79,6 +87,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1157.9710144927537" y="211.60714285714286"/>
+        </scene>
+        <!--Add Room Controller-->
+        <scene sceneID="vPG-Zn-6sy">
+            <objects>
+                <viewController id="u8q-TV-sTQ" customClass="AddRoomController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gxn-Nh-0zc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Zvz-eB-88Y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eaa-Ic-hQ9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HJR-GB-v9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1158" y="-518"/>
         </scene>
         <!--Add Sensor Controller-->
         <scene sceneID="92B-3E-1Zl">
