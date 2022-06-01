@@ -39,8 +39,6 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
     //Funzione chiamata prima del segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let roomControllerVC = segue.destination as? RoomController {
-
-
         }
     }
     
@@ -50,9 +48,6 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
         //Inizializza le celle della tableView
         var room = roomList[indexPath.row]
         cell.initialize(room: room)
-        
-        
-        
         return cell
     }
     

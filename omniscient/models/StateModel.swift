@@ -33,7 +33,7 @@ struct FetchedDigitalSensorData: Decodable {
 }
 
 struct FetchedState: Decodable {
-    let sensor_status: [FetchedSensorStatus]
+    let sensor_status: [String:FetchedSensorStatus]
     let analog_sensor_data: [String:FetchedAnalogSensorData]
     let digital_sensor_data: [String:FetchedDigitalSensorData]
 }
@@ -43,6 +43,7 @@ class StateModel {
     static let shared = StateModel()
     var current_state: FetchedState?
     var previous_state: FetchedState?
+    
     
     func fetchState(){
         let stateEndpoint = URL(string: "https://omniscient-app.herokuapp.com/sensors/state")!
@@ -59,9 +60,11 @@ class StateModel {
                 print("Couldn't fetch state",error)
             }
         }
+        NotificationCenter.default.post(name: NSNotification.Name.stateChanged, object: nil)
+        print("State change notified!")
     }
 }
 
 extension Notification.Name {
-    static let stateUpdated = Notification.Name("state-updated")
+    static let stateChanged = Notification.Name("state-changed")
 }
