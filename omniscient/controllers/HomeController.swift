@@ -21,6 +21,7 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.HomeTableView.separatorStyle = UITableViewCell.SeparatorStyle.none //Toglie il separatore (divider)
         self.HomeTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         HomeTableView.dataSource = self
         HomeTableView.delegate = self
@@ -36,25 +37,68 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
         return roomList.count
     }
     
-    //Funzione chiamata prima del segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let roomControllerVC = segue.destination as? RoomController {
-
-
-        }
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:RoomTableCell = self.HomeTableView.dequeueReusableCell(withIdentifier: "RoomIdentifier", for: indexPath) as! RoomTableCell
         
         //Inizializza le celle della tableView
-        var room = roomList[indexPath.row]
+        let room = roomList[indexPath.row]
         cell.initialize(room: room)
-        
-        
-        
         return cell
     }
+    
+    //Funzione chiamata prima del segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let roomControllerVC = segue.destination as? RoomController {
+                
+
+        }
+    }
+    
+    
+    //Gestione della cancellazione delle celle tramite il bottone edit
+    @IBAction func DeleteButton(_ sender: Any) {
+        if(HomeTableView.isEditing == false){
+            HomeTableView.isEditing = true
+        }else if (HomeTableView.isEditing == true){
+            HomeTableView.isEditing = false
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .insert {
+            HomeTableView.beginUpdates()
+            
+            //TODO: Implementare la cancellazione nel back-end
+            let r = Room(context: context)
+            r.name = "AJA"
+            HomeTableView.insertRows(at: [indexPath], with: .fade)
+            HomeTableView.endUpdates()
+//            roomList.append(r)
+//            roomList.insert(r, at: indexPath.row)
+            HomeTableView.endUpdates()
+        }
+        
+        if editingStyle == .delete {
+            HomeTableView.beginUpdates()
+            //TODO: Implementare la cancellazione nel back-end
+            let room = roomList[indexPath.row]
+            context.delete(room)
+            HomeTableView.deleteRows(at: [indexPath], with: .fade)
+            
+//            HomeTableView.insertRows(at: [indexPath], with: .fade)
+            HomeTableView.endUpdates()
+
+        }
+    }
+    
+    
+
     
 }
 

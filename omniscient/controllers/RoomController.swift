@@ -15,8 +15,8 @@ enum sensorType: String {
 }
 
 
-class RoomController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout   {
-    
+class RoomController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
+    //UICollectionViewDelegateFlowLayout va messo perchè è una collection view
     
     @IBOutlet weak var roomCollectionView: UICollectionView!
     
