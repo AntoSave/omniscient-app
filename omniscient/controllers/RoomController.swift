@@ -17,11 +17,20 @@ enum sensorType: String {
 
 class RoomController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout   {
     @IBOutlet weak var roomCollectionView: UICollectionView!
+    var room: Room?
     
     let context = PersistanceController.shared.container.viewContext
     var sensorList: [Sensor] {
-        let fetchRequest = Sensor.fetchRequest()
-        let sensors = try! context.fetch(fetchRequest)
+        /*let fetchRequest = Sensor.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "room == %@", room!
+        )
+        print(room!)
+        let sensors = try! context.fetch(fetchRequest)*/
+        print("sensorList requested")
+        //print(room!)
+        //print(room!.sensors)
+        let sensors = room?.sensors?.allObjects as! [Sensor]
         return sensors
     }
     
@@ -195,7 +204,7 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
         self.setEnabled()
         //Nota: do per scontato che i dati analogici ci siano!
         let data = state?.analog_sensor_data[sensorID]?.data
-        if  data == nil || data?.count == 0 {
+        if data == nil || data?.count == 0 {
             return
         }
         self.setRate(currentRate: data![0].value)

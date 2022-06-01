@@ -53,15 +53,16 @@ class StateModel {
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         URLSession.shared.fetchData(for: stateEndpoint,decoder: decoder) { (result: Result<FetchedState, Error>) in
             switch result {
-                case .success(let result):
-                print("State fetched successfully",result)
+            case .success(let result):
+                //print("State fetched successfully",result)
                 self.current_state = result
-                case .failure(let error):
-                print("Couldn't fetch state",error)
+            case .failure(let error):
+                print("Couldn't fetch state!")
+                //print("Couldn't fetch state",error)
             }
         }
         NotificationCenter.default.post(name: NSNotification.Name.stateChanged, object: nil)
-        print("State change notified!")
+        //print("State change notified!")
     }
 }
 
