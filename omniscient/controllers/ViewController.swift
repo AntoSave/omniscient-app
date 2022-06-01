@@ -13,6 +13,7 @@ class ViewController: UITabBarController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         PersistanceController.fetchStaticContent(context: context)
+        StateModel.shared.fetchState()
     }
 
 
