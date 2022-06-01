@@ -9,38 +9,23 @@ import UIKit
 import CoreData
 import GaugeKit
 
-//Ho una variabile room nel CoreData
-enum sensorCategory {
-    case analog
-    case digital
+
+enum sensorType: String {
+    case MOVEMENT,TEMPERATURE,LIGHT,DOOR,WINDOW
 }
 
-enum sensorType {
-    case movement
-    case temperature
-    case light
-    case door
-    case window
-}
-
-struct MySensor {
-    let nameSensor: String
-    let info: String
-    let category: sensorCategory
-    let type: sensorType
-}
-
-let mySensors: [MySensor] = [
-    MySensor(nameSensor: "Temperatura", info: "30",category: .analog, type: .temperature),
-    MySensor(nameSensor: "Movimento", info: "No Movement",category: .digital, type: .movement),
-    MySensor(nameSensor: "Luce", info: "400",category: .analog, type: .light),
-    MySensor(nameSensor: "Porta", info: "closed", category: .digital, type: .door)
-]
 
 class RoomController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout   {
     
     
     @IBOutlet weak var roomCollectionView: UICollectionView!
+    
+    let context = PersistanceController.shared.container.viewContext
+    var sensorList: [Sensor] {
+        let fetchRequest = Sensor.fetchRequest()
+        let sensors = try! context.fetch(fetchRequest)
+        return sensors
+    }
     
   
     override func viewDidLoad() {
@@ -52,45 +37,22 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     
     //Numero di Item che devono essere mostrati a video
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mySensors.count
+        return sensorList.count
     }
     
     //Configuro quale cella della collectionView deve essere mostrata
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let sensor =  mySensors[indexPath.row]
+        var sensor = sensorList[indexPath.row]
         
-        if sensor.category == .analog {
+        if sensor.type! == "TEMPERATURE" || sensor.type! == "LIGHT" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "analogTableCell", for: indexPath) as! AnalogTableCell
-            
-            cell.initialize()
-            cell.setNameSensor(nameSensor: sensor.nameSensor)
-            
-            cell.rate(currentRate: Int(sensor.info) ?? 0)
-            
-            
-            
-            if sensor.type == .temperature{
-                cell.setInfoSensor(info: sensor.info + "°C")
-                cell.maxValue(maxValue: 37)
-                cell.startColor(color: UIColor.link)
-                cell.endColor(color: UIColor.systemRed)
-                cell.bgColor(color: UIColor.yellow)
-            }else if sensor.type == .light {
-                cell.setInfoSensor(info: sensor.info + " lx")
-                cell.maxValue(maxValue: 700)
-                cell.startColor(color: UIColor.link)
-                cell.endColor(color: UIColor.systemRed)
-                cell.bgColor(color: UIColor.yellow)
-            }
-            
+            cell.initialize(sensor: sensor)
             return cell
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "digitalTableCell", for: indexPath) as! DigitalTableCell
-            cell.initialize()
-            cell.setNameSensor(nameSensor: sensor.nameSensor)
+            cell.initialize(sensor: sensor)
             return cell
-            
         }
             
     }
@@ -104,7 +66,7 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     
     //Cliccare qui equivale a svolgere delle azioni quando viene premuta una determinata cella
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(mySensors[indexPath.row].nameSensor)
+        print(sensorList[indexPath.row].name ?? "Sensore sconosciuto")
         
     }
     
@@ -136,13 +98,52 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var analogView: UIView!
-    @IBOutlet weak var barIndicator: Gauge!
+    @IBOutlet weak var barIndicator: Gauge! // bar nel senso di barra circolare!!!
     
     var nomeSensore: String = ""
+    var defaultValueSensor: Int = 0
     
-    func initialize() {
+    
+    func initialize(sensor: Sensor) {
         //Qui viene definito il template del analogView
         analogView.layer.cornerRadius = 12
+        
+        self.setNameSensor(nameSensor: sensor.name ?? "")
+        
+        if sensor.type == "TEMPERATURE"{
+            
+            //Da inserire la query
+            defaultValueSensor = 30
+            self.rate(currentRate: defaultValueSensor)
+            self.setInfoSensor(info: String(defaultValueSensor) + " °C")
+            
+            
+            self.maxValue(maxValue: 37)
+            self.startColor(color: UIColor.link)
+            self.endColor(color: UIColor.systemRed)
+            self.bgColor(color: UIColor.yellow)
+        }else if sensor.type == "LIGHT" {
+            
+            //Da inserire la query
+            defaultValueSensor = 400
+            self.rate(currentRate: defaultValueSensor)
+            self.setInfoSensor(info: String(defaultValueSensor) + "  lx")
+            
+            self.maxValue(maxValue: 700)
+            self.startColor(color: UIColor.link)
+            self.endColor(color: UIColor.systemRed)
+            self.bgColor(color: UIColor.yellow)
+        }else{
+            //Sensore sconosciuto di cui non si sa nulla
+            self.rate(currentRate: defaultValueSensor)
+            self.setInfoSensor(info: String(defaultValueSensor))
+            self.maxValue(maxValue: 100)
+            self.startColor(color: UIColor.link)
+            self.endColor(color: UIColor.systemRed)
+            self.bgColor(color: UIColor.yellow)
+        }
+        
+        
     }
     
     func maxValue(maxValue: Int){
@@ -182,10 +183,12 @@ class DigitalTableCell: UICollectionViewCell  {
     
     var nomeSensore: String = ""
     
-    func initialize() {
+    func initialize(sensor: Sensor){
         //Qui viene definito il template del analogView
         digitalView.layer.cornerRadius = 12
         digitalIconImage.layer.cornerRadius = 12
+        
+        self.setNameSensor(nameSensor: sensor.name!)
     }
     
     func setNameSensor(nameSensor: String) {

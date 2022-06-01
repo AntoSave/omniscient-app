@@ -59,6 +59,13 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let tabBarItem3 = self.tabBarController?.tabBar.items?[2] {
+                    tabBarItem3.title = ""
+                    tabBarItem3.image = UIImage(systemName: "gear")
+                    tabBarItem3.selectedImage = UIImage(systemName: "gear")
+                }
+    
+        
         //chiamo la funzione per configurare le varie opzioni delle impostazioni
         configure()
         navigationItem.title = "Settings"

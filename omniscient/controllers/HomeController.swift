@@ -11,11 +11,12 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var HomeTableView: UITableView!
     @IBOutlet var HomeView: UIView!
 
-    /*var roomList: [Camera] {
-        let fetchRequest = Camera.fetchRequest()
-        let cameras = try! context.container.viewContext.fetch(fetchRequest)
-        return cameras
-    }*/
+    let context = PersistanceController.shared.container.viewContext
+    var roomList: [Room] {
+        let fetchRequest = Room.fetchRequest()
+        let rooms = try! context.fetch(fetchRequest)
+        return rooms
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     //Definisco il numero di celle per sezione
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return roomList.count
     }
     
     //Funzione chiamata prima del segue
@@ -47,11 +48,9 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
         let cell:RoomTableCell = self.HomeTableView.dequeueReusableCell(withIdentifier: "RoomIdentifier", for: indexPath) as! RoomTableCell
         
         //Inizializza le celle della tableView
-        cell.initialize()
+        var room = roomList[indexPath.row]
+        cell.initialize(room: room)
         
-        //Prelevare i dati da CoreData
-        cell.setRoomTitle(roomTitle: "Living Room")
-        cell.setBackgroundColor(color: .cyan)
         
         
         return cell
@@ -64,9 +63,14 @@ class RoomTableCell: UITableViewCell {
     @IBOutlet weak var roomTitle: UILabel!
     @IBOutlet weak var cellView: UIView!
     
-    func initialize() {
+    func initialize(room: Room) {
         //Qui viene definito il template delle celle
         cellView.layer.cornerRadius = 20
+        
+        //Prelevare i dati da CoreData
+        self.setRoomTitle(roomTitle: room.name!)
+        self.setBackgroundColor(color: .cyan)
+        
     }
     
     //Personalizzazione delle celle
