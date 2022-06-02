@@ -23,7 +23,7 @@ class AddRoomController: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     //Definisco il numero di sezioni
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     //Definisco il numero di celle per sezione
@@ -66,10 +66,10 @@ class AddRoomController: UIViewController,UITableViewDataSource,UITableViewDeleg
 class AddRoomTableCell: UITableViewCell {
     
     @IBOutlet weak var nameRoomTextField: UITextField!
-    @IBOutlet weak var addRoomCellView: UIView!
+    @IBOutlet weak var boxView: UIView!
     func initialize() {
         //Qui viene definito il template delle celle
-        addRoomCellView.layer.cornerRadius = 10
+        boxView.layer.cornerRadius = 10
     }
     
     
