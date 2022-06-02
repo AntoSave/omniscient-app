@@ -29,6 +29,10 @@ class CameraListController: UIViewController,UITableViewDataSource,UITableViewDe
         self.cameraTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         cameraTableView.dataSource = self
         cameraTableView.delegate = self
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        cameraTableView.refreshControl = refreshControl
     }
     //Restituisce il numero di righe per ogni sezione
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,6 +69,11 @@ class CameraListController: UIViewController,UITableViewDataSource,UITableViewDe
             self.cameraTableView.reloadData()
         }
     }
+
+    @objc func refresh(refreshControl: UIRefreshControl){
+        PersistanceController.fetchStaticContent(context: context)
+        refreshControl.endRefreshing()
+    }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
@@ -78,9 +87,20 @@ class CameraListController: UIViewController,UITableViewDataSource,UITableViewDe
     
     func presentDeletionFailsafe(indexPath: IndexPath) {
         let alert = UIAlertController(title: nil, message: "Are you sure you'd like to delete this cell", preferredStyle: .alert)
+        let deletedCamera = cameraList[indexPath.section]
         // yes action
         let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-            
+            APIHelper.deleteCamera(cameraName: deletedCamera.name!, roomName: (deletedCamera.composition?.name)!){
+                result in
+                switch(result){
+                case .success(let s):
+                    self.context.delete(deletedCamera)
+                    try! self.context.save()
+                    NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
+                case .failure(let e):
+                    print("Error",e)
+                }
+            }
             //CANCELLO I DATI //TODO: sto cancellando una telecamera
 //            let camera = self.cameraList[indexPath.row]
 //            self.context.delete(camera)

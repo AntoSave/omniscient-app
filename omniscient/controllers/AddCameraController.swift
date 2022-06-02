@@ -51,6 +51,9 @@ class AddCameraController: UITableViewController{
         let roomName = values["Room"]!()
         let domain = values["Dominio"]!()
         let port = values["Porta"]!()
+        if Int16(port) == nil{
+            return
+        }
         let username = values["Nome Utente"]!()
         let password = values["Password"]!()
         APIHelper.createCamera(cameraName: cameraName, roomName: roomName, domain: domain, port: port, username: username, password: password){
@@ -74,6 +77,7 @@ class AddCameraController: UITableViewController{
                 try! self.context.save()
                 DispatchQueue.main.async {
                     self.navigationController!.popViewController(animated: true)
+                    NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
                 }
             case(.failure(let e)):
                 print("Errore",e)
