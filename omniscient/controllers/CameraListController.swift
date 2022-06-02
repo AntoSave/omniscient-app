@@ -21,6 +21,7 @@ class CameraListController: UIViewController,UITableViewDataSource,UITableViewDe
     @IBOutlet weak var test: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Cameras"
         // Do any additional setup after loading the view.
         
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.staticDataUpdated, object: nil)

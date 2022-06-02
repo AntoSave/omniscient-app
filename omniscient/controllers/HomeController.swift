@@ -21,6 +21,7 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Home"
         // Do any additional setup after loading the view.
         self.HomeTableView.separatorStyle = UITableViewCell.SeparatorStyle.none //Toglie il separatore (divider)
         self.HomeTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
