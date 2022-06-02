@@ -43,3 +43,46 @@ extension URLSession {
     }
 }
 
+class APIHelper{
+    static func createCamera(cameraName: String,roomName: String,domain: String,port: String,username: String,password: String,completion: @escaping (Result<String, Error>) -> Void){
+        let url = URL(string: "https://omniscient-app.herokuapp.com/cameras")!
+        var json: [String: Any] = [
+            "name": cameraName,
+            "room_name": roomName,
+            "domain": domain,
+            "port": port
+        ]
+        if username != "" {
+            json["username"]=username
+        }
+        if password != "" {
+            json["password"]=password
+        }
+        let jsonData = try! JSONSerialization.data(withJSONObject: json)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        URLSession.shared.dataTask(with: request){ (data, response, error) in
+            if let error = error {
+                print("error")
+                completion(.failure(error))
+                return
+            }
+            let res = response as! HTTPURLResponse
+            if(res.statusCode != 200){
+                print("error")
+                let body = String(decoding: data!,as: UTF8.self)
+                completion(.failure(NSError(domain: body, code: res.statusCode)))
+                return
+            }
+            print("success")
+            completion(.success("SUCCESS"))
+        }.resume()
+    }
+    static func deleteCamera(){
+        
+    }
+}

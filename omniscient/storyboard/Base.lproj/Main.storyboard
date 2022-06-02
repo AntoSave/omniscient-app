@@ -99,7 +99,7 @@
                     <navigationItem key="navigationItem" id="lBd-AH-jND">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="zxH-KZ-h1p">
                             <connections>
-                                <segue destination="fvk-23-6T7" kind="show" id="pNh-qf-qhZ"/>
+                                <segue destination="RRG-GR-Map" kind="show" id="bdZ-sI-gTr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -114,15 +114,153 @@
             <point key="canvasLocation" x="-4994.202898550725" y="712.5"/>
         </scene>
         <!--Aggiungi Telecamera-->
+        <scene sceneID="fbE-L2-0dY">
+            <objects>
+                <tableViewController id="RRG-GR-Map" customClass="AddCameraController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" separatorInsetReference="fromAutomaticInsets" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="r0s-KB-bxD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <inset key="separatorInset" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="inputTextCell" rowHeight="80" id="VvC-RM-5ia" userLabel="Input Text View Cell" customClass="InputTextTableCell" customModule="omniscient" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="49.5" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VvC-RM-5ia" id="gYP-BC-zlv">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgP-as-Icf">
+                                            <rect key="frame" x="18" y="0.0" width="378" height="80"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOME TELECAMERA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4g-Mr-hqI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="118" height="14.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOO-6N-pDq" userLabel="BoxView">
+                                                    <rect key="frame" x="0.0" y="19.5" width="378" height="40"/>
+                                                    <subviews>
+                                                        <textField multipleTouchEnabled="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5zc-Ah-dbf">
+                                                            <rect key="frame" x="5" y="0.0" width="368" height="40"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="5zc-Ah-dbf" firstAttribute="top" secondItem="uOO-6N-pDq" secondAttribute="top" id="DhR-OK-PKz"/>
+                                                        <constraint firstAttribute="bottom" secondItem="5zc-Ah-dbf" secondAttribute="bottom" id="Egy-xO-074"/>
+                                                        <constraint firstAttribute="trailing" secondItem="5zc-Ah-dbf" secondAttribute="trailing" constant="5" id="Uzf-NU-iMl"/>
+                                                        <constraint firstAttribute="height" constant="40" id="Yyf-gN-fe5"/>
+                                                        <constraint firstItem="5zc-Ah-dbf" firstAttribute="top" secondItem="uOO-6N-pDq" secondAttribute="top" id="dtf-RY-eHp"/>
+                                                        <constraint firstItem="5zc-Ah-dbf" firstAttribute="leading" secondItem="uOO-6N-pDq" secondAttribute="leading" constant="5" id="w2n-ID-wXg"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="R4g-Mr-hqI" firstAttribute="top" secondItem="jgP-as-Icf" secondAttribute="top" id="1Bu-gI-tmu"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="5ZV-8X-lhK"/>
+                                                <constraint firstAttribute="trailing" secondItem="uOO-6N-pDq" secondAttribute="trailing" id="Wt1-1I-vle"/>
+                                                <constraint firstItem="uOO-6N-pDq" firstAttribute="top" secondItem="R4g-Mr-hqI" secondAttribute="bottom" constant="5" id="aqZ-hc-9bz"/>
+                                                <constraint firstItem="R4g-Mr-hqI" firstAttribute="leading" secondItem="jgP-as-Icf" secondAttribute="leading" id="c1A-Lr-6XF"/>
+                                                <constraint firstItem="uOO-6N-pDq" firstAttribute="leading" secondItem="jgP-as-Icf" secondAttribute="leading" id="dxG-58-fyx"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jgP-as-Icf" firstAttribute="leading" secondItem="gYP-BC-zlv" secondAttribute="leading" constant="18" id="MAv-we-86m"/>
+                                        <constraint firstItem="jgP-as-Icf" firstAttribute="top" secondItem="gYP-BC-zlv" secondAttribute="top" id="RCk-VG-tvQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="jgP-as-Icf" secondAttribute="trailing" constant="18" id="exB-o8-AKL"/>
+                                        <constraint firstAttribute="bottom" secondItem="jgP-as-Icf" secondAttribute="bottom" id="jyY-xJ-jbo"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="box" destination="uOO-6N-pDq" id="uxC-xx-2af"/>
+                                    <outlet property="label" destination="R4g-Mr-hqI" id="Haj-Ht-eRp"/>
+                                    <outlet property="textField" destination="5zc-Ah-dbf" id="pfn-6D-UA7"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="buttonCell" rowHeight="80" id="cxe-GL-EfQ" userLabel="Stanza View Cell" customClass="ButtonTableCell" customModule="omniscient" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="129.5" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cxe-GL-EfQ" id="cLO-d4-pvO">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itw-q3-VzX">
+                                            <rect key="frame" x="18" y="0.0" width="378" height="80"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STANZA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAQ-46-0by">
+                                                    <rect key="frame" x="0.0" y="0.0" width="47.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" alpha="0.69999998807907104" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wh2-Nq-QxU">
+                                                    <rect key="frame" x="0.0" y="19.5" width="89" height="40"/>
+                                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <inset key="contentEdgeInsets" minX="20" minY="10" maxX="20" maxY="10"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="wh2-Nq-QxU" firstAttribute="leading" secondItem="itw-q3-VzX" secondAttribute="leading" id="86A-iN-K3L"/>
+                                                <constraint firstItem="vAQ-46-0by" firstAttribute="leading" secondItem="itw-q3-VzX" secondAttribute="leading" id="YRE-WW-W3n"/>
+                                                <constraint firstItem="wh2-Nq-QxU" firstAttribute="top" secondItem="vAQ-46-0by" secondAttribute="bottom" constant="5" id="pr5-Pg-dpQ"/>
+                                                <constraint firstItem="vAQ-46-0by" firstAttribute="top" secondItem="itw-q3-VzX" secondAttribute="top" id="sf0-jR-nbV"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="upw-nR-LHb"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="itw-q3-VzX" firstAttribute="top" secondItem="cLO-d4-pvO" secondAttribute="top" id="Ft5-jo-DCo"/>
+                                        <constraint firstItem="itw-q3-VzX" firstAttribute="leading" secondItem="cLO-d4-pvO" secondAttribute="leading" constant="18" id="JsR-yH-a7z"/>
+                                        <constraint firstAttribute="bottom" secondItem="itw-q3-VzX" secondAttribute="bottom" id="NIg-X7-Ih2"/>
+                                        <constraint firstAttribute="trailing" secondItem="itw-q3-VzX" secondAttribute="trailing" constant="18" id="ofm-uV-fuy"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="button" destination="wh2-Nq-QxU" id="nDI-nd-RmM"/>
+                                    <outlet property="label" destination="vAQ-46-0by" id="YbS-ao-SgY"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Aggiungi Telecamera" id="Ro1-Xu-P4A">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="8By-VG-SCg">
+                            <connections>
+                                <action selector="onSave:" destination="RRG-GR-Map" id="yCe-8a-Yfx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="clv-Sy-IK9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6404.347826086957" y="1545.5357142857142"/>
+        </scene>
+        <!--Aggiungi Telecamera Old-->
         <scene sceneID="DUm-Rf-Tqu">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="fvk-23-6T7" customClass="AddCameraController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y6i-TD-eg1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController hidesBottomBarWhenPushed="YES" id="fvk-23-6T7" userLabel="Aggiungi Telecamera Old" customClass="AddCameraController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Tu-iQ-3xj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="9la-kd-0rB">
-                                <rect key="frame" x="20" y="88" width="374" height="598"/>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="9la-kd-0rB">
+                                <rect key="frame" x="20" y="44" width="374" height="598"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ahx-Bi-TXm">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="70.5"/>
@@ -260,14 +398,7 @@
                     <navigationItem key="navigationItem" title="Aggiungi Telecamera" id="LDJ-CI-2sD">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="etx-XC-aBj"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="DomainTextField" destination="eeT-5t-MPu" id="0T9-ZE-lDp"/>
-                        <outlet property="NameTextField" destination="mfb-6A-cmH" id="hqb-Qj-rF5"/>
-                        <outlet property="PortTextField" destination="EAX-Ht-EUP" id="iUc-9f-i1y"/>
-                        <outlet property="roomButton" destination="C02-hz-fr1" id="7WO-q0-eWr"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Y6i-TD-eg1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-5672.4637681159429" y="1545.5357142857142"/>
         </scene>
@@ -356,6 +487,9 @@
         <image name="CameraPreview" width="370" height="201"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="video" catalog="system" width="128" height="83"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
