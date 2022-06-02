@@ -113,41 +113,6 @@
             </objects>
             <point key="canvasLocation" x="-4994.202898550725" y="712.5"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="GAB-yL-HUV">
-            <objects>
-                <viewController id="8wS-2y-F1k" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2Mf-kM-Ve9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AGm-QV-Fp0">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTD-gG-acB">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="hTD-gG-acB" firstAttribute="top" secondItem="Xno-aK-dFB" secondAttribute="top" id="D8a-V1-ud8"/>
-                                    <constraint firstItem="hTD-gG-acB" firstAttribute="leading" secondItem="Xno-aK-dFB" secondAttribute="leading" id="DRz-LF-fhS"/>
-                                    <constraint firstItem="hTD-gG-acB" firstAttribute="bottom" secondItem="Xno-aK-dFB" secondAttribute="bottom" id="PPp-oe-rpe"/>
-                                    <constraint firstItem="hTD-gG-acB" firstAttribute="trailing" secondItem="Xno-aK-dFB" secondAttribute="trailing" id="tHj-Bn-BIU"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="gqO-hT-ATW"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="Xno-aK-dFB"/>
-                            </scrollView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="a0h-Zn-Msf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Lg-JG-0Vc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-6433.3333333333339" y="1557.5892857142856"/>
-        </scene>
         <!--Aggiungi Telecamera-->
         <scene sceneID="fbE-L2-0dY">
             <objects>
@@ -288,7 +253,6 @@
         <!--Aggiungi Telecamera Old-->
         <scene sceneID="DUm-Rf-Tqu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Y6i-TD-eg1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController hidesBottomBarWhenPushed="YES" id="fvk-23-6T7" userLabel="Aggiungi Telecamera Old" customClass="AddCameraController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Tu-iQ-3xj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -434,6 +398,7 @@
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="etx-XC-aBj"/>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y6i-TD-eg1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-5672.4637681159429" y="1545.5357142857142"/>
         </scene>
