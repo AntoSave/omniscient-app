@@ -75,7 +75,7 @@ class DigitalChartController: UIViewController, ChartViewDelegate  {
         
         
         //Nota: La distanza fra due barre deve essere almeno 2 unità
-        for x in stride(from: 0, to: 30, by: 2){
+        for x in stride(from: -120, to: 0, by: 2){
             entries.append(BarChartDataEntry(x: Double(x), y: 0))
             entries.append(BarChartDataEntry(x: Double(x)+Double(0.5), y: 1))
         }
