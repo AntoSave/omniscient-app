@@ -246,17 +246,17 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="nomeNewRoomCell" id="wox-QZ-cAj" customClass="AddRoomTableCell" customModule="omniscient" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="29.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="29"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wox-QZ-cAj" id="HP4-LW-6Oi">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="29.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ajb-vI-hLq">
-                                                    <rect key="frame" x="18" y="0.0" width="378" height="29.5"/>
+                                                    <rect key="frame" x="18" y="0.0" width="378" height="29"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aMN-Xs-vDA">
-                                                            <rect key="frame" x="30" y="5" width="318" height="19.5"/>
+                                                            <rect key="frame" x="30" y="5" width="318" height="19"/>
                                                             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>

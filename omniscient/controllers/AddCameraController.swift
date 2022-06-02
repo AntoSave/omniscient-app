@@ -71,7 +71,8 @@ class AddCameraController: UITableViewController{
                 fetchRequest.predicate=NSPredicate(format: "name like %@", roomName)
                 let room = try! self.context.fetch(fetchRequest).first
                 camera.composition = room
-                
+                try! self.context.save()
+                self.dismiss(animated: true)
             case(.failure(let e)):
                 print("Errore",e)
             }
