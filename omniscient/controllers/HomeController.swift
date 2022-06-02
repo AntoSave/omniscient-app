@@ -34,7 +34,7 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
         HomeTableView.refreshControl = refreshControl
     }
     
-    //Definisco il numero di sezioni TODO: il numero deve essere determinato dinamicamente
+    //Definisco il numero di sezioni
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

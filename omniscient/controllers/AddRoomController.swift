@@ -14,7 +14,6 @@ class AddRoomController: UIViewController, UIColorPickerViewControllerDelegate {
     @IBOutlet weak var selectedColorView: UIView!
     
     var color = UIColor(.white)
-    var nameRoom: String = ""
     
     let context = PersistanceController.shared.container.viewContext
     
@@ -41,18 +40,25 @@ class AddRoomController: UIViewController, UIColorPickerViewControllerDelegate {
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        self.nameRoom = getNameRoomTextField()
-        print("********************")
-        print(self.nameRoom)
-        print("********************")
-        if(self.nameRoom != ""){
-            let r = Room(context: context)
-            r.name = self.nameRoom
-            try! context.save()
-            //TODO: sto salvando una stanza
-            self.nameRoom = ""
+        let roomName = getNameRoomTextField()
+        if roomName == "" { //TODO: popup field errato "Devi inserire il nome"
+            return
         }
-        navigationController?.popViewController(animated: true)
+        APIHelper.createRoom(roomName: roomName){
+            result in
+            switch(result){
+            case(.success(let s)):
+                let room = Room(context:self.context)
+                room.name=roomName
+                try! self.context.save()
+                DispatchQueue.main.async {
+                    self.navigationController!.popViewController(animated: true)
+                    NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
+                }
+            case(.failure(let e)):
+                print("Errore",e)
+            }
+        }
     }
     
     
