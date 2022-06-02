@@ -19,20 +19,45 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     //UICollectionViewDelegateFlowLayout va messo perchè è una collection view
     
     @IBOutlet weak var roomCollectionView: UICollectionView!
-    
+    var room: Room?
+    var timer: Timer?
     let context = PersistanceController.shared.container.viewContext
     var sensorList: [Sensor] {
-        let fetchRequest = Sensor.fetchRequest()
-        let sensors = try! context.fetch(fetchRequest)
+        /*let fetchRequest = Sensor.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "room == %@", room!
+        )
+        print(room!)
+        let sensors = try! context.fetch(fetchRequest)*/
+        print("sensorList requested")
+        //print(room!)
+        //print(room!.sensors)
+        let sensors = room?.sensors?.allObjects as! [Sensor]
         return sensors
     }
     
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         roomCollectionView.dataSource = self
         roomCollectionView.delegate = self
         roomCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("willAppear")
+        //StateModel.shared.fetchState()
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.test), userInfo: nil, repeats: true)
+    }
+    
+    @objc func test(){
+        print("test")
+        StateModel.shared.fetchState()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("willDisappear")
+        timer?.invalidate()
+        timer=nil
     }
     
     //Numero di Item che devono essere mostrati a video
@@ -42,8 +67,7 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     
     //Configuro quale cella della collectionView deve essere mostrata
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        var sensor = sensorList[indexPath.row]
+        let sensor = sensorList[indexPath.row]
         
         if sensor.type! == "TEMPERATURE" || sensor.type! == "LIGHT" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "analogTableCell", for: indexPath) as! AnalogTableCell
@@ -99,66 +123,64 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var analogView: UIView!
     @IBOutlet weak var barIndicator: Gauge! // bar nel senso di barra circolare!!!
-    
+    var sensor: Sensor?
     var nomeSensore: String = ""
-    var defaultValueSensor: Int = 0
-    
+    var defaultValueSensor: Double = 0.0
+    var state: FetchedState? {
+        return StateModel.shared.current_state
+    }
     
     func initialize(sensor: Sensor) {
         //Qui viene definito il template del analogView
-        analogView.layer.cornerRadius = 12
         
+        analogView.layer.cornerRadius = 12
+        self.sensor=sensor
         self.setNameSensor(nameSensor: sensor.name ?? "")
         
         if sensor.type == "TEMPERATURE"{
-            
-            //Da inserire la query
-            defaultValueSensor = 30
-            self.rate(currentRate: defaultValueSensor)
-            self.setInfoSensor(info: String(defaultValueSensor) + " °C")
-            
-            
-            self.maxValue(maxValue: 37)
-            self.startColor(color: UIColor.link)
-            self.endColor(color: UIColor.systemRed)
-            self.bgColor(color: UIColor.yellow)
+            defaultValueSensor = 30.0
+            self.setRate(currentRate: defaultValueSensor)
+            self.setInfoSensor(info: String(Int(defaultValueSensor)) + " °C")
+            self.setMaxValue(maxValue: 37)
+            self.setStartColor(color: UIColor.link)
+            self.setEndColor(color: UIColor.systemRed)
+            self.setBgColor(color: UIColor.yellow)
         }else if sensor.type == "LIGHT" {
+            defaultValueSensor = 400.0
+            self.setRate(currentRate: defaultValueSensor)
+            self.setInfoSensor(info: String(Int(defaultValueSensor)) + "  lx")
             
-            //Da inserire la query
-            defaultValueSensor = 400
-            self.rate(currentRate: defaultValueSensor)
-            self.setInfoSensor(info: String(defaultValueSensor) + "  lx")
-            
-            self.maxValue(maxValue: 700)
-            self.startColor(color: UIColor.link)
-            self.endColor(color: UIColor.systemRed)
-            self.bgColor(color: UIColor.yellow)
+            self.setMaxValue(maxValue: 700)
+            self.setStartColor(color: UIColor.yellow)
+            self.setEndColor(color: UIColor.yellow)
+            self.setBgColor(color: UIColor.yellow)
         }else{
             //Sensore sconosciuto di cui non si sa nulla
-            self.rate(currentRate: defaultValueSensor)
-            self.setInfoSensor(info: String(defaultValueSensor))
-            self.maxValue(maxValue: 100)
-            self.startColor(color: UIColor.link)
-            self.endColor(color: UIColor.systemRed)
-            self.bgColor(color: UIColor.yellow)
+            self.setRate(currentRate: defaultValueSensor)
+            self.setInfoSensor(info: String(Int(defaultValueSensor)))
+            self.setMaxValue(maxValue: 100)
+            self.setStartColor(color: UIColor.link)
+            self.setEndColor(color: UIColor.systemRed)
+            self.setBgColor(color: UIColor.yellow)
         }
-        
-        
+        self.updateUIHelper()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.stateChanged, object: nil)
+        print("notification set")
     }
     
-    func maxValue(maxValue: Int){
+    func setMaxValue(maxValue: Double){
         barIndicator.maxValue = CGFloat(maxValue)
     }
-    func rate(currentRate: Int){
+    func setRate(currentRate: Double){
         barIndicator.rate = CGFloat(currentRate)
     }
-    func startColor(color: UIColor){
+    func setStartColor(color: UIColor){
         barIndicator.startColor = color
     }
-    func endColor(color: UIColor){
+    func setEndColor(color: UIColor){
         barIndicator.endColor = color
     }
-    func bgColor(color: UIColor){
+    func setBgColor(color: UIColor){
         barIndicator.bgColor = color
     }
 
@@ -174,6 +196,61 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
         return nomeSensore
     }
     
+    func setDisabled(){
+        self.isUserInteractionEnabled=false
+        self.contentView.alpha = 0.2
+    }
+    
+    func setEnabled(){
+        self.isUserInteractionEnabled=true
+        self.contentView.alpha = 1
+    }
+    
+    @objc func updateUI(notification: Notification){
+        updateUIHelper()
+    }
+    
+    func updateUIHelper(){
+        let sensorID = (sensor?.remoteID)!
+        if state == nil || state?.sensor_status[sensorID] == nil {
+            self.setDisabled()
+            print("Error")
+            return
+        }
+        
+        let status = state?.sensor_status[sensorID]?.status
+        if status != "CONNECTED" {
+            self.setDisabled()
+            return
+        }
+        self.setEnabled()
+        //Nota: do per scontato che i dati analogici ci siano!
+        let data = state?.analog_sensor_data[sensorID]?.data
+        print(state?.analog_sensor_data)
+        if data == nil || data?.count == 0 {
+            return
+        }
+        self.setRate(currentRate: data![0].value)
+        switch(sensor?.type){
+        case "TEMPERATURE":
+            self.setInfoSensor(info: String(format:"%.1f °C",data![0].value))
+        case "LIGHT":
+            self.setInfoSensor(info: String(format:"%.0f lux",data![0].value))
+        default:
+            self.setInfoSensor(info: String(data![0].value))
+        }
+    }
+    
+    /*override class func awakeFromNib() { INUTILE
+        super.awakeFromNib()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.stateChanged, object: nil)
+        print("awakeFromNib")
+    }*/
+    
+    deinit { //Viene chiamato quando la cella non è più mostrata
+        NotificationCenter.default.removeObserver(self)
+        print("deinit")
+    }
 }
 
 class DigitalTableCell: UICollectionViewCell  {

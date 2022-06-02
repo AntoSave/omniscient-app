@@ -86,7 +86,7 @@ struct PersistanceController{
         let roomEndpoint = URL(string: "https://omniscient-app.herokuapp.com/rooms")!
         let sensorEndpoint = URL(string: "https://omniscient-app.herokuapp.com/sensors")!
         
-        print("FetchStaticContent started")
+        //print("FetchStaticContent started")
         let group = DispatchGroup()
         var allSuccessful = true
         var fetchedRooms: [FetchedRoom] = []
@@ -97,10 +97,10 @@ struct PersistanceController{
         URLSession.shared.fetchData(for: roomEndpoint) { (result: Result<[FetchedRoom], Error>) in
             switch result {
                 case .success(let result):
-                print("Rooms fetched successfully",result)
+                //print("Rooms fetched successfully",result)
                 fetchedRooms=result
                 case .failure(let error):
-                print("Couldn't fetch rooms",error)
+                //print("Couldn't fetch rooms",error)
                 allSuccessful = false
             }
             group.leave()
@@ -109,10 +109,10 @@ struct PersistanceController{
         URLSession.shared.fetchData(for: cameraEndpoint) { (result: Result<[FetchedCamera], Error>) in
             switch result {
                 case .success(let result):
-                print("Cameras fetched successfully",result)
+                //print("Cameras fetched successfully",result)
                 fetchedCameras=result
                 case .failure(let error):
-                print("Couldn't fetch cameras",error)
+                //print("Couldn't fetch cameras",error)
                 allSuccessful = false
             }
             group.leave()
@@ -121,10 +121,10 @@ struct PersistanceController{
         URLSession.shared.fetchData(for: sensorEndpoint) { (result: Result<[FetchedSensor], Error>) in
             switch result {
                 case .success(let result):
-                print("Sensors fetched successfully",result)
+                //print("Sensors fetched successfully",result)
                 fetchedSensors = result
                 case .failure(let error):
-                print("Couldn't fetch sensors",error)
+                //print("Couldn't fetch sensors",error)
                 allSuccessful = false
             }
             group.leave()
@@ -133,7 +133,7 @@ struct PersistanceController{
             if(!allSuccessful){
                 return
             }
-            print("All tasks completed successfully")
+            //print("All tasks completed successfully")
             deleteAllStaticContent(context: context)
             var roomDict = Dictionary<String,Room>()
             for room in fetchedRooms {

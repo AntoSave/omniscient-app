@@ -60,7 +60,7 @@ class CameraListController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     @objc func contextObjectsDidChange(_:Any){
-        print("contextObjectDidChange!!!!!!!!!!!!!!")
+        print("CameraList Controller: context changed")
         DispatchQueue.main.async {
             self.cameraTableView.reloadData()
         }

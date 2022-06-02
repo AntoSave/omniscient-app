@@ -15,6 +15,7 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var roomList: [Room] {
         let fetchRequest = Room.fetchRequest()
         let rooms = try! context.fetch(fetchRequest)
+        print("roomList requested")
         return rooms
     }
     
@@ -25,6 +26,7 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
         self.HomeTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         HomeTableView.dataSource = self
         HomeTableView.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.staticDataUpdated, object: nil)
     }
     
     //Definisco il numero di sezioni TODO: il numero deve essere determinato dinamicamente
@@ -37,20 +39,27 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
         return roomList.count
     }
     
+    //Funzione chiamata prima del segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let roomController = segue.destination as? RoomController, let roomTableCell = sender as? RoomTableCell{
+            roomController.room = roomTableCell.room
+            
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:RoomTableCell = self.HomeTableView.dequeueReusableCell(withIdentifier: "RoomIdentifier", for: indexPath) as! RoomTableCell
+        
         //Inizializza le celle della tableView
         let room = roomList[indexPath.row]
         cell.initialize(room: room)
         return cell
     }
     
-    //Funzione chiamata prima del segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let roomControllerVC = segue.destination as? RoomController {
-                
-
+    @objc func contextObjectsDidChange(_:Any){
+        print("Home Controller: context changed")
+        DispatchQueue.main.async {
+            self.HomeTableView.reloadData()
         }
     }
     
@@ -100,11 +109,11 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
 class RoomTableCell: UITableViewCell {
     @IBOutlet weak var roomTitle: UILabel!
     @IBOutlet weak var cellView: UIView!
-    
+    var room: Room?
     func initialize(room: Room) {
         //Qui viene definito il template delle celle
         cellView.layer.cornerRadius = 20
-        
+        self.room=room
         //Prelevare i dati da CoreData
         self.setRoomTitle(roomTitle: room.name!)
         self.setBackgroundColor(color: .cyan)
