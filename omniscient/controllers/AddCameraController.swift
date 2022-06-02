@@ -72,7 +72,9 @@ class AddCameraController: UITableViewController{
                 let room = try! self.context.fetch(fetchRequest).first
                 camera.composition = room
                 try! self.context.save()
-                self.dismiss(animated: true)
+                DispatchQueue.main.async {
+                    self.navigationController!.popViewController(animated: true)
+                }
             case(.failure(let e)):
                 print("Errore",e)
             }
