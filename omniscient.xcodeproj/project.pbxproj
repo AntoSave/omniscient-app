@@ -13,6 +13,7 @@
 		7CE2239328424EFF00B75F41 /* DigitalChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2239228424EFF00B75F41 /* DigitalChartController.swift */; };
 		7CE22395284377E500B75F41 /* AddSensorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE22394284377E500B75F41 /* AddSensorController.swift */; };
 		7CE2239728463EC400B75F41 /* AddRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2239628463EC400B75F41 /* AddRoomController.swift */; };
+		7CE223992848C07400B75F41 /* OrientationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE223982848C07400B75F41 /* OrientationHelper.swift */; };
 		A91422522816D737004A9170 /* Option1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91422512816D737004A9170 /* Option1Controller.swift */; };
 		A91422542816D745004A9170 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91422532816D744004A9170 /* SettingsTableViewCell.swift */; };
 		A91422562816D750004A9170 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91422552816D750004A9170 /* SwitchTableViewCell.swift */; };
@@ -68,6 +69,7 @@
 		7CE2239228424EFF00B75F41 /* DigitalChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalChartController.swift; sourceTree = "<group>"; };
 		7CE22394284377E500B75F41 /* AddSensorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSensorController.swift; sourceTree = "<group>"; };
 		7CE2239628463EC400B75F41 /* AddRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomController.swift; sourceTree = "<group>"; };
+		7CE223982848C07400B75F41 /* OrientationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationHelper.swift; sourceTree = "<group>"; };
 		A2E7FA80C8554EB9BABCA48F /* Pods_omniscient_omniscientUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_omniscient_omniscientUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91422512816D737004A9170 /* Option1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Option1Controller.swift; path = OptionsControllers/Option1Controller.swift; sourceTree = "<group>"; };
 		A91422532816D744004A9170 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		A9307B262810A10200939356 /* omniscient */ = {
 			isa = PBXGroup;
 			children = (
+				7CE223982848C07400B75F41 /* OrientationHelper.swift */,
 				A97D624C2844F3880061AAFB /* APIHelper.swift */,
 				A989289428271E7F004D4DB2 /* PersistanceController.swift */,
 				A9E2A1A72815587400315C16 /* models */,
@@ -520,6 +523,7 @@
 				7CE2239328424EFF00B75F41 /* DigitalChartController.swift in Sources */,
 				A91422522816D737004A9170 /* Option1Controller.swift in Sources */,
 				A989289328271C9A004D4DB2 /* Model.xcdatamodeld in Sources */,
+				7CE223992848C07400B75F41 /* OrientationHelper.swift in Sources */,
 				7C47E4B8281554E000C1F793 /* SettingsController.swift in Sources */,
 				A989289528271E7F004D4DB2 /* PersistanceController.swift in Sources */,
 				7CE22395284377E500B75F41 /* AddSensorController.swift in Sources */,
