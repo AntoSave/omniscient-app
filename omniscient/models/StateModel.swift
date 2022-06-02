@@ -61,6 +61,7 @@ class StateModel {
                 //print("Couldn't fetch state",error)
             }
         }
+        print(current_state)
         NotificationCenter.default.post(name: NSNotification.Name.stateChanged, object: nil)
         //print("State change notified!")
     }
