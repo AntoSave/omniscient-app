@@ -65,6 +65,34 @@ class CameraListController: UIViewController,UITableViewDataSource,UITableViewDe
             self.cameraTableView.reloadData()
         }
     }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            presentDeletionFailsafe(indexPath: indexPath)
+        }
+    }
+    
+    func presentDeletionFailsafe(indexPath: IndexPath) {
+        let alert = UIAlertController(title: nil, message: "Are you sure you'd like to delete this cell", preferredStyle: .alert)
+        // yes action
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+            
+            //CANCELLO I DATI //TODO: sto cancellando una telecamera
+//            let camera = self.cameraList[indexPath.row]
+//            self.context.delete(camera)
+//            self.cameraTableView.deleteRows(at: [indexPath], with: .fade)
+        
+        }
+        alert.addAction(yesAction)
+        // cancel action
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 //Riga personalizzata
 class CameraCell: UITableViewCell,VLCMediaThumbnailerDelegate{
