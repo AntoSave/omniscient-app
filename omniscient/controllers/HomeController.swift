@@ -28,6 +28,10 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
         HomeTableView.dataSource = self
         HomeTableView.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.staticDataUpdated, object: nil)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        HomeTableView.refreshControl = refreshControl
     }
     
     //Definisco il numero di sezioni TODO: il numero deve essere determinato dinamicamente
@@ -64,23 +68,16 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
     }
     
+    @objc func refresh(refreshControl: UIRefreshControl){
+        PersistanceController.fetchStaticContent(context: context)
+        refreshControl.endRefreshing()
+    }
+    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .insert {
-            HomeTableView.beginUpdates()
-            //TODO: Implementare la cancellazione nel back-end
-            let r = Room(context: context)
-            r.name = "AJA"
-            HomeTableView.insertRows(at: [indexPath], with: .fade)
-            HomeTableView.endUpdates()
-//            roomList.append(r)
-//            roomList.insert(r, at: indexPath.row)
-        }
-        
         if editingStyle == .delete {
             presentDeletionFailsafe(indexPath: indexPath)
         }
@@ -88,14 +85,20 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     func presentDeletionFailsafe(indexPath: IndexPath) {
         let alert = UIAlertController(title: nil, message: "Are you sure you'd like to delete this cell", preferredStyle: .alert)
+        let deletedRoom = roomList[indexPath.row]
         // yes action
         let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-            
-            //CANCELLO I DATI
-            let room = self.roomList[indexPath.row]
-            self.context.delete(room)
-            //TODO: sto cancellando una stanza
-            self.HomeTableView.deleteRows(at: [indexPath], with: .fade)
+            APIHelper.deleteRoom(roomName: deletedRoom.name!){
+                result in
+                switch(result){
+                case .success(let s):
+                    self.context.delete(deletedRoom)
+                    try! self.context.save()
+                    NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
+                case .failure(let e):
+                    print("Error",e)
+                }
+            }
         }
         alert.addAction(yesAction)
         // cancel action
