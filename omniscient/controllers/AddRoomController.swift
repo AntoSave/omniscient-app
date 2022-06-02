@@ -5,72 +5,65 @@
 //  Created by DAVIDE RISI on 31/05/22.
 //
 
+import Foundation
 import UIKit
 
-var nameRoom: String = ""
-
-class AddRoomController: UIViewController,UITableViewDataSource,UITableViewDelegate{
-    @IBOutlet weak var AddRoomTableView: UITableView!
+class AddRoomController: UIViewController, UIColorPickerViewControllerDelegate {
+    
+    @IBOutlet weak var nameRoomTextField: UITextField!
+    @IBOutlet weak var selectedColorView: UIView!
+    
+    var color = UIColor(.white)
+    var nameRoom: String = ""
+    
     let context = PersistanceController.shared.container.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.AddRoomTableView.separatorStyle = UITableViewCell.SeparatorStyle.none //Toglie il separatore (divider)
-        self.AddRoomTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        AddRoomTableView.dataSource = self
-        AddRoomTableView.delegate = self
+        initializeSelectedColorView()
     }
     
-    //Definisco il numero di sezioni
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+    
+    @IBAction func colorButton(_ sender: Any) {
+        let colorPickerVC = UIColorPickerViewController()
+        colorPickerVC.delegate = self
+        colorPickerVC.isModalInPresentation = true//Non si può swipare questa schermata
+        present(colorPickerVC, animated: true)
     }
     
-    //Definisco il numero di celle per sezione
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        color = viewController.selectedColor
+        selectedColorView.backgroundColor = color
     }
     
-    //Definisco il titolo delle sezioni
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sectionName: String
-        switch section {
-            case 0:
-                sectionName = NSLocalizedString("Nome Stanza", comment: "nome")
-            case 1:
-                sectionName = NSLocalizedString("Colore", comment: "myOtherSectionName")
-            default:
-                sectionName = ""
+    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+        color = viewController.selectedColor
+    }
+    
+    @IBAction func saveButton(_ sender: Any) {
+        self.nameRoom = getNameRoomTextField()
+        print("********************")
+        print(self.nameRoom)
+        print("********************")
+        if(self.nameRoom != ""){
+            let r = Room(context: context)
+            r.name = self.nameRoom
+            try! context.save()
+            //TODO: sto salvando una stanza
+            self.nameRoom = ""
         }
-        return sectionName
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: AddRoomTableCell = self.AddRoomTableView.dequeueReusableCell(withIdentifier: "nomeNewRoomCell", for: indexPath) as! AddRoomTableCell
-        cell.initialize()
-        return cell
+        navigationController?.popViewController(animated: true)
     }
     
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        let r = Room(context: context)
-//        r.name = nameRoomTextField.text
-//    }
-//
-//    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
-//        <#code#>
-//    }
-
-}
-
-class AddRoomTableCell: UITableViewCell {
-    
-    @IBOutlet weak var nameRoomTextField: UITextField!
-    @IBOutlet weak var boxView: UIView!
-    func initialize() {
-        //Qui viene definito il template delle celle
-        boxView.layer.cornerRadius = 10
+    func initializeSelectedColorView(){
+        selectedColorView.layer.borderWidth = 3
+        selectedColorView.layer.borderColor = UIColor.black.cgColor
+        selectedColorView.layer.cornerRadius = 25
     }
     
+    func getNameRoomTextField() -> String {
+        return nameRoomTextField.text ?? ""
+    }
     
 }

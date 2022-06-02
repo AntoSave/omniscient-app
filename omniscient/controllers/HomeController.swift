@@ -63,15 +63,6 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
     }
     
-    //Gestione della cancellazione delle celle tramite il bottone edit
-    @IBAction func DeleteButton(_ sender: Any) {
-        if(HomeTableView.isEditing == false){
-            HomeTableView.isEditing = true
-        }else if (HomeTableView.isEditing == true){
-            HomeTableView.isEditing = false
-        }
-    }
-    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
@@ -80,7 +71,6 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         if editingStyle == .insert {
             HomeTableView.beginUpdates()
-            
             //TODO: Implementare la cancellazione nel back-end
             let r = Room(context: context)
             r.name = "AJA"
@@ -88,24 +78,30 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
             HomeTableView.endUpdates()
 //            roomList.append(r)
 //            roomList.insert(r, at: indexPath.row)
-            HomeTableView.endUpdates()
         }
         
         if editingStyle == .delete {
-            HomeTableView.beginUpdates()
-            //TODO: Implementare la cancellazione nel back-end
-            let room = roomList[indexPath.row]
-            context.delete(room)
-            HomeTableView.deleteRows(at: [indexPath], with: .fade)
-            
-//            HomeTableView.insertRows(at: [indexPath], with: .fade)
-            HomeTableView.endUpdates()
-
+            presentDeletionFailsafe(indexPath: indexPath)
         }
     }
     
+    func presentDeletionFailsafe(indexPath: IndexPath) {
+        let alert = UIAlertController(title: nil, message: "Are you sure you'd like to delete this cell", preferredStyle: .alert)
+        // yes action
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+            
+            //CANCELLO I DATI
+            let room = self.roomList[indexPath.row]
+            self.context.delete(room)
+            //TODO: sto cancellando una stanza
+            self.HomeTableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        alert.addAction(yesAction)
+        // cancel action
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
     
-
     
 }
 
@@ -121,7 +117,6 @@ class RoomTableCell: UITableViewCell {
         //Prelevare i dati da CoreData
         self.setRoomTitle(roomTitle: room.name!)
         self.setBackgroundColor(color: .cyan)
-        
     }
     
     //Personalizzazione delle celle

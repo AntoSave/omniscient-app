@@ -87,6 +87,9 @@ class CameraController: UIViewController,VLCMediaPlayerDelegate,VLCMediaThumbnai
     override func viewWillDisappear(_ animated: Bool) {
         mediaPlayer!.stop()
         print("Will disappear")
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+        
     }
     override func didReceiveMemoryWarning() {
         print("WARNING!!!!!!")
@@ -140,4 +143,13 @@ class CameraController: UIViewController,VLCMediaPlayerDelegate,VLCMediaThumbnai
         
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+       
+        AppUtility.lockOrientation(.landscapeLeft, andRotateTo: .landscapeLeft)
+        // Or to rotate and lock
+       // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+       
+   }
 }
