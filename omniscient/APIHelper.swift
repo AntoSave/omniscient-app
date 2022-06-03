@@ -113,11 +113,18 @@ class APIHelper{
         }.resume()
     }
     
-    static func createRoom(roomName: String,completion: @escaping (Result<String, Error>) -> Void){
+    static func createRoom(roomName: String,color: CIColor,completion: @escaping (Result<String, Error>) -> Void){
         let url = URL(string: "https://omniscient-app.herokuapp.com/rooms")!
         var json: [String: Any] = [
-            "name": roomName
+            "name": roomName,
+            "color":[
+                "red":color.red,
+                "green":color.green,
+                "blue":color.blue,
+                "alpha":color.alpha
+            ]
         ]
+        print(json)
         let jsonData = try! JSONSerialization.data(withJSONObject: json)
         
         var request = URLRequest(url: url)

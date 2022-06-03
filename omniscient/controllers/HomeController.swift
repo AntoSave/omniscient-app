@@ -120,7 +120,13 @@ class RoomTableCell: UITableViewCell {
         self.room=room
         //Prelevare i dati da CoreData
         self.setRoomTitle(roomTitle: room.name!)
-        self.setBackgroundColor(color: .cyan)
+        self.setBackgroundColor(color:
+                                    UIColor(red: CGFloat(room.colorRed),
+                                            green: CGFloat(room.colorGreen),
+                                            blue: CGFloat(room.colorBlue),
+                                            alpha: CGFloat(room.colorAlpha))
+                                )
+        print(room)
     }
     
     //Personalizzazione delle celle

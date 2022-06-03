@@ -13,13 +13,14 @@ class AddRoomController: UIViewController, UIColorPickerViewControllerDelegate {
     @IBOutlet weak var nameRoomTextField: UITextField!
     @IBOutlet weak var selectedColorView: UIView!
     
-    var color = UIColor(.white)
+    var color = UIColor(red: CGFloat(0.5), green: CGFloat(0.5), blue: CGFloat(0.5), alpha: CGFloat(1))//UIColor(.cyan)
     
     let context = PersistanceController.shared.container.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeSelectedColorView()
+        selectedColorView.backgroundColor = color
     }
     
     
@@ -44,18 +45,23 @@ class AddRoomController: UIViewController, UIColorPickerViewControllerDelegate {
         if roomName == "" { //TODO: popup field errato "Devi inserire il nome"
             return
         }
-        APIHelper.createRoom(roomName: roomName){
+        let ciColor = CIColor(color:color)
+        APIHelper.createRoom(roomName: roomName,color: ciColor){
             result in
             switch(result){
             case(.success(let s)):
                 let room = Room(context:self.context)
                 room.name=roomName
+                room.colorRed=Float(ciColor.red)
+                room.colorGreen=Float(ciColor.green)
+                room.colorBlue=Float(ciColor.blue)
+                room.colorAlpha=Float(ciColor.alpha)
                 try! self.context.save()
                 DispatchQueue.main.async {
                     self.navigationController!.popViewController(animated: true)
                     NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
                 }
-            case(.failure(let e)):
+            case(.failure(let e)): //TODO: popup field errato "La camera già esiste"
                 print("Errore",e)
             }
         }
