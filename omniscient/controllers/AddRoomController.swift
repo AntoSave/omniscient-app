@@ -42,7 +42,11 @@ class AddRoomController: UIViewController, UIColorPickerViewControllerDelegate {
     
     @IBAction func saveButton(_ sender: Any) {
         let roomName = getNameRoomTextField()
-        if roomName == "" { //TODO: popup field errato "Devi inserire il nome"
+        if roomName == "" { 
+            let alert = UIAlertController(title: nil, message: "You must insert a room name", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
             return
         }
         let ciColor = CIColor(color:color)
