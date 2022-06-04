@@ -48,7 +48,7 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let roomController = segue.destination as? RoomController, let roomTableCell = sender as? RoomTableCell{
             roomController.room = roomTableCell.room
-            
+            roomController.setTitle(title: roomTableCell.room?.name ?? "")
         }
     }
     
