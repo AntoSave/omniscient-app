@@ -139,6 +139,10 @@ struct PersistanceController{
             for room in fetchedRooms {
                 roomDict[room.name]=Room(context: context)
                 roomDict[room.name]?.name=room.name
+                roomDict[room.name]?.colorRed=Float(room.color.red)!
+                roomDict[room.name]?.colorGreen=Float(room.color.green)!
+                roomDict[room.name]?.colorBlue=Float(room.color.blue)!
+                roomDict[room.name]?.colorAlpha=Float(room.color.alpha)!
             }
             var cameraDict = Dictionary<String,Camera>()
             for camera in fetchedCameras {

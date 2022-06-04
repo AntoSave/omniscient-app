@@ -19,6 +19,7 @@ struct FetchedCamera: Decodable {
 struct FetchedRoom: Decodable {
     let name: String
     let user: String
+    let color: FetchedColor
 }
 struct FetchedSensor: Decodable{
     let id: String
@@ -26,4 +27,10 @@ struct FetchedSensor: Decodable{
     let type: String
     let room_name: String
     let room_user: String
+}
+struct FetchedColor: Decodable {
+    let red: String
+    let blue: String
+    let green: String
+    let alpha: String
 }

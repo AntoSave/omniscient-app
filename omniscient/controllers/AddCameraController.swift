@@ -79,7 +79,7 @@ class AddCameraController: UITableViewController{
                     self.navigationController!.popViewController(animated: true)
                     NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
                 }
-            case(.failure(let e)):
+            case(.failure(let e)): //TODO: popup field errato "Errore" generico perché le cause possono essere molteplici
                 print("Errore",e)
             }
         }
