@@ -359,8 +359,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chartIconImage" translatesAutoresizingMaskIntoConstraints="NO" id="d7R-Td-v3f">
-                                                            <rect key="frame" x="8" y="15" width="164" height="99"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="door-closed" translatesAutoresizingMaskIntoConstraints="NO" id="d7R-Td-v3f">
+                                                            <rect key="frame" x="12" y="21" width="164" height="99"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                     </subviews>
@@ -471,7 +471,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chartIconImage" width="1280" height="1280"/>
+        <image name="door-closed" width="256" height="256"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

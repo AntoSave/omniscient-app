@@ -12,12 +12,16 @@ import Charts
 class DigitalChartController: UIViewController, ChartViewDelegate  {
     
     var barChart = BarChartView()
-    var titleSensor: String = ""
+    var sensor: Sensor?
+    
+    func initialize(sensor: Sensor) {
+        self.sensor = sensor
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        title = titleSensor
+        title = sensor!.name!
         barChart.delegate = self
     }
     
@@ -83,10 +87,5 @@ class DigitalChartController: UIViewController, ChartViewDelegate  {
         
         let set = BarChartDataSet(entries: entries)
         return set
-    }
-    
-    
-    func setTitle(title: String){
-        titleSensor = title
     }
 }

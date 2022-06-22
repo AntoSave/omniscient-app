@@ -45,8 +45,8 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewWillAppear(_ animated: Bool) {
         print("willAppear")
-        //StateModel.shared.fetchState()
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.test), userInfo: nil, repeats: true)
+        StateModel.shared.fetchState()
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.test), userInfo: nil, repeats: true)
     }
     
     @objc func test(){
@@ -97,28 +97,27 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     //Funzione chiamata prima del segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        print(sender)
-        var titleSensor: String = ""
+        var sensor: Sensor? = nil
         if let analogTableCell = sender as? AnalogTableCell {
-            titleSensor = analogTableCell.getNameSensor()
-        }
-        
-        if let analogChartController = segue.destination as? AnalogChartController {
-            analogChartController.setTitle(title: titleSensor)
+            sensor = analogTableCell.getSensor()
         }
         
         if let digitalTableCell = sender as? DigitalTableCell {
-            titleSensor = digitalTableCell.getNameSensor()
+            sensor = digitalTableCell.getSensor()
+        }
+        
+        if let analogChartController = segue.destination as? AnalogChartController {
+            analogChartController.initialize(sensor: sensor!)
         }
         
         if let digitalChartController = segue.destination as? DigitalChartController {
-            digitalChartController.setTitle(title: titleSensor)
+            digitalChartController.initialize(sensor: sensor!)
         }
     }
     
 }
 
 class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con CollectionView UITableViewCell
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var analogView: UIView!
@@ -192,6 +191,10 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
         infoLabel.text = info
     }
     
+    func getSensor() -> Sensor {
+        return sensor!
+    }
+    
     func getNameSensor() -> String {
         return nomeSensore
     }
@@ -258,22 +261,82 @@ class DigitalTableCell: UICollectionViewCell  {
     @IBOutlet weak var digitalIconImage: UIImageView!
     @IBOutlet weak var digitalView: UIView!
     
-    var nomeSensore: String = ""
-    
+    var sensor: Sensor?
+    var state: FetchedState? {
+        return StateModel.shared.current_state
+    }
     func initialize(sensor: Sensor){
         //Qui viene definito il template del analogView
         digitalView.layer.cornerRadius = 12
         digitalIconImage.layer.cornerRadius = 12
-        
-        self.setNameSensor(nameSensor: sensor.name!)
+        self.sensor=sensor
+        digitalSensor.text = sensor.name
+        if sensor.type == "MOVEMENT"{
+            
+        }else if sensor.type == "DOOR" {
+            digitalIconImage.image = UIImage(named: "door-closed")
+        }else{
+        }
+        updateUIHelper()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.stateChanged, object: nil)
     }
     
-    func setNameSensor(nameSensor: String) {
+    /*func setNameSensor(nameSensor: String) {
         digitalSensor.text = nameSensor
         nomeSensore = nameSensor
     }
+    */
+    func getSensor() -> Sensor {
+        return sensor!
+    }
     
-    func getNameSensor() -> String {
-        return nomeSensore
+    func getSensorName() -> String {
+        return sensor!.name!
+    }
+    
+    @objc func updateUI(notification: Notification){
+        updateUIHelper()
+    }
+    
+    func updateUIHelper(){
+        if sensor == nil || sensor?.type != "DOOR"{
+            return
+        }
+        let sensorID = (sensor?.remoteID)!
+        if state == nil || state?.sensor_status[sensorID] == nil {
+            self.setDisabled()
+            print("Error")
+            return
+        }
+        let status = state?.sensor_status[sensorID]?.status
+        if status != "CONNECTED" {
+            self.setDisabled()
+            return
+        }
+        self.setEnabled()
+        
+        let data = state?.digital_sensor_data[sensorID]?.data
+        print(state?.digital_sensor_data)
+        if data == nil || data?.count == 0 {
+            return
+        }
+        if data![0].value != "CLOSED" {
+            digitalIconImage.image = UIImage(named: "door-open")
+        } else {
+            digitalIconImage.image = UIImage(named: "door-closed")
+        }
+    }
+    func setDisabled(){
+        self.isUserInteractionEnabled=false
+        self.contentView.alpha = 0.2
+    }
+    
+    func setEnabled(){
+        self.isUserInteractionEnabled=true
+        self.contentView.alpha = 1
+    }
+    deinit { //Viene chiamato quando la cella non è più mostrata
+        NotificationCenter.default.removeObserver(self)
+        print("deinit")
     }
 }
