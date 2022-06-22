@@ -58,10 +58,9 @@ class CameraListController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     //Funzione chiamata prima del segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let cameraVC = segue.destination as? CameraController {
-
-            //cameraVC.link="ciao"
-           }
+        if let cameraVC = segue.destination as? CameraController, let cameraTableCell = sender as? CameraCell {
+            cameraVC.camera=cameraTableCell.camera!
+        }
     }
     
     @objc func contextObjectsDidChange(_:Any){

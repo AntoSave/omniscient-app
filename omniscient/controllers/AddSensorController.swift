@@ -9,10 +9,10 @@ import UIKit
 
 
 class AddSensorController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-    
     @IBOutlet var generalView: UIView!
     @IBOutlet weak var SensorTableView: UITableView!
     
+    var room: Room?
     let context = PersistanceController.shared.container.viewContext
     
     var roomMenuItems: [UIAction] {
@@ -25,13 +25,22 @@ class AddSensorController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    var sensorMenuItems: [UIAction] {
+        return [
+            UIAction(title: "Light",handler:{_ in }),
+            UIAction(title: "Temperature",handler:{_ in }),
+            UIAction(title: "Movement",handler:{_ in }),
+            UIAction(title: "Door",handler:{_ in })
+        ]
+    }
+    
     let content = [
         ["type":"InputText","for":"ID"],
         ["type":"InputText","for":"Name"],
-        ["type":"InputText","for":"Type"],
-        ["type":"InputText","for":"Nome Utente"],
+        ["type":"Button","for":"Type"],
+        //["type":"InputText","for":"Nome Utente"],
         //["type":"InputText","for":"Password"],
-        ["type":"Button","for":"Room"]
+        //["type":"Button","for":"Room"]
     ]
     var values: [String:()->String] = [:]
     
@@ -48,42 +57,32 @@ class AddSensorController: UIViewController, UITableViewDelegate, UITableViewDat
 //        for x in values{
 //            print(x.key,x.value())
 //        }
-//        let cameraName = values["Nome Telecamera"]!()
-//        let roomName = values["Room"]!()
-//        let domain = values["Dominio"]!()
-//        let port = values["Porta"]!()
-//        if Int16(port) == nil{
-//            return
-//        }
-//        let username = values["Nome Utente"]!()
-//        let password = values["Password"]!()
-//        APIHelper.createCamera(cameraName: cameraName, roomName: roomName, domain: domain, port: port, username: username, password: password){
-//            result in
-//            switch(result){
-//            case(.success(let s)):
-//                let camera = Camera(context:self.context)
-//                camera.name=cameraName
-//                camera.port=Int16(port)!
-//                camera.domain=domain
-//                if username != ""{
-//                    camera.username = username
-//                }
-//                if password != ""{
-//                    camera.password = password
-//                }
-//                let fetchRequest = Room.fetchRequest()
-//                fetchRequest.predicate=NSPredicate(format: "name like %@", roomName)
-//                let room = try! self.context.fetch(fetchRequest).first
-//                camera.composition = room
-//                try! self.context.save()
-//                DispatchQueue.main.async {
-//                    self.navigationController!.popViewController(animated: true)
-//                    NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
-//                }
-//            case(.failure(let e)):
-//                print("Errore",e)
-//            }
-//        }
+        let sensorID = values["ID"]!()
+        let sensorName = values["Name"]!()
+        let sensorType = values["Type"]!().uppercased()
+        let sensorRoom = room!.name!
+        print(sensorID,sensorName,sensorType,sensorRoom)
+        APIHelper.createSensor(sensorID: sensorID, sensorName: sensorName, sensorType: sensorType, sensorRoom: sensorRoom){
+            result in
+            switch(result){
+            case(.success(_)):
+                let sensor = Sensor(context:self.context)
+                sensor.remoteID=sensorID
+                sensor.name=sensorName
+                sensor.type=sensorType
+                let fetchRequest = Room.fetchRequest()
+                fetchRequest.predicate=NSPredicate(format: "name like %@", sensorRoom)
+                let room = try! self.context.fetch(fetchRequest).first
+                sensor.room = room
+                try! self.context.save()
+                DispatchQueue.main.async {
+                    self.navigationController!.popViewController(animated: true)
+                    NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
+                }
+            case(.failure(let e)):
+                print("Errore",e)
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,8 +96,15 @@ class AddSensorController: UIViewController, UITableViewDelegate, UITableViewDat
         //case "Button":
         default:
             let cell: SensorButtonTableCell = self.SensorTableView.dequeueReusableCell(withIdentifier: "sensorButtonTableCell", for: indexPath) as! SensorButtonTableCell
-            let roomMenu: UIMenu = UIMenu(title: "", image: nil, identifier: nil, options: [], children: roomMenuItems)
-            cell.initialize(for: "Room",menu:roomMenu)
+            switch(content["for"]!){
+            case "Type":
+                let sensorTypeMenu: UIMenu = UIMenu(title: "", image: nil, identifier: nil, options: [], children: sensorMenuItems)
+                cell.initialize(for: "Type",menu:sensorTypeMenu)
+            //case "Room":
+            default:
+                let roomMenu: UIMenu = UIMenu(title: "", image: nil, identifier: nil, options: [], children: roomMenuItems)
+                cell.initialize(for: "Room",menu:roomMenu)
+            }
             values.updateValue(cell.getSelectedItem, forKey: content["for"]!)
             return cell
         }
@@ -136,7 +142,6 @@ class SensorButtonTableCell: UITableViewCell{
         label.text = f
         self.menu = menu
         button.menu = menu
-        //roomButton.showsMenuAsPrimaryAction = true
         button.changesSelectionAsPrimaryAction = true
     }
     func getSelectedItem() -> String{

@@ -172,7 +172,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     
     //crea le varie impostazioni nella schermata
     func configure() {
-        
+        /*
         models.append(Section(title: "Nome",
                             options:
                                 
@@ -195,11 +195,11 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
                               
                               
                              ))
-        
-        models.append(Section(title: "Nome2",
+        */
+        models.append(Section(title: "",
                             options:
                     [
-                        .switchCell(model: SettingsSwitchOption(title: "Ueee", icon: UIImage(systemName: "house"), iconBackgroundColor: .systemRed, handler: {
+                        .switchCell(model: SettingsSwitchOption(title: "Allarme", icon: UIImage(systemName: "house"), iconBackgroundColor: .systemRed, handler: {
                             
                         }, isOn: true)),
                     ]

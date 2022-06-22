@@ -115,6 +115,9 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         if let digitalChartController = segue.destination as? DigitalChartController {
             digitalChartController.initialize(sensor: sensor!)
         }
+        if let addSensorController = segue.destination as? AddSensorController{
+            addSensorController.room=self.room
+        }
     }
     
     

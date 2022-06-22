@@ -265,7 +265,7 @@
                                                             <rect key="frame" x="0.0" y="20" width="378" height="40"/>
                                                             <subviews>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QuN-JU-REk">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="378" height="40"/>
+                                                                    <rect key="frame" x="5" y="0.0" width="368" height="40"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="e5Z-1k-Fi1"/>
                                                                     </constraints>
@@ -275,9 +275,9 @@
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="QuN-JU-REk" secondAttribute="trailing" id="Yuu-QO-vbf"/>
+                                                                <constraint firstAttribute="trailing" secondItem="QuN-JU-REk" secondAttribute="trailing" constant="5" id="5MG-X1-8Ht"/>
+                                                                <constraint firstItem="QuN-JU-REk" firstAttribute="leading" secondItem="ZbT-d1-Dul" secondAttribute="leading" constant="5" id="iz2-nj-rte"/>
                                                                 <constraint firstAttribute="bottom" secondItem="QuN-JU-REk" secondAttribute="bottom" id="oT3-89-Kca"/>
-                                                                <constraint firstItem="QuN-JU-REk" firstAttribute="leading" secondItem="ZbT-d1-Dul" secondAttribute="leading" id="z6B-km-cDJ"/>
                                                                 <constraint firstItem="QuN-JU-REk" firstAttribute="top" secondItem="ZbT-d1-Dul" secondAttribute="top" id="zCG-I2-ykB"/>
                                                             </constraints>
                                                         </view>
@@ -322,7 +322,7 @@
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fV4-A1-mDi">
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fV4-A1-mDi">
                                                             <rect key="frame" x="0.0" y="26" width="79" height="47"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="gray" title="Button"/>

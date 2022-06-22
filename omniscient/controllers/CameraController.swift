@@ -62,7 +62,8 @@ class CameraController: UIViewController,VLCMediaPlayerDelegate,VLCMediaThumbnai
         //let url = NSURL(string: "http://streams.videolan.org/streams/mp4/Mr_MrsSmith-h264_aac.mp4")
         //Playing RTSP from internet
         //let url = URL(string: "rtsp://admin:password@192.168.1.74:554/live/ch0")
-        let url = URL(string: "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4")
+        //let url = URL(string: "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4")
+        let url = URL(string: camera!.domain!)
         if url == nil {
             print("Invalid URL")
             return

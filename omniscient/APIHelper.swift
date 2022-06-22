@@ -179,4 +179,68 @@ class APIHelper{
             completion(.success("SUCCESS"))
         }.resume()
     }
+    
+    static func createSensor(sensorID: String,sensorName: String,sensorType: String, sensorRoom: String,completion: @escaping (Result<String, Error>) -> Void){
+        let url = URL(string: "https://omniscient-app.herokuapp.com/sensors")!
+        var json: [String: Any] = [
+            "id": sensorID,
+            "name": sensorName,
+            "type": sensorType,
+            "room_name": sensorRoom,
+        ]
+        print(json)
+        let jsonData = try! JSONSerialization.data(withJSONObject: json)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        URLSession.shared.dataTask(with: request){ (data, response, error) in
+            if let error = error {
+                print("error")
+                completion(.failure(error))
+                return
+            }
+            let res = response as! HTTPURLResponse
+            if(res.statusCode != 200){
+                print("error")
+                let body = String(decoding: data!,as: UTF8.self)
+                completion(.failure(NSError(domain: body, code: res.statusCode)))
+                return
+            }
+            print("success")
+            completion(.success("SUCCESS"))
+        }.resume()
+    }
+    
+    static func deleteSensor(sensorID: String,completion: @escaping (Result<String, Error>) -> Void){
+        let url = URL(string: "https://omniscient-app.herokuapp.com/sensors")!
+        var json: [String: Any] = [
+            "id": sensorID
+        ]
+        let jsonData = try! JSONSerialization.data(withJSONObject: json)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        URLSession.shared.dataTask(with: request){ (data, response, error) in
+            if let error = error {
+                print("error")
+                completion(.failure(error))
+                return
+            }
+            let res = response as! HTTPURLResponse
+            if(res.statusCode != 200){
+                print("error")
+                let body = String(decoding: data!,as: UTF8.self)
+                completion(.failure(NSError(domain: body, code: res.statusCode)))
+                return
+            }
+            print("success")
+            completion(.success("SUCCESS"))
+        }.resume()
+    }
 }
