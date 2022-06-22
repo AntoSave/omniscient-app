@@ -19,6 +19,7 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     //UICollectionViewDelegateFlowLayout va messo perchè è una collection view
     
     @IBOutlet weak var roomCollectionView: UICollectionView!
+    var titleRoom: String = ""
     var room: Room?
     var timer: Timer?
     let context = PersistanceController.shared.container.viewContext
@@ -38,6 +39,7 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = titleRoom
         roomCollectionView.dataSource = self
         roomCollectionView.delegate = self
         roomCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
@@ -113,6 +115,11 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         if let digitalChartController = segue.destination as? DigitalChartController {
             digitalChartController.initialize(sensor: sensor!)
         }
+    }
+    
+    
+    func setTitle(title: String){
+        titleRoom = title
     }
     
 }
