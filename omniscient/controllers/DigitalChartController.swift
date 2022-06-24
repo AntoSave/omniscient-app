@@ -10,9 +10,9 @@ import CoreData
 import Charts
 
 class DigitalChartController: UIViewController, ChartViewDelegate  {
-    
     var barChart = BarChartView()
     var sensor: Sensor?
+    var timer: Timer?
     
     func initialize(sensor: Sensor) {
         self.sensor = sensor
@@ -23,6 +23,48 @@ class DigitalChartController: UIViewController, ChartViewDelegate  {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = sensor!.name!
         barChart.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("willAppear")
+        StateModel.shared.fetchState()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.fetchState), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("willDisappear")
+        timer?.invalidate()
+        timer=nil
+    }
+    
+    @objc func fetchState(){
+        //print("test")
+        StateModel.shared.fetchState()
+        let digital_sensors_data = StateModel.shared.current_state?.digital_sensor_data
+        let sensor_data: [FetchedDigitalDataPoint] = (digital_sensors_data?[sensor!.remoteID!]?.data) ?? []
+        let movements: [Int] = sensor_data.map {d in
+            let time = Double(d.time.timeIntervalSinceNow)
+            return Int(time)
+        }
+        print(movements)
+        var chart_data: [BarChartDataEntry] = (Int(-60)...Int(0)).map{i in
+            if movements.contains(i){
+                return BarChartDataEntry(x: Double(i), y: 1.0)
+            }
+            return BarChartDataEntry(x: Double(i), y: 0.0)
+        }
+        print(chart_data)
+        let set = BarChartDataSet(entries: chart_data)
+        set.setColor(.black) //Colore della linea
+//      Se voglio colorare l'integrale abilito queste istruzioni
+//        set.fill = Fill(color: .white)
+//        set.fillAlpha = 0.8
+//        set.drawFilledEnabled = true
+        
+//      Inserisco i dati nel grafico
+        let data = BarChartData(dataSet: set)
+        data.setDrawValues(false)
+        barChart.data = data
     }
     
     override func viewDidLayoutSubviews() {
@@ -61,18 +103,18 @@ class DigitalChartController: UIViewController, ChartViewDelegate  {
         
         
         
-        let set: BarChartDataSet = setData()
+        /*let set: BarChartDataSet = setData()
 //        set.colors = ChartColorTemplates.material() // Setto un template per le linee. Non fa al nostro caso
         
 //      Inserisco i dati nel grafico
         let data = BarChartData(dataSet: set)
         data.setDrawValues(false)
-        barChart.data = data
+        barChart.data = data*/
     }
     
     
     
-    func setData() -> BarChartDataSet {
+/*    func setData() -> BarChartDataSet {
         
         //      Creo dei dati per testare
         var entries = [BarChartDataEntry]()
@@ -88,4 +130,5 @@ class DigitalChartController: UIViewController, ChartViewDelegate  {
         let set = BarChartDataSet(entries: entries)
         return set
     }
+*/
 }

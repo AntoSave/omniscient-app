@@ -33,7 +33,9 @@ extension URLSession {
 
         if let data = data {
           do {
+              //print(String(decoding: data, as: UTF8.self))
             let object = try decoder.decode(T.self, from: data)
+              //print(object)
             completion(.success(object))
           } catch let decoderError {
             completion(.failure(decoderError))
@@ -124,7 +126,7 @@ class APIHelper{
                 "alpha":color.alpha
             ]
         ]
-        print(json)
+        //print(json)
         let jsonData = try! JSONSerialization.data(withJSONObject: json)
         
         var request = URLRequest(url: url)
@@ -188,7 +190,7 @@ class APIHelper{
             "type": sensorType,
             "room_name": sensorRoom,
         ]
-        print(json)
+        //print(json)
         let jsonData = try! JSONSerialization.data(withJSONObject: json)
         
         var request = URLRequest(url: url)

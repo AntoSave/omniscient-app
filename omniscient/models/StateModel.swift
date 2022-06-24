@@ -49,7 +49,8 @@ class StateModel {
         let stateEndpoint = URL(string: "https://omniscient-app.herokuapp.com/sensors/state")!
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS'Z'"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         URLSession.shared.fetchData(for: stateEndpoint,decoder: decoder) { (result: Result<FetchedState, Error>) in
             switch result {
@@ -61,7 +62,7 @@ class StateModel {
                 //print("Couldn't fetch state",error)
             }
         }
-        print(current_state)
+        //print(current_state)
         NotificationCenter.default.post(name: NSNotification.Name.stateChanged, object: nil)
         //print("State change notified!")
     }

@@ -43,6 +43,15 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         roomCollectionView.dataSource = self
         roomCollectionView.delegate = self
         roomCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.staticDataUpdated, object: nil)
+    }
+    
+    @objc func contextObjectsDidChange(_:Any){
+        print("RoomController: context changed")
+        DispatchQueue.main.async {
+            self.roomCollectionView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,6 +129,7 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
+    //TODO: CANECLLAZIONE DEI SENSORI!!!
     
     func setTitle(title: String){
         titleRoom = title
@@ -239,7 +249,7 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
         self.setEnabled()
         //Nota: do per scontato che i dati analogici ci siano!
         let data = state?.analog_sensor_data[sensorID]?.data
-        print(state?.analog_sensor_data)
+        //print(state?.analog_sensor_data)
         if data == nil || data?.count == 0 {
             return
         }
@@ -282,7 +292,7 @@ class DigitalTableCell: UICollectionViewCell  {
         self.sensor=sensor
         digitalSensor.text = sensor.name
         if sensor.type == "MOVEMENT"{
-            
+            digitalIconImage.image = UIImage(named: "movement-sensor")
         }else if sensor.type == "DOOR" {
             digitalIconImage.image = UIImage(named: "door-closed")
         }else{
@@ -326,7 +336,7 @@ class DigitalTableCell: UICollectionViewCell  {
         self.setEnabled()
         
         let data = state?.digital_sensor_data[sensorID]?.data
-        print(state?.digital_sensor_data)
+        //print(state?.digital_sensor_data)
         if data == nil || data?.count == 0 {
             return
         }
