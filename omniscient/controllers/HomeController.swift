@@ -113,20 +113,29 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
 class RoomTableCell: UITableViewCell {
     @IBOutlet weak var roomTitle: UILabel!
     @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var cellImageView: UIImageView!
+    
     var room: Room?
     func initialize(room: Room) {
         //Qui viene definito il template delle celle
         cellView.layer.cornerRadius = 20
+        cellImageView.layer.cornerRadius = 20
         self.room=room
         //Prelevare i dati da CoreData
         self.setRoomTitle(roomTitle: room.name!)
-        self.setBackgroundColor(color:
-                                    UIColor(red: CGFloat(room.colorRed),
-                                            green: CGFloat(room.colorGreen),
-                                            blue: CGFloat(room.colorBlue),
-                                            alpha: CGFloat(room.colorAlpha))
-                                )
-        print(room)
+        
+        if( room.hasImage == false ){
+            self.setBackgroundColor(color:
+                                        UIColor(red: CGFloat(room.colorRed),
+                                                green: CGFloat(room.colorGreen),
+                                                blue: CGFloat(room.colorBlue),
+                                                alpha: CGFloat(room.colorAlpha))
+                                    )
+            print(room)
+        }else {
+            
+            self.setBackgroundImage(image: UIImage(data: room.image!)!)
+        }
     }
     
     //Personalizzazione delle celle
@@ -136,5 +145,9 @@ class RoomTableCell: UITableViewCell {
     public func setBackgroundColor(color: UIColor){
         cellView.backgroundColor = color
     }
+    public func setBackgroundImage(image: UIImage){
+        cellImageView.image = image
+    }
+    
     
 }

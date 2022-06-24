@@ -15,6 +15,8 @@
         <attribute name="colorBlue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="colorGreen" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="colorRed" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="hasImage" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="composition" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Camera" inverseName="composition" inverseEntity="Camera"/>
         <relationship name="sensors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sensor" inverseName="room" inverseEntity="Sensor"/>
@@ -27,7 +29,7 @@
     </entity>
     <elements>
         <element name="Camera" positionX="-63" positionY="-18" width="128" height="149"/>
-        <element name="Room" positionX="-54" positionY="-9" width="128" height="134"/>
+        <element name="Room" positionX="-54" positionY="-9" width="128" height="164"/>
         <element name="Sensor" positionX="-54" positionY="36" width="128" height="89"/>
     </elements>
 </model>
