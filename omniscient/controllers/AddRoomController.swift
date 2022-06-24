@@ -130,8 +130,8 @@ class AddRoomController: UITableViewController,UIImagePickerControllerDelegate,U
                 room.colorBlue=Float(ciColor.blue)
                 room.colorAlpha=Float(ciColor.alpha)
                 
+                room.hasImage=self.isImage
                 if (self.isImage) {
-                    room.hasImage = true
                     room.image = pngImageData
                 }
                 

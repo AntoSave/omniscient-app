@@ -125,6 +125,7 @@ class RoomTableCell: UITableViewCell {
         self.setRoomTitle(roomTitle: room.name!)
         
         if( room.hasImage == false ){
+            self.removeBackgroundImage()
             self.setBackgroundColor(color:
                                         UIColor(red: CGFloat(room.colorRed),
                                                 green: CGFloat(room.colorGreen),
@@ -148,6 +149,8 @@ class RoomTableCell: UITableViewCell {
     public func setBackgroundImage(image: UIImage){
         cellImageView.image = image
     }
-    
+    public func removeBackgroundImage(){
+        cellImageView.image = nil
+    }
     
 }

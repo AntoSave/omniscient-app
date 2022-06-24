@@ -81,6 +81,20 @@ struct PersistanceController{
         }
     }
     
+    private static func extractRoomImages(context: NSManagedObjectContext) -> [String:Data]{
+        let fetchRequest = Room.fetchRequest()
+        fetchRequest.predicate=NSPredicate(format:"hasImage = true")
+        let rooms = try! context.fetch(fetchRequest)
+//        print("RISULTATO QUERY")
+//        print(rooms)
+        var roomImages: [String:Data] = rooms.reduce(into: [String:Data]()){
+            res, room in
+            res[room.name!]=room.image
+        }
+        //print(roomImages)
+        return roomImages
+    }
+    
     public static func fetchStaticContent(context: NSManagedObjectContext){
         let cameraEndpoint = URL(string: "https://omniscient-app.herokuapp.com/cameras")!
         let roomEndpoint = URL(string: "https://omniscient-app.herokuapp.com/rooms")!
@@ -134,6 +148,9 @@ struct PersistanceController{
                 return
             }
             //print("All tasks completed successfully")
+            //ESTRAI LE ANTEPRIME DA COREDATA
+            let roomImages=extractRoomImages(context: context)
+            //CANCELLA I DATI STATICI
             deleteAllStaticContent(context: context)
             var roomDict = Dictionary<String,Room>()
             for room in fetchedRooms {
@@ -143,6 +160,13 @@ struct PersistanceController{
                 roomDict[room.name]?.colorGreen=Float(room.color.green)!
                 roomDict[room.name]?.colorBlue=Float(room.color.blue)!
                 roomDict[room.name]?.colorAlpha=Float(room.color.alpha)!
+                if roomImages.keys.contains(room.name) {
+                    roomDict[room.name]?.hasImage=true
+                    roomDict[room.name]?.image=roomImages[room.name]
+                }
+                else {
+                    roomDict[room.name]?.hasImage=false
+                }
             }
             var cameraDict = Dictionary<String,Camera>()
             for camera in fetchedCameras {
