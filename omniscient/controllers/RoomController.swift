@@ -95,6 +95,22 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         print(sensorList[indexPath.row].name ?? "Sensore sconosciuto")
         
     }
+            
+    @IBAction func deleteSensors(_ sender: Any) {
+
+        if let selectedCells = roomCollectionView.indexPathsForSelectedItems {
+        // 1
+            let items = selectedCells.map { $0.item }.sorted().reversed()
+          // 2
+            for item in items {
+//                modelData.remove(at: item)
+                //TODO: Cancellare veramente i dati
+          }
+          // 3
+            roomCollectionView.deleteItems(at: selectedCells)
+//            deleteButton.isEnabled = false
+        }
+    }
     
     //Funzione chiamata prima del segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
