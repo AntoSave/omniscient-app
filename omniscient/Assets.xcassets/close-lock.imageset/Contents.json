@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "msg1095704729-8562.jpg",
+      "filename" : "close_lock.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "msg1095704729-8563.jpg",
+      "filename" : "close_lock-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "msg1095704729-8564.jpg",
+      "filename" : "close_lock-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

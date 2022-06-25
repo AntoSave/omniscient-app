@@ -22,6 +22,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7Pp-NY-XCb">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RoomIdentifier" rowHeight="120" id="6Xq-b4-eZJ" userLabel="RoomCell" customClass="RoomTableCell" customModule="omniscient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="120"/>
@@ -58,7 +59,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
                                             <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                                             <constraints>
                                                 <constraint firstItem="LuR-kq-dkf" firstAttribute="leading" secondItem="Obu-k7-QuV" secondAttribute="leadingMargin" constant="-8" id="PQg-W0-HZp"/>
@@ -67,6 +68,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="LuR-kq-dkf" secondAttribute="bottom" id="yLC-hd-I7q"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <connections>
                                             <outlet property="cellImageView" destination="kVu-Sx-sWO" id="Bp1-Jw-LTM"/>
                                             <outlet property="cellView" destination="LuR-kq-dkf" id="zaf-OY-KEF"/>
@@ -78,7 +80,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Mod-qO-j6u">
@@ -631,18 +633,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="GTn-uj-qIr">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="pEv-sj-odZ">
-                                <connections>
-                                    <segue destination="YZT-hj-8MC" kind="show" id="NyC-Dv-NSv"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="trash" id="DdA-yn-872">
-                                <connections>
-                                    <action selector="deleteSensors:" destination="2fE-Z0-yEW" id="8HP-WV-guC"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pEv-sj-odZ">
+                            <connections>
+                                <segue destination="YZT-hj-8MC" kind="show" id="NyC-Dv-NSv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -724,6 +719,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

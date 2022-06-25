@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7378190DBE34E50045B0B65F /* Pods_omniscient_omniscientUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2E7FA80C8554EB9BABCA48F /* Pods_omniscient_omniscientUITests.framework */; };
+		7C1302F228670D8600923D28 /* controlPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1302F128670D8600923D28 /* controlPanelController.swift */; };
 		7C47E4B8281554E000C1F793 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C47E4B7281554E000C1F793 /* SettingsController.swift */; };
 		7CE2239128424AF900B75F41 /* AnalogChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2239028424AF900B75F41 /* AnalogChartController.swift */; };
 		7CE2239328424EFF00B75F41 /* DigitalChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2239228424EFF00B75F41 /* DigitalChartController.swift */; };
@@ -64,6 +65,7 @@
 		4494B50557C792FA7ACF35AB /* Pods_omniscient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_omniscient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B8C270DEEA113FF696D1EB /* Pods-omniscientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omniscientTests.debug.xcconfig"; path = "Target Support Files/Pods-omniscientTests/Pods-omniscientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7330EE6E2661C7853AA59659 /* Pods-omniscient-omniscientUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omniscient-omniscientUITests.release.xcconfig"; path = "Target Support Files/Pods-omniscient-omniscientUITests/Pods-omniscient-omniscientUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7C1302F128670D8600923D28 /* controlPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = controlPanelController.swift; sourceTree = "<group>"; };
 		7C47E4B7281554E000C1F793 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		7CE2239028424AF900B75F41 /* AnalogChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogChartController.swift; sourceTree = "<group>"; };
 		7CE2239228424EFF00B75F41 /* DigitalChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalChartController.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				7CE2239228424EFF00B75F41 /* DigitalChartController.swift */,
 				7CE22394284377E500B75F41 /* AddSensorController.swift */,
 				7CE2239628463EC400B75F41 /* AddRoomController.swift */,
+				7C1302F128670D8600923D28 /* controlPanelController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 			files = (
 				A9E2A1A52815517A00315C16 /* CameraListController.swift in Sources */,
 				A9307B2C2810A10200939356 /* ViewController.swift in Sources */,
+				7C1302F228670D8600923D28 /* controlPanelController.swift in Sources */,
 				7CE2239128424AF900B75F41 /* AnalogChartController.swift in Sources */,
 				A91422542816D745004A9170 /* SettingsTableViewCell.swift in Sources */,
 				A9307B282810A10200939356 /* AppDelegate.swift in Sources */,

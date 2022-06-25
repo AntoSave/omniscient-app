@@ -15,7 +15,7 @@ enum sensorType: String {
 }
 
 
-class RoomController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
+class RoomController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate  {
     //UICollectionViewDelegateFlowLayout va messo perchè è una collection view
     
     @IBOutlet weak var roomCollectionView: UICollectionView!
@@ -44,8 +44,72 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         roomCollectionView.delegate = self
         roomCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         
+        
+//        setupLongGestureRecognizerOnCollection()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.staticDataUpdated, object: nil)
     }
+    
+//
+//    @objc func handleLongPress(gesture : UILongPressGestureRecognizer!) {
+//        if gesture.state != .ended {
+//            return
+//        }
+//        let p = gesture.location(in: self.roomCollectionView)
+//
+//        if let indexPath = self.roomCollectionView.indexPathForItem(at: p) {
+//            // get the cell at indexPath (the one you long pressed)
+//            let cell = self.roomCollectionView.cellForItem(at: indexPath)
+//            // do stuff with the cell
+//
+//        } else {
+//            print("couldn't find index path")
+//        }
+//    }
+
+    
+//    private func setupLongGestureRecognizerOnCollection() {
+//        let longPressedGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
+//        longPressedGesture.minimumPressDuration = 0.5
+//        longPressedGesture.delegate = self
+//        longPressedGesture.delaysTouchesBegan = true
+//        roomCollectionView?.addGestureRecognizer(longPressedGesture)
+//    }
+//
+//    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+//        if (gestureRecognizer.state != .began) {
+//            return
+//        }
+//
+//        let p = gestureRecognizer.location(in: roomCollectionView)
+//
+//        if let indexPath = roomCollectionView?.indexPathForItem(at: p) {
+//            print("Long press at item: \(indexPath.row)")
+//
+//        }
+//    }
+//
+//
+    
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+            let item = sensorList[indexPath.row]
+
+            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+
+                
+                // Crea le azioni da fare
+                let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+                            // CANCELLAZIONE
+                    print("Delete cell at \(indexPath)")
+                    print(item)
+//                    sensorList.remove(at: indexPath)
+                }
+                
+                return UIMenu(title: "", children: [delete])
+            }
+        }
+    
     
     @objc func contextObjectsDidChange(_:Any){
         print("RoomController: context changed")
@@ -376,3 +440,7 @@ class DigitalTableCell: UICollectionViewCell  {
         print("deinit")
     }
 }
+//
+//let some = RoomController()
+//let lpgr = UILongPressGestureRecognizer(target: some, action: #selector(RoomController.handleLongPress))
+
