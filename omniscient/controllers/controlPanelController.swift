@@ -19,7 +19,9 @@ class controlPanelController: UITableViewController {
     @IBOutlet weak var stateSwitch: UISwitch!
     
     @IBOutlet weak var sectionOne: UIView!
-    @IBOutlet weak var sectionTwo: UIView!
+    @IBOutlet weak var sirenView: UIView!
+    @IBOutlet weak var sirenLabel: UILabel!
+    @IBOutlet weak var sirenImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +32,10 @@ class controlPanelController: UITableViewController {
         stateColor.clipsToBounds = true
         
         sectionOne.layer.cornerRadius = 20
-        sectionTwo.layer.cornerRadius = 20
+        sirenView.layer.cornerRadius = 20
         //Inizializzo il sistema al valore corrente
         self.setState(value: self.getState())
-        
+        self.initializeAlarm()
     }
     
     
@@ -63,7 +65,7 @@ class controlPanelController: UITableViewController {
             imageState.image = UIImage(named: "close-lock")
             
             firstLabel.text = "The system is ARMED"
-            secondLabel.text = "On"
+            secondLabel.text = "Armed"
             stateSwitch.setOn(true, animated: true)
             stateSwitch.onTintColor = .green
         }
@@ -73,10 +75,15 @@ class controlPanelController: UITableViewController {
             imageState.image = UIImage(named: "open-lock")
             
             firstLabel.text = "The system is DISARMED"
-            secondLabel.text = "Off"
+            secondLabel.text = "Disarmed"
             stateSwitch.setOn(false, animated: true)
             stateSwitch.onTintColor = .red
         }
+        
+    }
+    func initializeAlarm() {
+        sirenImage.image =  UIImage(named: "siren")
+        sirenLabel.text = "siren"
     }
     
     
