@@ -273,8 +273,8 @@ class APIHelper{
     }
     
     static func login(username: String, password: String, completion: @escaping (Result<APITokenResponse, Error>) -> Void){
-        //let url = URL(string: "https://omniscient-app.herokuapp.com/auth/login")!
-        let url = URL(string: "https://227d-213-45-207-237.ngrok.io/auth/login")!
+        let url = URL(string: "https://omniscient-app.herokuapp.com/auth/login")!
+        //let url = URL(string: "https://227d-213-45-207-237.ngrok.io/auth/login")!
         var json: [String: Any] = [
             "username": username,
             "password": password
