@@ -20,7 +20,14 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBOutlet weak var roomCollectionView: UICollectionView!
     var titleRoom: String = ""
-    var room: Room?
+    var roomName: String?
+    var room: Room? {
+        let fetchRequest = Room.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@", roomName!)
+        let room = try! context.fetch(fetchRequest).first
+        print("room fetched",roomName,room)
+        return room
+    }
     var timer: Timer?
     let context = PersistanceController.shared.container.viewContext
     var sensorList: [Sensor] {
@@ -33,7 +40,8 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         print("sensorList requested")
         //print(room!)
         //print(room!.sensors)
-        let sensors = room?.sensors?.allObjects as! [Sensor]
+        let sensors: [Sensor] = room?.sensors?.allObjects as? [Sensor] ?? []
+        print(sensors)
         return sensors
     }
     
@@ -43,67 +51,33 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         roomCollectionView.dataSource = self
         roomCollectionView.delegate = self
         roomCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
-        
-        
-//        setupLongGestureRecognizerOnCollection()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.staticDataUpdated, object: nil)
     }
-    
-//
-//    @objc func handleLongPress(gesture : UILongPressGestureRecognizer!) {
-//        if gesture.state != .ended {
-//            return
-//        }
-//        let p = gesture.location(in: self.roomCollectionView)
-//
-//        if let indexPath = self.roomCollectionView.indexPathForItem(at: p) {
-//            // get the cell at indexPath (the one you long pressed)
-//            let cell = self.roomCollectionView.cellForItem(at: indexPath)
-//            // do stuff with the cell
-//
-//        } else {
-//            print("couldn't find index path")
-//        }
-//    }
 
-    
-//    private func setupLongGestureRecognizerOnCollection() {
-//        let longPressedGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
-//        longPressedGesture.minimumPressDuration = 0.5
-//        longPressedGesture.delegate = self
-//        longPressedGesture.delaysTouchesBegan = true
-//        roomCollectionView?.addGestureRecognizer(longPressedGesture)
-//    }
-//
-//    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
-//        if (gestureRecognizer.state != .began) {
-//            return
-//        }
-//
-//        let p = gestureRecognizer.location(in: roomCollectionView)
-//
-//        if let indexPath = roomCollectionView?.indexPathForItem(at: p) {
-//            print("Long press at item: \(indexPath.row)")
-//
-//        }
-//    }
-//
-//
-    
-    
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-            let item = sensorList[indexPath.row]
-
+            let sensor = sensorList[indexPath.row]
+        print(sensor)
             return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-
-                
                 // Crea le azioni da fare
                 let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
                             // CANCELLAZIONE
                     print("Delete cell at \(indexPath)")
-                    print(item)
-//                    sensorList.remove(at: indexPath)
+                    APIHelper.deleteSensor(sensorID: sensor.remoteID!){
+                        result in
+                        switch(result){
+                        case .success(_):
+                            DispatchQueue.main.async {
+                                self.roomCollectionView.cellForItem(at: indexPath)?.prepareForReuse()
+                                //self.roomCollectionView.deleteItems(at: [indexPath])
+                                self.context.delete(sensor)
+                                try! self.context.save()
+                                NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
+                            }
+                        case .failure(let e):
+                            print("Error",e)
+                        }
+                    }
+                    
                 }
                 
                 return UIMenu(title: "", children: [delete])
@@ -121,11 +95,10 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewWillAppear(_ animated: Bool) {
         print("willAppear")
         StateModel.shared.fetchState()
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.test), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.updateUI), userInfo: nil, repeats: true)
     }
     
-    @objc func test(){
-        print("test")
+    @objc func updateUI(){
         StateModel.shared.fetchState()
     }
     
@@ -349,7 +322,10 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.stateChanged, object: nil)
         print("awakeFromNib")
     }*/
-    
+    override func prepareForReuse() {
+        NotificationCenter.default.removeObserver(self)
+        print("deinit")
+    }
     deinit { //Viene chiamato quando la cella non è più mostrata
         NotificationCenter.default.removeObserver(self)
         print("deinit")

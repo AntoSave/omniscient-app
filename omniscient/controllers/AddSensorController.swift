@@ -127,6 +127,8 @@ class SensorInputTextTableCell: UITableViewCell{
     func initialize(for f: String){
         label.text = f
         boxView.layer.cornerRadius = 10
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
     }
     func getText() -> String{
         return textField.text!

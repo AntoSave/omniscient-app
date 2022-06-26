@@ -87,7 +87,7 @@ struct PersistanceController{
         let rooms = try! context.fetch(fetchRequest)
 //        print("RISULTATO QUERY")
 //        print(rooms)
-        var roomImages: [String:Data] = rooms.reduce(into: [String:Data]()){
+        let roomImages: [String:Data] = rooms.reduce(into: [String:Data]()){
             res, room in
             res[room.name!]=room.image
         }

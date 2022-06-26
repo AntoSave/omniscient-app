@@ -10,10 +10,9 @@ import UIKit
 
 class CameraController: UIViewController,VLCMediaPlayerDelegate,VLCMediaThumbnailerDelegate{
     func mediaThumbnailerDidTimeOut(_ mediaThumbnailer: VLCMediaThumbnailer!) {
-        print("time out")
+        print("Thumbnailer timed out")
     }
     func mediaThumbnailer(_ mediaThumbnailer: VLCMediaThumbnailer!, didFinishThumbnail thumbnail: CGImage!) {
-        print("okok")
         image.image=UIImage(cgImage: thumbnail)
     }
     
@@ -29,17 +28,9 @@ class CameraController: UIViewController,VLCMediaPlayerDelegate,VLCMediaThumbnai
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Did load")
         mediaPlayer = VLCMediaPlayer(options: ["--rtsp-tcp"]) //NOTA:  --rtsp-tcp forza l'uso di tcp. Questo permette di risolvere un bug relativo all'assenza di ack da parte del client che comportava la chiusura della connesisone rtsp dopo circa 30 secondi a causa della scadenza del timeout. Potrebbe non essere necessario per alcuni modelli di telecamere. NON rimuovere!
         //mediaPlayer!.libraryInstance.debugLogging = true
         //mediaPlayer!.libraryInstance.debugLoggingLevel = 3
-
-        //Add rotation observer
-        /*NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(CameraController.rotated),
-            name: NSNotification.Name.UIDevice.orientationDidChangeNotification,
-            object: nil)*/
         
         //Setup movieView
         self.movieView.backgroundColor = UIColor.gray
@@ -54,8 +45,6 @@ class CameraController: UIViewController,VLCMediaPlayerDelegate,VLCMediaThumbnai
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        
-        print("Did appear")
         //Playing multicast UDP (you can multicast a video from VLC)
         //let url = NSURL(string: "udp://@225.0.0.1:51018")
         //Playing HTTP from internet
@@ -100,16 +89,7 @@ class CameraController: UIViewController,VLCMediaPlayerDelegate,VLCMediaThumbnai
         print("STATE CHANGED: ", aNotification!)
     }
     func mediaPlayerTimeChanged(_ aNotification: Notification!) {
-        /*print("TIME CHANGED: ", aNotification!)
-        if(!hasTakenSnapshot && mediaPlayer!.hasVideoOut){
-            print("Snapshot taken")
-            hasTakenSnapshot = true
-            let tmpDirURL = FileManager.default.temporaryDirectory
-            let path = tmpDirURL.appendingPathComponent("snapshot")
-            mediaPlayer!.saveVideoSnapshot(at: path.path, withWidth: 0, andHeight: 0)
-            
-            image.image=UIImage(contentsOfFile: path.path)
-        }*/
+        
     }
     @objc func rotated() {
 
@@ -146,11 +126,8 @@ class CameraController: UIViewController,VLCMediaPlayerDelegate,VLCMediaThumbnai
     
     
     override func viewWillAppear(_ animated: Bool) {
-       super.viewWillAppear(animated)
-       
+        super.viewWillAppear(animated)
         AppUtility.lockOrientation(.landscapeLeft, andRotateTo: .landscapeLeft)
-        // Or to rotate and lock
-       // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
-       
+        //AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
    }
 }

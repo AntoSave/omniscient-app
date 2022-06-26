@@ -17,15 +17,6 @@ class AddCameraController: UITableViewController{
                 
             })
         }
-        /*return [
-            UIAction(title: "Camera da letto", handler: { (_) in
-            }),
-            UIAction(title: "Cucina", handler: { (_) in
-            }),
-            UIAction(title: "Aggiungi stanza...",handler: { (_) in
-                
-            })
-        ]*/
     }
     
     let content = [
@@ -52,14 +43,22 @@ class AddCameraController: UITableViewController{
         let domain = values["Dominio"]!()
         let port = values["Porta"]!()
         if Int16(port) == nil{
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Error", message: "Port must be a number!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self.present(alert, animated: true, completion: nil)
+            }
             return
         }
         let username = values["Nome Utente"]!()
         let password = values["Password"]!()
+        print("ciao 1")
         APIHelper.createCamera(cameraName: cameraName, roomName: roomName, domain: domain, port: port, username: username, password: password){
             result in
+            print("ciao 2")
             switch(result){
-            case(.success(let s)):
+            case(.success(_)):
+                print("success")
                 let camera = Camera(context:self.context)
                 camera.name=cameraName
                 camera.port=Int16(port)!
@@ -119,6 +118,11 @@ class InputTextTableCell: UITableViewCell{
     func initialize(for f: String){
         label.text = f
         box.layer.cornerRadius = 10
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        if (f=="Password"){
+            textField.isSecureTextEntry = true
+        }
     }
     func getText() -> String{
         return textField.text!

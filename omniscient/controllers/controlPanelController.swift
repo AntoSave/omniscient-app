@@ -37,6 +37,10 @@ class controlPanelController: UITableViewController {
     }
     
     
+    @IBAction func onLogout(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name.logout, object: nil)
+    }
+    
     @IBAction func switchDidChange(_ sender: UISwitch) {
         if( sender.isOn ){
             self.setState(value: true)

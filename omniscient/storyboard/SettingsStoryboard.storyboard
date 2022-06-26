@@ -90,12 +90,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="8VK-CB-wGv">
-                                <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="yaH-92-uab">
-                                        <rect key="frame" x="0.0" y="247.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="180.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yaH-92-uab" id="Sq7-PC-WTx">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -110,8 +106,8 @@
                                                                 <action selector="switchDidChange:" destination="Vho-eN-QUs" eventType="valueChanged" id="PIY-e9-tfN"/>
                                                             </connections>
                                                         </switch>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUO-Lg-zSR">
-                                                            <rect key="frame" x="20" y="10.5" width="49.5" height="22.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alarm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUO-Lg-zSR">
+                                                            <rect key="frame" x="20" y="10.5" width="54" height="22.5"/>
                                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="21"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -136,6 +132,48 @@
                                                 <constraint firstAttribute="bottom" secondItem="KWS-Ui-wId" secondAttribute="bottom" id="GQw-hJ-lXw"/>
                                                 <constraint firstAttribute="bottom" secondItem="KWS-Ui-wId" secondAttribute="bottom" id="Sgc-ao-fCW"/>
                                                 <constraint firstItem="KWS-Ui-wId" firstAttribute="top" secondItem="Sq7-PC-WTx" secondAttribute="top" id="ajY-i3-bs5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="8VK-CB-wGv">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="XEy-db-IZR">
+                                        <rect key="frame" x="0.0" y="291" width="414" height="31.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XEy-db-IZR" id="xYO-KI-9l8">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="31.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ywb-uc-lzi">
+                                                    <rect key="frame" x="15" y="0.0" width="384" height="31.5"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvg-Vv-ial">
+                                                            <rect key="frame" x="0.0" y="0.0" width="384" height="31.5"/>
+                                                            <buttonConfiguration key="configuration" style="filled" title="Log out">
+                                                                <color key="baseBackgroundColor" systemColor="systemPinkColor"/>
+                                                            </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="onLogout:" destination="Vho-eN-QUs" eventType="touchUpInside" id="nzb-hK-AEz"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="hvg-Vv-ial" firstAttribute="top" secondItem="Ywb-uc-lzi" secondAttribute="top" id="4IU-8Y-eW8"/>
+                                                        <constraint firstAttribute="bottom" secondItem="hvg-Vv-ial" secondAttribute="bottom" id="8M2-7w-pkR"/>
+                                                        <constraint firstItem="hvg-Vv-ial" firstAttribute="leading" secondItem="Ywb-uc-lzi" secondAttribute="leading" id="nVW-eQ-tfy"/>
+                                                        <constraint firstAttribute="trailing" secondItem="hvg-Vv-ial" secondAttribute="trailing" id="ueA-Ff-5cf"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Ywb-uc-lzi" secondAttribute="trailing" constant="15" id="Hft-jl-skM"/>
+                                                <constraint firstItem="Ywb-uc-lzi" firstAttribute="top" secondItem="xYO-KI-9l8" secondAttribute="top" id="Uf6-dv-zIu"/>
+                                                <constraint firstItem="Ywb-uc-lzi" firstAttribute="leading" secondItem="xYO-KI-9l8" secondAttribute="leading" constant="15" id="skD-xI-fVP"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ywb-uc-lzi" secondAttribute="bottom" id="wdH-Wa-Lpl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -191,6 +229,9 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

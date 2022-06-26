@@ -25,7 +25,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="remoteID" attributeType="String"/>
         <attribute name="type" attributeType="String"/>
-        <relationship name="room" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Room" inverseName="sensors" inverseEntity="Room"/>
+        <relationship name="room" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Room" inverseName="sensors" inverseEntity="Room"/>
     </entity>
     <elements>
         <element name="Camera" positionX="-63" positionY="-18" width="128" height="149"/>

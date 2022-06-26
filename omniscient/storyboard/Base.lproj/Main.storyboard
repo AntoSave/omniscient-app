@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="hWT-a2-g5O">
             <objects>
-                <tabBarController id="ads-Fg-BCQ" customClass="ViewController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainController" id="ads-Fg-BCQ" customClass="ViewController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="68I-Bc-bRS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -276,7 +276,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="oBG-5S-wfK"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -295,7 +295,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="ZdQ-7f-rN7"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -315,7 +315,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="s7T-OY-Nzf"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -335,7 +335,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="hoC-QG-C3A"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="username"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -355,7 +355,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="b3Q-qv-iap"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                         </subviews>
                                     </stackView>

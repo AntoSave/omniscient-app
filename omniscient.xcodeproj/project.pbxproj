@@ -27,6 +27,8 @@
 		A9307B3F2810A10400939356 /* omniscientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B3E2810A10400939356 /* omniscientTests.swift */; };
 		A9307B492810A10400939356 /* omniscientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B482810A10400939356 /* omniscientUITests.swift */; };
 		A9307B4B2810A10400939356 /* omniscientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */; };
+		A9643F3728677CEC006F04FF /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9643F3628677CEC006F04FF /* LoginStoryboard.storyboard */; };
+		A9643F3928678AAC006F04FF /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9643F3828678AAC006F04FF /* AuthenticationController.swift */; };
 		A97D624B2844AC6B0061AAFB /* StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D62492844AC6B0061AAFB /* StateModel.swift */; };
 		A97D624D2844F3880061AAFB /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D624C2844F3880061AAFB /* APIHelper.swift */; };
 		A989289328271C9A004D4DB2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A989289128271C9A004D4DB2 /* Model.xcdatamodeld */; };
@@ -89,6 +91,8 @@
 		A9307B442810A10400939356 /* omniscientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = omniscientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9307B482810A10400939356 /* omniscientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITests.swift; sourceTree = "<group>"; };
 		A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A9643F3628677CEC006F04FF /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
+		A9643F3828678AAC006F04FF /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 		A97D62492844AC6B0061AAFB /* StateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateModel.swift; sourceTree = "<group>"; };
 		A97D624C2844F3880061AAFB /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		A989289228271C9A004D4DB2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 				A9307B2D2810A10200939356 /* Main.storyboard */,
 				A9BEE9E62813042D005E0669 /* SettingsStoryboard.storyboard */,
 				A9A536862840C48B0018C71F /* HomeStoryboard.storyboard */,
+				A9643F3628677CEC006F04FF /* LoginStoryboard.storyboard */,
 			);
 			path = storyboard;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				7CE22394284377E500B75F41 /* AddSensorController.swift */,
 				7CE2239628463EC400B75F41 /* AddRoomController.swift */,
 				7C1302F128670D8600923D28 /* controlPanelController.swift */,
+				A9643F3828678AAC006F04FF /* AuthenticationController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				A9307B342810A10400939356 /* LaunchScreen.storyboard in Resources */,
 				A9307B312810A10400939356 /* Assets.xcassets in Resources */,
 				A9BEE9E72813042D005E0669 /* SettingsStoryboard.storyboard in Resources */,
+				A9643F3728677CEC006F04FF /* LoginStoryboard.storyboard in Resources */,
 				A9307B2F2810A10200939356 /* Main.storyboard in Resources */,
 				A9A536872840C48B0018C71F /* HomeStoryboard.storyboard in Resources */,
 			);
@@ -521,6 +528,7 @@
 				A97D624D2844F3880061AAFB /* APIHelper.swift in Sources */,
 				A9A536892840CF9F0018C71F /* HomeController.swift in Sources */,
 				A9307B2A2810A10200939356 /* SceneDelegate.swift in Sources */,
+				A9643F3928678AAC006F04FF /* AuthenticationController.swift in Sources */,
 				A9C4AB1128461AC50004A899 /* StaticDataModel.swift in Sources */,
 				A9A5368B2840CFA90018C71F /* RoomController.swift in Sources */,
 				A91422562816D750004A9170 /* SwitchTableViewCell.swift in Sources */,
@@ -714,9 +722,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C952B42G4K;
+				DEVELOPMENT_TEAM = MQT646MU2N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = omniscient/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow Camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow Photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -727,7 +737,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.tirocini.omniscient.davide;
+				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.tirocini.omniscient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -743,9 +753,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C952B42G4K;
+				DEVELOPMENT_TEAM = MQT646MU2N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = omniscient/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow Camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow Photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -756,7 +768,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.tirocini.omniscient.davide;
+				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.tirocini.omniscient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

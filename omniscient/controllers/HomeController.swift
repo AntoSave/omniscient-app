@@ -47,7 +47,8 @@ class HomeController: UIViewController,UITableViewDataSource,UITableViewDelegate
     //Funzione chiamata prima del segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let roomController = segue.destination as? RoomController, let roomTableCell = sender as? RoomTableCell{
-            roomController.room = roomTableCell.room
+            //roomController.room = roomTableCell.room
+            roomController.roomName = roomTableCell.room?.name!
             roomController.setTitle(title: roomTableCell.room?.name ?? "")
         }
     }

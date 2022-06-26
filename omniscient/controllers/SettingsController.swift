@@ -58,7 +58,6 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if let tabBarItem3 = self.tabBarController?.tabBar.items?[2] {
                     tabBarItem3.title = ""
                     tabBarItem3.image = UIImage(systemName: "gear")
