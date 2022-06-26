@@ -14,7 +14,7 @@ class ViewController: UITabBarController {
         // Do any additional setup after loading the view.
         PersistanceController.fetchStaticContent(context: context)
         StateModel.shared.fetchState()
-        
+        StateModel.shared.fetchAlarmState()
         /*print("ESEGUO LA FETCH DEI SENSORI")
         var fetchRequest = Sensor.fetchRequest()
         var result = try! context.fetch(fetchRequest)

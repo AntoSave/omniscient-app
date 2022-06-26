@@ -97,43 +97,6 @@ struct APIResponse: Decodable {
 
 class APIHelper{
     static func createCamera(cameraName: String,roomName: String,domain: String,port: String,username: String,password: String,completion: @escaping (Result<String, Error>) -> Void){
-        /*let url = URL(string: "https://omniscient-app.herokuapp.com/cameras")!
-        var json: [String: Any] = [
-            "name": cameraName,
-            "room_name": roomName,
-            "domain": domain,
-            "port": port
-        ]
-        if username != "" {
-            json["username"]=username
-        }
-        if password != "" {
-            json["password"]=password
-        }
-        let jsonData = try! JSONSerialization.data(withJSONObject: json)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(UserDefaults.standard.string(forKey: "authToken"), forHTTPHeaderField: "x-access-token")
-        request.httpBody = jsonData
-
-        URLSession.shared.dataTask(with: request){ (data, response, error) in
-            if let error = error {
-                print("error")
-                completion(.failure(error))
-                return
-            }
-            let res = response as! HTTPURLResponse
-            if(res.statusCode != 200){
-                print("error")
-                let body = String(decoding: data!,as: UTF8.self)
-                completion(.failure(NSError(domain: body, code: res.statusCode)))
-                return
-            }
-            print("success")
-            completion(.success("SUCCESS"))
-        }.resume()*/
         var json: [String: Any] = [
             "name": cameraName,
             "room_name": roomName,
@@ -155,30 +118,6 @@ class APIHelper{
             "room_name": roomName
         ]
         URLSession.shared.performRequest(forUrl: "https://omniscient-app.herokuapp.com/cameras", json: json, method: "DELETE", completion: completion)
-        /*let jsonData = try! JSONSerialization.data(withJSONObject: json)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "DELETE"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(UserDefaults.standard.string(forKey: "authToken"), forHTTPHeaderField: "x-access-token")
-        request.httpBody = jsonData
-
-        URLSession.shared.dataTask(with: request){ (data, response, error) in
-            if let error = error {
-                print("error")
-                completion(.failure(error))
-                return
-            }
-            let res = response as! HTTPURLResponse
-            if(res.statusCode != 200){
-                print("error")
-                let body = String(decoding: data!,as: UTF8.self)
-                completion(.failure(NSError(domain: body, code: res.statusCode)))
-                return
-            }
-            print("success")
-            completion(.success("SUCCESS"))
-        }.resume()*/
     }
     
     static func createRoom(roomName: String,color: CIColor,completion: @escaping (Result<String, Error>) -> Void){
@@ -213,63 +152,21 @@ class APIHelper{
             "room_name": sensorRoom,
         ]
         URLSession.shared.performRequest(forUrl: "https://omniscient-app.herokuapp.com/sensors", json: json, method: "POST", completion: completion)
-        //print(json)
-        /*let jsonData = try! JSONSerialization.data(withJSONObject: json)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(UserDefaults.standard.string(forKey: "authToken"), forHTTPHeaderField: "x-access-token")
-        request.httpBody = jsonData
-
-        URLSession.shared.dataTask(with: request){ (data, response, error) in
-            if let error = error {
-                print("error")
-                completion(.failure(error))
-                return
-            }
-            let res = response as! HTTPURLResponse
-            if(res.statusCode != 200){
-                print("error")
-                let body = String(decoding: data!,as: UTF8.self)
-                completion(.failure(NSError(domain: body, code: res.statusCode)))
-                return
-            }
-            print("success")
-            completion(.success("SUCCESS"))
-        }.resume()*/
     }
     
     static func deleteSensor(sensorID: String,completion: @escaping (Result<String, Error>) -> Void){
         //let url = URL(string: "https://omniscient-app.herokuapp.com/sensors")!
-        var json: [String: Any] = [
+        let json: [String: Any] = [
             "id": sensorID
         ]
         URLSession.shared.performRequest(forUrl: "https://omniscient-app.herokuapp.com/sensors", json: json, method: "DELETE", completion: completion)
-        /*let jsonData = try! JSONSerialization.data(withJSONObject: json)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "DELETE"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(UserDefaults.standard.string(forKey: "authToken"), forHTTPHeaderField: "x-access-token")
-        request.httpBody = jsonData
-
-        URLSession.shared.dataTask(with: request){ (data, response, error) in
-            if let error = error {
-                print("error")
-                completion(.failure(error))
-                return
-            }
-            let res = response as! HTTPURLResponse
-            if(res.statusCode != 200){
-                print("error")
-                let body = String(decoding: data!,as: UTF8.self)
-                completion(.failure(NSError(domain: body, code: res.statusCode)))
-                return
-            }
-            print("success")
-            completion(.success("SUCCESS"))
-        }.resume()*/
+    }
+    
+    static func setAlarmed(setAlarmed: Bool, completion: @escaping (Result<String, Error>) -> Void){
+        let json: [String: Any] = [
+            "setAlarmed": setAlarmed
+        ]
+        URLSession.shared.performRequest(forUrl: "https://omniscient-app.herokuapp.com/status/alarmed", json: json, method: "POST", completion: completion)
     }
     
     static func login(username: String, password: String, completion: @escaping (Result<APITokenResponse, Error>) -> Void){

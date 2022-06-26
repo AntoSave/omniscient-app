@@ -9,9 +9,9 @@ import Foundation
 
 
 class controlPanelController: UITableViewController {
-    
-    var state_armed: Bool = false
-
+    var state_armed: Bool {
+        return StateModel.shared.isAlarmed
+    }
     @IBOutlet weak var stateColor: UIView!
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var imageState: UIImageView!
@@ -32,8 +32,10 @@ class controlPanelController: UITableViewController {
         sectionOne.layer.cornerRadius = 20
         sectionTwo.layer.cornerRadius = 20
         //Inizializzo il sistema al valore corrente
-        self.setState(value: self.getState())
-        
+        print("state_armed",state_armed)
+        stateSwitch.setOn(state_armed, animated: false)
+        self.updateUIHelper()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.alarmStateChanged, object: nil)
     }
     
     
@@ -42,43 +44,42 @@ class controlPanelController: UITableViewController {
     }
     
     @IBAction func switchDidChange(_ sender: UISwitch) {
-        if( sender.isOn ){
-            self.setState(value: true)
-        }else {
-            self.setState(value: false)
+        print("switchDidChange","setAlarmed:",sender.isOn)
+        APIHelper.setAlarmed(setAlarmed: sender.isOn){
+            result in
+            switch(result){
+            case(.success(_)):
+                StateModel.shared.fetchAlarmState()
+            case(.failure(let e)):
+                print("Errore",e)
+            }
         }
-        
     }
     
-    func getState() -> Bool {
-        return state_armed
+    @objc func updateUI(notification: NSNotification){
+        print("SONO QUI",state_armed)
+        updateUIHelper()
     }
-    
-    func setState(value: Bool){
-        let old_state = state_armed
-        state_armed = value
-        
-        if(state_armed == true){
-            stateColor.backgroundColor = .green
-            imageState.image = UIImage(named: "close-lock")
+    func updateUIHelper(){
+        DispatchQueue.main.async {
+            if(self.state_armed == true){
+                self.stateColor.backgroundColor = .green
+                self.imageState.image = UIImage(named: "close-lock")
+                
+                self.firstLabel.text = "The system is ARMED"
+                self.secondLabel.text = "On"
+                self.stateSwitch.onTintColor = .green
+            }
             
-            firstLabel.text = "The system is ARMED"
-            secondLabel.text = "On"
-            stateSwitch.setOn(true, animated: true)
-            stateSwitch.onTintColor = .green
-        }
-        
-        if(state_armed == false){
-            stateColor.backgroundColor = .red
-            imageState.image = UIImage(named: "open-lock")
-            
-            firstLabel.text = "The system is DISARMED"
-            secondLabel.text = "Off"
-            stateSwitch.setOn(false, animated: true)
-            stateSwitch.onTintColor = .red
+            if(self.state_armed == false){
+                self.stateColor.backgroundColor = .red
+                self.imageState.image = UIImage(named: "open-lock")
+                
+                self.firstLabel.text = "The system is DISARMED"
+                self.secondLabel.text = "Off"
+                self.stateSwitch.onTintColor = .red
+            }
         }
     }
-    
-    
 }
 
