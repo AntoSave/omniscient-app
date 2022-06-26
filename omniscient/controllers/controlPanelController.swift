@@ -11,7 +11,9 @@ import Foundation
 class controlPanelController: UITableViewController {
     
     var state_armed: Bool = false
+    var hasSiren: Bool = true
 
+    @IBOutlet weak var addSirenButton: UIBarButtonItem!
     @IBOutlet weak var stateColor: UIView!
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var imageState: UIImageView!
@@ -34,6 +36,10 @@ class controlPanelController: UITableViewController {
         sectionOne.layer.cornerRadius = 20
         sirenView.layer.cornerRadius = 20
         //Inizializzo il sistema al valore corrente
+        if( hasSiren == true ){
+            addSirenButton.isEnabled = false
+        }
+        
         self.setState(value: self.getState())
         self.initializeAlarm()
     }

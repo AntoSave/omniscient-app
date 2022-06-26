@@ -17,16 +17,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="2oG-jT-iZ7">
-                                <rect key="frame" x="17" y="270.5" width="380" height="235"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H3N-Zf-KRW">
+                                <rect key="frame" x="-142" y="44" width="698" height="818"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="2oG-jT-iZ7">
+                                <rect key="frame" x="14" y="293" width="380" height="235"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2MK-YW-49v">
                                         <rect key="frame" x="0.0" y="0.0" width="380" height="70.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome Utente" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFl-RY-9l0" userLabel="Numero di porta">
-                                                <rect key="frame" x="0.0" y="0.0" width="101.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFl-RY-9l0" userLabel="Numero di porta">
+                                                <rect key="frame" x="0.0" y="0.0" width="84" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" name="AccentColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IA3-wj-aO8">
@@ -44,9 +48,9 @@
                                         <rect key="frame" x="0.0" y="95.5" width="380" height="70.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TkT-EI-7Tc" userLabel="Numero di porta">
-                                                <rect key="frame" x="0.0" y="0.0" width="73.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="79.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" name="AccentColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xa2-DD-LvN">
@@ -95,12 +99,13 @@
                         <viewLayoutGuide key="safeArea" id="wAL-fi-CPK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2oG-jT-iZ7" firstAttribute="centerY" secondItem="axt-If-efc" secondAttribute="centerY" constant="-60" id="OMB-Jj-ItD"/>
+                            <constraint firstItem="2oG-jT-iZ7" firstAttribute="centerY" secondItem="axt-If-efc" secondAttribute="centerY" id="OMB-Jj-ItD"/>
                             <constraint firstItem="2oG-jT-iZ7" firstAttribute="centerX" secondItem="axt-If-efc" secondAttribute="centerX" id="yXs-gX-XZV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="i2I-nw-chx" id="rSi-HY-zyV"/>
+                        <outlet property="loginImage" destination="H3N-Zf-KRW" id="sba-eF-LQR"/>
                         <outlet property="passwordTextField" destination="Xa2-DD-LvN" id="foM-n0-uch"/>
                         <outlet property="usernameTextField" destination="IA3-wj-aO8" id="6VW-kd-tbE"/>
                     </connections>

@@ -140,9 +140,9 @@
                                                                 <constraint firstItem="z8Y-Cs-fo7" firstAttribute="top" secondItem="PED-0h-BOk" secondAttribute="top" constant="2" id="b8n-rs-Cwk"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Siren Enabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p21-JS-3zI">
-                                                            <rect key="frame" x="10" y="26" width="237" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siren Enabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p21-JS-3zI">
+                                                            <rect key="frame" x="25" y="26" width="222" height="22"/>
+                                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="21"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -151,9 +151,9 @@
                                                     <constraints>
                                                         <constraint firstItem="p21-JS-3zI" firstAttribute="centerY" secondItem="PED-0h-BOk" secondAttribute="centerY" id="3WS-gR-XMB"/>
                                                         <constraint firstItem="PED-0h-BOk" firstAttribute="top" secondItem="JyD-q8-XwR" secondAttribute="top" constant="2" id="Moo-Tu-ynU"/>
+                                                        <constraint firstItem="p21-JS-3zI" firstAttribute="leading" secondItem="JyD-q8-XwR" secondAttribute="leading" constant="25" id="dFb-Ri-l4i"/>
                                                         <constraint firstItem="PED-0h-BOk" firstAttribute="leading" secondItem="JyD-q8-XwR" secondAttribute="leading" constant="300" id="ham-Yg-VMl"/>
                                                         <constraint firstItem="p21-JS-3zI" firstAttribute="top" secondItem="JyD-q8-XwR" secondAttribute="top" constant="26" id="n4T-LX-0Sz"/>
-                                                        <constraint firstItem="p21-JS-3zI" firstAttribute="leading" secondItem="JyD-q8-XwR" secondAttribute="leading" constant="10" id="r9D-Jo-I6k"/>
                                                         <constraint firstItem="PED-0h-BOk" firstAttribute="leading" secondItem="p21-JS-3zI" secondAttribute="trailing" constant="53" id="sa3-ZY-i5L"/>
                                                         <constraint firstAttribute="bottom" secondItem="PED-0h-BOk" secondAttribute="bottom" constant="2" id="vJ4-6J-J28"/>
                                                         <constraint firstAttribute="trailing" secondItem="PED-0h-BOk" secondAttribute="trailing" constant="10" id="w4W-0Q-xyN"/>
@@ -227,6 +227,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addSirenButton" destination="oQ2-7g-cpJ" id="Wsm-0j-8cJ"/>
                         <outlet property="firstLabel" destination="dH6-Fz-2gD" id="kkS-NQ-lN5"/>
                         <outlet property="imageState" destination="2Eh-SX-y7N" id="TgL-IM-S6A"/>
                         <outlet property="secondLabel" destination="XUO-Lg-zSR" id="7Jr-Wq-HBP"/>

@@ -13,11 +13,6 @@ class AddSirenController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var addSirenTableView: UITableView!
     
     let content = ["ID","Name"]
-        
-        //["type":"Button","for":"Type"],
-        //["type":"InputText","for":"Nome Utente"],
-        //["type":"InputText","for":"Password"],
-        //["type":"Button","for":"Room"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
