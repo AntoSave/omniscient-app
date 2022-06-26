@@ -47,16 +47,13 @@ class controlPanelController: UITableViewController {
             addSirenButton.isEnabled = false
         }
         self.initializeAlarm()
+    }
     
     @IBAction func onLogout(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name.logout, object: nil)
     }
     
     @IBAction func switchDidChange(_ sender: UISwitch) {
-        print("switchDidChange","setAlarmed:",sender.isOn)
-        APIHelper.setAlarmed(setAlarmed: sender.isOn){
-            result in
-            switch(result){
         print("switchDidChange","setAlarmed:",sender.isOn)
         APIHelper.setAlarmed(setAlarmed: sender.isOn){
             result in
@@ -80,7 +77,7 @@ class controlPanelController: UITableViewController {
                 self.imageState.image = UIImage(named: "close-lock")
                 
                 self.firstLabel.text = "The system is ARMED"
-                self.secondLabel.text = "On"
+                //self.secondLabel.text = "On"
                 self.stateSwitch.onTintColor = .green
             }
             
@@ -89,7 +86,7 @@ class controlPanelController: UITableViewController {
                 self.imageState.image = UIImage(named: "open-lock")
                 
                 self.firstLabel.text = "The system is DISARMED"
-                self.secondLabel.text = "Off"
+                //self.secondLabel.text = "Off"
                 self.stateSwitch.onTintColor = .red
             }
         }
@@ -100,4 +97,3 @@ class controlPanelController: UITableViewController {
         sirenLabel.text = "Siren"
     }
 }
-
