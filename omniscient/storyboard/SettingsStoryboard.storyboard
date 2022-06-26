@@ -334,7 +334,6 @@
                                         <connections>
                                             <outlet property="boxView" destination="FEi-JQ-mtg" id="rgP-Pm-Fy5"/>
                                             <outlet property="label" destination="mgd-p1-LFB" id="6UR-HR-g2h"/>
-                                            <outlet property="textField" destination="O4k-kv-dUH" id="HML-xA-b6W"/>
                                             <outlet property="textfield" destination="O4k-kv-dUH" id="aZH-mP-Nfb"/>
                                         </connections>
                                     </tableViewCell>

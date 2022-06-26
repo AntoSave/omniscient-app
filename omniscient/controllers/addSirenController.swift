@@ -12,15 +12,12 @@ class AddSirenController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var generalView: UIView!
     @IBOutlet weak var addSirenTableView: UITableView!
     
-    let content = [
-        ["type":"InputText","for":"ID"],
-        ["type":"InputText","for":"Name"]
+    let content = ["ID","Name"]
+        
         //["type":"Button","for":"Type"],
         //["type":"InputText","for":"Nome Utente"],
         //["type":"InputText","for":"Password"],
         //["type":"Button","for":"Room"]
-    ]
-    var values: [String:()->String] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +33,11 @@ class AddSirenController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let content = self.content[indexPath.row]
-        
+
         let cell: SirenInputTextTableCell = self.addSirenTableView.dequeueReusableCell(withIdentifier: "sirenInputTextTableCell", for: indexPath) as! SirenInputTextTableCell
-        cell.initialize(for: content["for"]!)
-        values.updateValue(cell.getText, forKey: content["for"]!)
+        
+        let name: String = content[indexPath.row]
+        cell.initialize(f: name)
         return cell
         
     }
@@ -61,7 +58,7 @@ class SirenInputTextTableCell: UITableViewCell{
     @IBOutlet weak var boxView: UIView!
     
     
-    func initialize(for f: String){
+    func initialize(f: String){
         label.text = f
         boxView.layer.cornerRadius = 10
         textfield.autocorrectionType = .no
