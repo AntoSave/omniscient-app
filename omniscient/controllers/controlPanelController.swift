@@ -83,7 +83,7 @@ class controlPanelController: UITableViewController {
     }
     func initializeAlarm() {
         sirenImage.image =  UIImage(named: "siren")
-        sirenLabel.text = "siren"
+        sirenLabel.text = "Siren"
     }
     
     
