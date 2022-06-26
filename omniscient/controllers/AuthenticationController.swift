@@ -12,7 +12,9 @@ class AuthenticationController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
+    @IBOutlet weak var loginImage: UIImageView!
     override func viewDidLoad() {
+        loginImage.image = UIImage(named: "hanso")
         usernameTextField.autocorrectionType = .no
         passwordTextField.autocorrectionType = .no
         usernameTextField.autocapitalizationType = .none

@@ -12,6 +12,9 @@ class controlPanelController: UITableViewController {
     var state_armed: Bool {
         return StateModel.shared.isAlarmed
     }
+    var hasSiren: Bool = true
+
+    @IBOutlet weak var addSirenButton: UIBarButtonItem!
     @IBOutlet weak var stateColor: UIView!
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var imageState: UIImageView!
@@ -19,7 +22,9 @@ class controlPanelController: UITableViewController {
     @IBOutlet weak var stateSwitch: UISwitch!
     
     @IBOutlet weak var sectionOne: UIView!
-    @IBOutlet weak var sectionTwo: UIView!
+    @IBOutlet weak var sirenView: UIView!
+    @IBOutlet weak var sirenLabel: UILabel!
+    @IBOutlet weak var sirenImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,20 +35,28 @@ class controlPanelController: UITableViewController {
         stateColor.clipsToBounds = true
         
         sectionOne.layer.cornerRadius = 20
-        sectionTwo.layer.cornerRadius = 20
+        sirenView.layer.cornerRadius = 20
         //Inizializzo il sistema al valore corrente
+        print("state_armed",state_armed)
+        stateSwitch.setOn(state_armed, animated: false)
         print("state_armed",state_armed)
         stateSwitch.setOn(state_armed, animated: false)
         self.updateUIHelper()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.alarmStateChanged, object: nil)
-    }
-    
+        if( hasSiren == true ){
+            addSirenButton.isEnabled = false
+        }
+        self.initializeAlarm()
     
     @IBAction func onLogout(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name.logout, object: nil)
     }
     
     @IBAction func switchDidChange(_ sender: UISwitch) {
+        print("switchDidChange","setAlarmed:",sender.isOn)
+        APIHelper.setAlarmed(setAlarmed: sender.isOn){
+            result in
+            switch(result){
         print("switchDidChange","setAlarmed:",sender.isOn)
         APIHelper.setAlarmed(setAlarmed: sender.isOn){
             result in
@@ -80,6 +93,11 @@ class controlPanelController: UITableViewController {
                 self.stateSwitch.onTintColor = .red
             }
         }
+    }
+    
+    func initializeAlarm() {
+        sirenImage.image =  UIImage(named: "siren")
+        sirenLabel.text = "Siren"
     }
 }
 

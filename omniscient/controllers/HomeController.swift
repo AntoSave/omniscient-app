@@ -136,7 +136,7 @@ class RoomTableCell: UITableViewCell {
             print(room)
         }else {
             
-            self.setBackgroundImage(image: UIImage(data: room.image!)!)
+            self.setBackgroundImage(image: UIImage(ciImage: CIImage(data: room.image!)!, scale: 1.0 , orientation: .up ))
         }
     }
     

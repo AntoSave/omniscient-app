@@ -10,6 +10,7 @@
 		7378190DBE34E50045B0B65F /* Pods_omniscient_omniscientUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2E7FA80C8554EB9BABCA48F /* Pods_omniscient_omniscientUITests.framework */; };
 		7C1302F228670D8600923D28 /* controlPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1302F128670D8600923D28 /* controlPanelController.swift */; };
 		7C47E4B8281554E000C1F793 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C47E4B7281554E000C1F793 /* SettingsController.swift */; };
+		7CA3D7DA2868E46C0035E808 /* addSirenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3D7D92868E46C0035E808 /* addSirenController.swift */; };
 		7CE2239128424AF900B75F41 /* AnalogChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2239028424AF900B75F41 /* AnalogChartController.swift */; };
 		7CE2239328424EFF00B75F41 /* DigitalChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2239228424EFF00B75F41 /* DigitalChartController.swift */; };
 		7CE22395284377E500B75F41 /* AddSensorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE22394284377E500B75F41 /* AddSensorController.swift */; };
@@ -69,6 +70,7 @@
 		7330EE6E2661C7853AA59659 /* Pods-omniscient-omniscientUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omniscient-omniscientUITests.release.xcconfig"; path = "Target Support Files/Pods-omniscient-omniscientUITests/Pods-omniscient-omniscientUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7C1302F128670D8600923D28 /* controlPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = controlPanelController.swift; sourceTree = "<group>"; };
 		7C47E4B7281554E000C1F793 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		7CA3D7D92868E46C0035E808 /* addSirenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addSirenController.swift; sourceTree = "<group>"; };
 		7CE2239028424AF900B75F41 /* AnalogChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogChartController.swift; sourceTree = "<group>"; };
 		7CE2239228424EFF00B75F41 /* DigitalChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalChartController.swift; sourceTree = "<group>"; };
 		7CE22394284377E500B75F41 /* AddSensorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSensorController.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				7CE2239628463EC400B75F41 /* AddRoomController.swift */,
 				7C1302F128670D8600923D28 /* controlPanelController.swift */,
 				A9643F3828678AAC006F04FF /* AuthenticationController.swift */,
+				7CA3D7D92868E46C0035E808 /* addSirenController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				A9E2A1A52815517A00315C16 /* CameraListController.swift in Sources */,
 				A9307B2C2810A10200939356 /* ViewController.swift in Sources */,
 				7C1302F228670D8600923D28 /* controlPanelController.swift in Sources */,
+				7CA3D7DA2868E46C0035E808 /* addSirenController.swift in Sources */,
 				7CE2239128424AF900B75F41 /* AnalogChartController.swift in Sources */,
 				A91422542816D745004A9170 /* SettingsTableViewCell.swift in Sources */,
 				A9307B282810A10200939356 /* AppDelegate.swift in Sources */,
@@ -722,7 +726,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MQT646MU2N;
+				DEVELOPMENT_TEAM = C952B42G4K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = omniscient/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow Camera";
@@ -737,7 +741,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.tirocini.omniscient;
+				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.tirocini.omniscient.dvd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -753,7 +757,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MQT646MU2N;
+				DEVELOPMENT_TEAM = C952B42G4K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = omniscient/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow Camera";
@@ -768,7 +772,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.tirocini.omniscient;
+				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.tirocini.omniscient.dvd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
