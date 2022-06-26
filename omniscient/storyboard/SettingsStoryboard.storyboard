@@ -71,9 +71,9 @@
                                                                 <action selector="switchDidChange:" destination="Vho-eN-QUs" eventType="valueChanged" id="PIY-e9-tfN"/>
                                                             </connections>
                                                         </switch>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alarm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUO-Lg-zSR">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable alarm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUO-Lg-zSR">
                                                             <rect key="frame" x="25" y="148" width="149" height="23"/>
-                                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -142,7 +142,7 @@
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siren Enabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p21-JS-3zI">
                                                             <rect key="frame" x="25" y="26" width="222" height="22"/>
-                                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -173,19 +173,20 @@
                             </tableViewSection>
                             <tableViewSection id="7aY-A2-reX">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Ldu-uv-vEK">
-                                        <rect key="frame" x="0.0" y="453.5" width="414" height="31.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="Ldu-uv-vEK">
+                                        <rect key="frame" x="0.0" y="453.5" width="414" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ldu-uv-vEK" id="9MJ-BX-iRB">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="31.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bav-qc-FvP">
-                                                    <rect key="frame" x="15" y="0.0" width="384" height="31.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="384" height="48"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRq-KZ-484">
-                                                            <rect key="frame" x="0.0" y="0.0" width="384" height="31.5"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRq-KZ-484">
+                                                            <rect key="frame" x="0.0" y="0.0" width="384" height="48"/>
                                                             <buttonConfiguration key="configuration" style="filled" title="Log out">
+                                                                <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
                                                                 <color key="baseBackgroundColor" systemColor="systemPinkColor"/>
                                                             </buttonConfiguration>
                                                             <connections>

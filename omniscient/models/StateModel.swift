@@ -58,9 +58,11 @@ class StateModel {
         URLSession.shared.fetchData(for: stateEndpoint,decoder: decoder) { (result: Result<FetchedState, Error>) in
             switch result {
             case .success(let result):
-                //print("State fetched successfully",result)
+                print("State fetched successfully",result)
                 self.current_state = result
-                NotificationCenter.default.post(name: NSNotification.Name.stateChanged, object: nil)
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: NSNotification.Name.stateChanged, object: nil)
+                }
             case .failure(let error):
                 print("Couldn't fetch state!")
                 //print("Couldn't fetch state",error)
@@ -68,6 +70,7 @@ class StateModel {
         }
         //print(current_state)
         //print("State change notified!")
+        //NotificationCenter.default.post(name: NSNotification.Name.stateChanged, object: nil)
     }
     func fetchAlarmState(){
         let alarmEndpoint = URL(string: "https://omniscient-app.herokuapp.com/status/alarmed")!
@@ -76,7 +79,9 @@ class StateModel {
                 case .success(let result):
                     self.isAlarmed=result.isAlarmed
                     print("ALARMED:",self.isAlarmed)
-                    NotificationCenter.default.post(name: NSNotification.Name.alarmStateChanged, object: nil)
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: NSNotification.Name.alarmStateChanged, object: nil)
+                    }
                 case .failure(let error):
                     print("Couldn't fetch alarm state!")
             }

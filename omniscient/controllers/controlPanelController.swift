@@ -71,25 +71,25 @@ class controlPanelController: UITableViewController {
         updateUIHelper()
     }
     func updateUIHelper(){
-        DispatchQueue.main.async {
-            if(self.state_armed == true){
-                self.stateColor.backgroundColor = .green
-                self.imageState.image = UIImage(named: "close-lock")
-                
-                self.firstLabel.text = "The system is ARMED"
-                //self.secondLabel.text = "On"
-                self.stateSwitch.onTintColor = .green
-            }
+        //DispatchQueue.main.async {
+        if(self.state_armed == true){
+            self.stateColor.backgroundColor = .green
+            self.imageState.image = UIImage(named: "close-lock")
             
-            if(self.state_armed == false){
-                self.stateColor.backgroundColor = .red
-                self.imageState.image = UIImage(named: "open-lock")
-                
-                self.firstLabel.text = "The system is DISARMED"
-                //self.secondLabel.text = "Off"
-                self.stateSwitch.onTintColor = .red
-            }
+            self.firstLabel.text = "The system is ARMED"
+            //self.secondLabel.text = "On"
+            self.stateSwitch.onTintColor = .green
         }
+        
+        if(self.state_armed == false){
+            self.stateColor.backgroundColor = .red
+            self.imageState.image = UIImage(named: "open-lock")
+            
+            self.firstLabel.text = "The system is DISARMED"
+            //self.secondLabel.text = "Off"
+            self.stateSwitch.onTintColor = .red
+        }
+        //}
     }
     
     func initializeAlarm() {
