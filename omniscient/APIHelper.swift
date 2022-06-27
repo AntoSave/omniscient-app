@@ -162,6 +162,24 @@ class APIHelper{
         URLSession.shared.performRequest(forUrl: "https://omniscient-app.herokuapp.com/sensors", json: json, method: "DELETE", completion: completion)
     }
     
+    static func createSiren(sirenID: String,sirenName: String, completion: @escaping (Result<String, Error>) -> Void){
+        //let url = URL(string: "https://omniscient-app.herokuapp.com/sensors")!
+        var json: [String: Any] = [
+            "id": sirenID,
+            "name": sirenName,
+            "type": "BUZZER"
+        ]
+        URLSession.shared.performRequest(forUrl: "https://omniscient-app.herokuapp.com/actuators", json: json, method: "POST", completion: completion)
+    }
+    
+    static func deleteSiren(sirenID: String,completion: @escaping (Result<String, Error>) -> Void){
+        //let url = URL(string: "https://omniscient-app.herokuapp.com/sensors")!
+        let json: [String: Any] = [
+            "id": sirenID
+        ]
+        URLSession.shared.performRequest(forUrl: "https://omniscient-app.herokuapp.com/actuators", json: json, method: "DELETE", completion: completion)
+    }
+    
     static func setAlarmed(setAlarmed: Bool, completion: @escaping (Result<String, Error>) -> Void){
         let json: [String: Any] = [
             "setAlarmed": setAlarmed

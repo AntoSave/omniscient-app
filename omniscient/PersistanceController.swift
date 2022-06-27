@@ -79,6 +79,13 @@ struct PersistanceController{
         } catch let error as NSError {
             // TODO: handle the error
         }
+        fetchRequest = NSFetchRequest(entityName: "Actuator")
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try context.execute(deleteRequest)
+        } catch let error as NSError {
+            // TODO: handle the error
+        }
     }
     
     private static func extractRoomImages(context: NSManagedObjectContext) -> [String:Data]{
@@ -99,6 +106,7 @@ struct PersistanceController{
         let cameraEndpoint = URL(string: "https://omniscient-app.herokuapp.com/cameras")!
         let roomEndpoint = URL(string: "https://omniscient-app.herokuapp.com/rooms")!
         let sensorEndpoint = URL(string: "https://omniscient-app.herokuapp.com/sensors")!
+        let actuatorEndpoint = URL(string: "https://omniscient-app.herokuapp.com/actuators")!
         
         //print("FetchStaticContent started")
         let group = DispatchGroup()
@@ -106,6 +114,7 @@ struct PersistanceController{
         var fetchedRooms: [FetchedRoom] = []
         var fetchedCameras: [FetchedCamera] = []
         var fetchedSensors: [FetchedSensor] = []
+        var fetchedActuators: [FetchedActuator] = []
         
         group.enter()
         URLSession.shared.fetchData(for: roomEndpoint) { (result: Result<[FetchedRoom], Error>) in
@@ -137,6 +146,18 @@ struct PersistanceController{
                 case .success(let result):
                 //print("Sensors fetched successfully",result)
                 fetchedSensors = result
+                case .failure(let error):
+                //print("Couldn't fetch sensors",error)
+                allSuccessful = false
+            }
+            group.leave()
+        }
+        group.enter()
+        URLSession.shared.fetchData(for: actuatorEndpoint) { (result: Result<[FetchedActuator], Error>) in
+            switch result {
+                case .success(let result):
+                //print("Sensors fetched successfully",result)
+                fetchedActuators = result
                 case .failure(let error):
                 //print("Couldn't fetch sensors",error)
                 allSuccessful = false
@@ -185,6 +206,15 @@ struct PersistanceController{
                 sensorDict[sensor.name]?.remoteID=sensor.id
                 sensorDict[sensor.name]?.type=sensor.type
                 sensorDict[sensor.name]?.room=roomDict[sensor.room_name]
+            }
+            print("BBBBBBBB")
+            var actuatorDict = Dictionary<String,Actuator>()
+            for actuator in fetchedActuators {
+                actuatorDict[actuator.name]=Actuator(context: context)
+                actuatorDict[actuator.name]?.name=actuator.name
+                actuatorDict[actuator.name]?.remoteID=actuator.id
+                actuatorDict[actuator.name]?.type=actuator.type
+                print("AAAAAAA")
             }
             do {
                 try context.save()

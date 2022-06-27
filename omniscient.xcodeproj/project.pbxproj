@@ -30,6 +30,8 @@
 		A9307B4B2810A10400939356 /* omniscientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */; };
 		A9643F3728677CEC006F04FF /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9643F3628677CEC006F04FF /* LoginStoryboard.storyboard */; };
 		A9643F3928678AAC006F04FF /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9643F3828678AAC006F04FF /* AuthenticationController.swift */; };
+		A96CFDE1286A2393008B1CEF /* SirenListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96CFDE0286A2393008B1CEF /* SirenListController.swift */; };
+		A96CFDE3286A429D008B1CEF /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96CFDE2286A429D008B1CEF /* SignUpController.swift */; };
 		A97D624B2844AC6B0061AAFB /* StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D62492844AC6B0061AAFB /* StateModel.swift */; };
 		A97D624D2844F3880061AAFB /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D624C2844F3880061AAFB /* APIHelper.swift */; };
 		A989289328271C9A004D4DB2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A989289128271C9A004D4DB2 /* Model.xcdatamodeld */; };
@@ -95,6 +97,8 @@
 		A9307B4A2810A10400939356 /* omniscientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = omniscientUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A9643F3628677CEC006F04FF /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
 		A9643F3828678AAC006F04FF /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
+		A96CFDE0286A2393008B1CEF /* SirenListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SirenListController.swift; sourceTree = "<group>"; };
+		A96CFDE2286A429D008B1CEF /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		A97D62492844AC6B0061AAFB /* StateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateModel.swift; sourceTree = "<group>"; };
 		A97D624C2844F3880061AAFB /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		A989289228271C9A004D4DB2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -243,6 +247,8 @@
 				7C1302F128670D8600923D28 /* controlPanelController.swift */,
 				A9643F3828678AAC006F04FF /* AuthenticationController.swift */,
 				7CA3D7D92868E46C0035E808 /* addSirenController.swift */,
+				A96CFDE0286A2393008B1CEF /* SirenListController.swift */,
+				A96CFDE2286A429D008B1CEF /* SignUpController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 			files = (
 				A9E2A1A52815517A00315C16 /* CameraListController.swift in Sources */,
 				A9307B2C2810A10200939356 /* ViewController.swift in Sources */,
+				A96CFDE3286A429D008B1CEF /* SignUpController.swift in Sources */,
 				7C1302F228670D8600923D28 /* controlPanelController.swift in Sources */,
 				7CA3D7DA2868E46C0035E808 /* addSirenController.swift in Sources */,
 				7CE2239128424AF900B75F41 /* AnalogChartController.swift in Sources */,
@@ -531,6 +538,7 @@
 				A9E9F7EB281C90DA00F53B91 /* CameraController.swift in Sources */,
 				A97D624D2844F3880061AAFB /* APIHelper.swift in Sources */,
 				A9A536892840CF9F0018C71F /* HomeController.swift in Sources */,
+				A96CFDE1286A2393008B1CEF /* SirenListController.swift in Sources */,
 				A9307B2A2810A10200939356 /* SceneDelegate.swift in Sources */,
 				A9643F3928678AAC006F04FF /* AuthenticationController.swift in Sources */,
 				A9C4AB1128461AC50004A899 /* StaticDataModel.swift in Sources */,

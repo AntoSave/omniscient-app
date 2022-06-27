@@ -34,3 +34,9 @@ struct FetchedColor: Decodable {
     let green: String
     let alpha: String
 }
+
+struct FetchedActuator: Decodable {
+    let id: String
+    let name: String
+    let type: String
+}

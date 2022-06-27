@@ -6,15 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 
 class controlPanelController: UITableViewController {
-    var state_armed: Bool {
-        return StateModel.shared.isAlarmed
-    }
-    var hasSiren: Bool = true
-
-    @IBOutlet weak var addSirenButton: UIBarButtonItem!
     @IBOutlet weak var stateColor: UIView!
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var imageState: UIImageView!
@@ -25,6 +20,11 @@ class controlPanelController: UITableViewController {
     @IBOutlet weak var sirenView: UIView!
     @IBOutlet weak var sirenLabel: UILabel!
     @IBOutlet weak var sirenImage: UIImageView!
+    @IBOutlet weak var displacementIndicatorImage: UIImageView!
+    
+    var state_armed: Bool {
+        return StateModel.shared.isAlarmed
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,7 @@ class controlPanelController: UITableViewController {
         
         stateColor.layer.cornerRadius = min(stateColor.frame.size.height, stateColor.frame.size.width) / 2.0
         stateColor.clipsToBounds = true
+        displacementIndicatorImage.image = UIImage(systemName: "chevron.right")
         
         sectionOne.layer.cornerRadius = 20
         sirenView.layer.cornerRadius = 20
@@ -43,11 +44,9 @@ class controlPanelController: UITableViewController {
         stateSwitch.setOn(state_armed, animated: false)
         self.updateUIHelper()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.alarmStateChanged, object: nil)
-        if( hasSiren == true ){
-            addSirenButton.isEnabled = false
-        }
         self.initializeAlarm()
     }
+    
     
     @IBAction func onLogout(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name.logout, object: nil)
@@ -95,5 +94,11 @@ class controlPanelController: UITableViewController {
     func initializeAlarm() {
         sirenImage.image =  UIImage(named: "siren")
         sirenLabel.text = "Siren"
+    }
+}
+
+class AlarmTableViewCell: UITableViewCell {
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator){
+        super.didUpdateFocus(in: context, with: coordinator)
     }
 }

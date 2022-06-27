@@ -61,7 +61,7 @@ class AddSensorController: UIViewController, UITableViewDelegate, UITableViewDat
         let sensorName = values["Name"]!()
         let sensorType = values["Type"]!().uppercased()
         let sensorRoom = room!.name!
-        print(sensorID,sensorName,sensorType,sensorRoom)
+        //print(sensorID,sensorName,sensorType,sensorRoom)
         APIHelper.createSensor(sensorID: sensorID, sensorName: sensorName, sensorType: sensorType, sensorRoom: sensorRoom){
             result in
             switch(result){

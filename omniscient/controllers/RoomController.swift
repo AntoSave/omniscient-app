@@ -25,7 +25,7 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         let fetchRequest = Room.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name == %@", roomName!)
         let room = try! context.fetch(fetchRequest).first
-        print("room fetched",roomName,room)
+        //print("room fetched",roomName,room)
         return room
     }
     var timer: Timer?
@@ -41,7 +41,7 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         //print(room!)
         //print(room!.sensors)
         let sensors: [Sensor] = room?.sensors?.allObjects as? [Sensor] ?? []
-        print(sensors)
+        //print(sensors)
         return sensors
     }
     

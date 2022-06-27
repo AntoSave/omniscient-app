@@ -114,7 +114,7 @@
                             </tableViewSection>
                             <tableViewSection id="8VK-CB-wGv">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="74" id="XEy-db-IZR">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" focusStyle="custom" rowHeight="74" id="XEy-db-IZR" customClass="AlarmTableViewCell" customModule="omniscient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="312.5" width="414" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XEy-db-IZR" id="xYO-KI-9l8">
@@ -125,23 +125,35 @@
                                                     <rect key="frame" x="15" y="0.0" width="384" height="74"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PED-0h-BOk" userLabel="ImageView">
-                                                            <rect key="frame" x="300" y="2" width="74" height="70"/>
+                                                            <rect key="frame" x="271" y="2" width="82" height="70"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z8Y-Cs-fo7">
-                                                                    <rect key="frame" x="10" y="2" width="54" height="66"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UWH-9q-dQ5" userLabel="DisplacementIndicator">
+                                                                    <rect key="frame" x="62" y="18" width="20" height="34"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="20" id="Csz-lG-gZH"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z8Y-Cs-fo7" userLabel="SirenImage">
+                                                                    <rect key="frame" x="4" y="10" width="50" height="50"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="50" id="Jx6-hL-zB7"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="kw2-Ab-mdt"/>
+                                                                    </constraints>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="z8Y-Cs-fo7" secondAttribute="trailing" constant="10" id="Aol-sc-6r8"/>
-                                                                <constraint firstAttribute="bottom" secondItem="z8Y-Cs-fo7" secondAttribute="bottom" constant="2" id="OcQ-ip-gbm"/>
-                                                                <constraint firstItem="z8Y-Cs-fo7" firstAttribute="leading" secondItem="PED-0h-BOk" secondAttribute="leading" constant="10" id="QQZ-UY-fDg"/>
-                                                                <constraint firstItem="z8Y-Cs-fo7" firstAttribute="top" secondItem="PED-0h-BOk" secondAttribute="top" constant="2" id="b8n-rs-Cwk"/>
+                                                                <constraint firstItem="UWH-9q-dQ5" firstAttribute="top" secondItem="PED-0h-BOk" secondAttribute="top" constant="18" id="N7l-RT-DzX"/>
+                                                                <constraint firstItem="z8Y-Cs-fo7" firstAttribute="centerY" secondItem="PED-0h-BOk" secondAttribute="centerY" id="PWD-Qc-9Zs"/>
+                                                                <constraint firstItem="z8Y-Cs-fo7" firstAttribute="leading" secondItem="PED-0h-BOk" secondAttribute="leading" constant="4" id="ZIa-0p-hsT"/>
+                                                                <constraint firstAttribute="trailing" secondItem="UWH-9q-dQ5" secondAttribute="trailing" id="m3m-if-qd9"/>
+                                                                <constraint firstAttribute="bottom" secondItem="UWH-9q-dQ5" secondAttribute="bottom" constant="18" id="ulQ-iB-Jvk"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siren Enabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p21-JS-3zI">
-                                                            <rect key="frame" x="25" y="26" width="222" height="22"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siren" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p21-JS-3zI">
+                                                            <rect key="frame" x="25" y="26" width="46.5" height="22"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -152,11 +164,10 @@
                                                         <constraint firstItem="p21-JS-3zI" firstAttribute="centerY" secondItem="PED-0h-BOk" secondAttribute="centerY" id="3WS-gR-XMB"/>
                                                         <constraint firstItem="PED-0h-BOk" firstAttribute="top" secondItem="JyD-q8-XwR" secondAttribute="top" constant="2" id="Moo-Tu-ynU"/>
                                                         <constraint firstItem="p21-JS-3zI" firstAttribute="leading" secondItem="JyD-q8-XwR" secondAttribute="leading" constant="25" id="dFb-Ri-l4i"/>
-                                                        <constraint firstItem="PED-0h-BOk" firstAttribute="leading" secondItem="JyD-q8-XwR" secondAttribute="leading" constant="300" id="ham-Yg-VMl"/>
+                                                        <constraint firstItem="PED-0h-BOk" firstAttribute="leading" secondItem="JyD-q8-XwR" secondAttribute="leading" constant="271" id="ham-Yg-VMl"/>
                                                         <constraint firstItem="p21-JS-3zI" firstAttribute="top" secondItem="JyD-q8-XwR" secondAttribute="top" constant="26" id="n4T-LX-0Sz"/>
-                                                        <constraint firstItem="PED-0h-BOk" firstAttribute="leading" secondItem="p21-JS-3zI" secondAttribute="trailing" constant="53" id="sa3-ZY-i5L"/>
                                                         <constraint firstAttribute="bottom" secondItem="PED-0h-BOk" secondAttribute="bottom" constant="2" id="vJ4-6J-J28"/>
-                                                        <constraint firstAttribute="trailing" secondItem="PED-0h-BOk" secondAttribute="trailing" constant="10" id="w4W-0Q-xyN"/>
+                                                        <constraint firstAttribute="trailing" secondItem="PED-0h-BOk" secondAttribute="trailing" constant="31" id="w4W-0Q-xyN"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -168,6 +179,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="JyD-q8-XwR" secondAttribute="trailing" constant="15" id="xsI-uJ-KqX"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <segue destination="P1K-ig-mWs" kind="show" id="37N-Xk-dur"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -220,15 +235,9 @@
                             <outlet property="delegate" destination="Vho-eN-QUs" id="Cyd-mG-CO3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="RNW-AT-q5o">
-                        <barButtonItem key="rightBarButtonItem" title="Add Siren" id="oQ2-7g-cpJ">
-                            <connections>
-                                <segue destination="Bqs-bp-xhk" kind="show" id="wSn-i6-Txm"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="RNW-AT-q5o"/>
                     <connections>
-                        <outlet property="addSirenButton" destination="oQ2-7g-cpJ" id="Wsm-0j-8cJ"/>
+                        <outlet property="displacementIndicatorImage" destination="UWH-9q-dQ5" id="5ya-aQ-DCX"/>
                         <outlet property="firstLabel" destination="dH6-Fz-2gD" id="kkS-NQ-lN5"/>
                         <outlet property="imageState" destination="2Eh-SX-y7N" id="TgL-IM-S6A"/>
                         <outlet property="secondLabel" destination="XUO-Lg-zSR" id="7Jr-Wq-HBP"/>
@@ -243,6 +252,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbu-vh-rMC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="28.985507246376812" y="864.50892857142856"/>
+        </scene>
+        <!--Siren List Controller-->
+        <scene sceneID="IBG-uy-1H7">
+            <objects>
+                <tableViewController id="P1K-ig-mWs" customClass="SirenListController" customModule="omniscient" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="LHo-df-lU2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SirenIdentifier" rowHeight="50" id="nXk-hx-LE9" customClass="SirenListTableCell" customModule="omniscient" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="49.5" width="414" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nXk-hx-LE9" id="2y3-Gt-q9C">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2g-tE-Njf" userLabel="Sub View">
+                                            <rect key="frame" x="15" y="0.0" width="384" height="50"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="siren" translatesAutoresizingMaskIntoConstraints="NO" id="9Wf-fw-2ng" userLabel="SirenImage">
+                                                    <rect key="frame" x="0.0" y="10" width="40" height="30"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="Rhe-4Q-tPD"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1M-w3-8zX">
+                                                    <rect key="frame" x="50" y="17.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="DDb-36-dQy"/>
+                                                <constraint firstItem="l1M-w3-8zX" firstAttribute="centerY" secondItem="Y2g-tE-Njf" secondAttribute="centerY" constant="3" id="MYC-O4-xNU"/>
+                                                <constraint firstItem="l1M-w3-8zX" firstAttribute="leading" secondItem="9Wf-fw-2ng" secondAttribute="trailing" constant="10" id="OzC-JM-ssx"/>
+                                                <constraint firstAttribute="bottom" secondItem="9Wf-fw-2ng" secondAttribute="bottom" constant="10" id="PGV-pv-xnp"/>
+                                                <constraint firstItem="9Wf-fw-2ng" firstAttribute="top" secondItem="Y2g-tE-Njf" secondAttribute="top" constant="10" id="Xsa-5Q-Ywv"/>
+                                                <constraint firstItem="9Wf-fw-2ng" firstAttribute="leading" secondItem="Y2g-tE-Njf" secondAttribute="leading" id="qki-5f-IPI"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                    <constraints>
+                                        <constraint firstItem="Y2g-tE-Njf" firstAttribute="centerX" secondItem="2y3-Gt-q9C" secondAttribute="centerX" id="DQH-IY-bJZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Y2g-tE-Njf" secondAttribute="bottom" id="HaW-nF-hwk"/>
+                                        <constraint firstAttribute="trailing" secondItem="Y2g-tE-Njf" secondAttribute="trailing" constant="15" id="MSH-D4-Ls0"/>
+                                        <constraint firstItem="Y2g-tE-Njf" firstAttribute="top" secondItem="2y3-Gt-q9C" secondAttribute="top" id="RgC-y4-a9G"/>
+                                        <constraint firstItem="Y2g-tE-Njf" firstAttribute="leading" secondItem="2y3-Gt-q9C" secondAttribute="leading" constant="15" id="uoC-A9-6yK"/>
+                                        <constraint firstItem="Y2g-tE-Njf" firstAttribute="centerY" secondItem="2y3-Gt-q9C" secondAttribute="centerY" id="wMe-iK-Phy"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="l1M-w3-8zX" id="516-CX-hBM"/>
+                                    <outlet property="subView" destination="Y2g-tE-Njf" id="Y9z-Ot-FPy"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="P1K-ig-mWs" id="bpy-pS-gAz"/>
+                            <outlet property="delegate" destination="P1K-ig-mWs" id="PZ3-2u-TCy"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="vWl-hu-6GB">
+                        <barButtonItem key="rightBarButtonItem" title="Add Siren" id="oQ2-7g-cpJ">
+                            <connections>
+                                <segue destination="Bqs-bp-xhk" kind="show" id="X0E-cQ-Oe6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HYc-bd-R2i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1119" y="865"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rah-ge-A8H">
@@ -335,7 +421,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="boxView" destination="FEi-JQ-mtg" id="rgP-Pm-Fy5"/>
-                                            <outlet property="label" destination="mgd-p1-LFB" id="6UR-HR-g2h"/>
+                                            <outlet property="label" destination="mgd-p1-LFB" id="4rH-D7-rVw"/>
                                             <outlet property="textfield" destination="O4k-kv-dUH" id="aZH-mP-Nfb"/>
                                         </connections>
                                     </tableViewCell>
@@ -359,11 +445,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBt-5R-qH8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="939" y="865"/>
+            <point key="canvasLocation" x="2055" y="865"/>
         </scene>
     </scenes>
     <resources>
         <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="siren" width="313" height="313"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

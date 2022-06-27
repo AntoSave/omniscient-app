@@ -13,6 +13,8 @@ class AddSirenController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var addSirenTableView: UITableView!
     
     let content = ["ID","Name"]
+    var values: [String:()->String] = [:]
+    let context = PersistanceController.shared.container.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,25 @@ class AddSirenController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func onSave(_ sender: Any) {
         //TODO: integrare l'onSave col backend
-
+        let actuatorID = values["ID"]!()
+        let actuatorName = values["Name"]!()
+        APIHelper.createSiren(sirenID: actuatorID, sirenName: actuatorName){
+            result in
+            switch(result){
+            case(.success(_)):
+                let actuator = Actuator(context:self.context)
+                actuator.remoteID=actuatorID
+                actuator.name=actuatorName
+                actuator.type="BUZZER"
+                try! self.context.save()
+                DispatchQueue.main.async {
+                    self.navigationController!.popViewController(animated: true)
+                    NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
+                }
+            case(.failure(let e)):
+                print("Errore",e)
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,6 +53,7 @@ class AddSirenController: UIViewController, UITableViewDelegate, UITableViewData
         
         let name: String = content[indexPath.row]
         cell.initialize(f: name)
+        values.updateValue(cell.getText, forKey: content[indexPath.row])
         return cell
         
     }
