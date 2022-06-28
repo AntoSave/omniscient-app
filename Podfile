@@ -11,6 +11,7 @@ target 'omniscient' do
   pod 'MobileVLCKit', '~>3.3.0'
   pod 'GaugeKit'
   pod 'Charts'
+  pod 'Starscream', '~> 4.0.0'
   target 'omniscientTests' do
     inherit! :search_paths
     # Pods for testing

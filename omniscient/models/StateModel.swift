@@ -43,9 +43,10 @@ struct FetchedAlarmState: Decodable {
 }
 
 class StateModel {
-    static let shared = StateModel()
+    static let shared = StateModel() //singleton
     var current_state: FetchedState?
-    var previous_state: FetchedState?
+    var current_sensor_status: [String:FetchedSensorStatus]?
+    //var previous_state: FetchedState?
     var isAlarmed: Bool = false
     
     func fetchState(){
@@ -58,14 +59,16 @@ class StateModel {
         URLSession.shared.fetchData(for: stateEndpoint,decoder: decoder) { (result: Result<FetchedState, Error>) in
             switch result {
             case .success(let result):
-                print("State fetched successfully",result)
+                //print("State fetched successfully",result)
                 self.current_state = result
+                self.current_sensor_status=result.sensor_status
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: NSNotification.Name.stateChanged, object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name.sensorStatusChanged, object: nil)
                 }
             case .failure(let error):
-                print("Couldn't fetch state!")
-                //print("Couldn't fetch state",error)
+                //print("Couldn't fetch state!")
+                print("Couldn't fetch state",error)
             }
         }
         //print(current_state)
@@ -78,12 +81,27 @@ class StateModel {
             switch result {
                 case .success(let result):
                     self.isAlarmed=result.isAlarmed
-                    print("ALARMED:",self.isAlarmed)
+                    //print("ALARMED:",self.isAlarmed)
                     DispatchQueue.main.async {
                         NotificationCenter.default.post(name: NSNotification.Name.alarmStateChanged, object: nil)
                     }
                 case .failure(let error):
-                    print("Couldn't fetch alarm state!")
+                    print("Couldn't fetch alarm state!",error)
+            }
+        }
+    }
+    func fetchSensorStatus(){
+        let stateEndpoint = URL(string: "https://omniscient-app.herokuapp.com/sensors/connection_status")!
+        URLSession.shared.fetchData(for: stateEndpoint) { (result: Result<[String:FetchedSensorStatus], Error>) in
+            switch result {
+            case .success(let result):
+                //print("Sensor status fetched successfully",result)
+                self.current_sensor_status=result
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: NSNotification.Name.sensorStatusChanged, object: nil)
+                }
+            case .failure(let error):
+                print("Couldn't fetch sensor status!",error)
             }
         }
     }
@@ -92,4 +110,5 @@ class StateModel {
 extension Notification.Name {
     static let stateChanged = Notification.Name("state-changed")
     static let alarmStateChanged = Notification.Name("alarm-state-changed")
+    static let sensorStatusChanged = Notification.Name("sensor-status-changed")
 }

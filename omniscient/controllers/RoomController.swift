@@ -17,10 +17,11 @@ enum sensorType: String {
 
 class RoomController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate  {
     //UICollectionViewDelegateFlowLayout va messo perchè è una collection view
-    
     @IBOutlet weak var roomCollectionView: UICollectionView!
     var titleRoom: String = ""
     var roomName: String?
+    
+    let context = PersistanceController.shared.container.viewContext
     var room: Room? {
         let fetchRequest = Room.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name == %@", roomName!)
@@ -28,22 +29,19 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         //print("room fetched",roomName,room)
         return room
     }
-    var timer: Timer?
-    let context = PersistanceController.shared.container.viewContext
     var sensorList: [Sensor] {
-        /*let fetchRequest = Sensor.fetchRequest()
-        fetchRequest.predicate = NSPredicate(
-            format: "room == %@", room!
-        )
-        print(room!)
-        let sensors = try! context.fetch(fetchRequest)*/
         print("sensorList requested")
-        //print(room!)
-        //print(room!.sensors)
         let sensors: [Sensor] = room?.sensors?.allObjects as? [Sensor] ?? []
-        //print(sensors)
         return sensors
     }
+    /*
+     Dizionario che mappa gli i sensori nella stanza alle UICollectionViewCell destinatarie dei messaggi
+     inviate dai sensori
+     */
+    var psws: APIHelper.PSWSSession?
+    var messageRecipients: [String:Updatable] = [:]
+    var timer: Timer?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,37 +50,32 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         roomCollectionView.delegate = self
         roomCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.staticDataUpdated, object: nil)
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-            let sensor = sensorList[indexPath.row]
-        print(sensor)
-            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-                // Crea le azioni da fare
-                let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
-                            // CANCELLAZIONE
-                    print("Delete cell at \(indexPath)")
-                    APIHelper.deleteSensor(sensorID: sensor.remoteID!){
-                        result in
-                        switch(result){
-                        case .success(_):
-                            DispatchQueue.main.async {
-                                self.roomCollectionView.cellForItem(at: indexPath)?.prepareForReuse()
-                                //self.roomCollectionView.deleteItems(at: [indexPath])
-                                self.context.delete(sensor)
-                                try! self.context.save()
-                                NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
-                            }
-                        case .failure(let e):
-                            print("Error",e)
+        let sensor = sensorList[indexPath.row]
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+                print("Delete cell at \(indexPath)")
+                APIHelper.deleteSensor(sensorID: sensor.remoteID!){
+                    result in
+                    switch(result){
+                    case .success(_):
+                        DispatchQueue.main.async {
+                            self.roomCollectionView.cellForItem(at: indexPath)?.prepareForReuse()
+                            self.context.delete(sensor)
+                            try! self.context.save()
+                            NotificationCenter.default.post(name: NSNotification.Name.staticDataUpdated, object: nil)
                         }
+                    case .failure(let e):
+                        print("Error",e)
                     }
-                    
                 }
-                
-                return UIMenu(title: "", children: [delete])
             }
+            return UIMenu(title: "", children: [delete])
         }
+    }
     
     
     @objc func contextObjectsDidChange(_:Any){
@@ -93,19 +86,42 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("willAppear")
+        //print("willAppear")
+        /*
         StateModel.shared.fetchState()
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.updateUI), userInfo: nil, repeats: true)
+         */
+        print("willAppear",messageRecipients)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        print("didAppear",messageRecipients)
+        //Controllo lo stato iniziale dei sensori
+        StateModel.shared.fetchSensorStatus()
+        //Sottoscrizione a tutti i topic di interesse
+        psws=APIHelper.PSWSSession(onConnect: {
+            self.messageRecipients.keys.forEach{x in
+                self.psws!.subscribe(sensorID: x)
+            }
+        }, onReceive: { res in
+            //print(res)
+            self.messageRecipients[res.topic]?.updateUI(res.message)
+        })
+        psws!.connect()
     }
     
-    @objc func updateUI(){
+    /*@objc func updateUI(){
         StateModel.shared.fetchState()
-    }
+    }*/
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("willDisappear")
+        //print("willDisappear")
+        /*
         timer?.invalidate()
         timer=nil
+        */
+        //Unsubscribe dai topic di interesse
+        psws!.disconnect()
+        psws=nil
     }
     
     //Numero di Item che devono essere mostrati a video
@@ -120,10 +136,14 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         if sensor.type! == "TEMPERATURE" || sensor.type! == "LIGHT" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "analogTableCell", for: indexPath) as! AnalogTableCell
             cell.initialize(sensor: sensor)
+            messageRecipients.updateValue(cell, forKey: sensor.remoteID!)
+            cell.setDisabled()
             return cell
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "digitalTableCell", for: indexPath) as! DigitalTableCell
             cell.initialize(sensor: sensor)
+            messageRecipients.updateValue(cell, forKey: sensor.remoteID!)
+            cell.setDisabled()
             return cell
         }
             
@@ -141,26 +161,9 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         print(sensorList[indexPath.row].name ?? "Sensore sconosciuto")
         
     }
-            
-    @IBAction func deleteSensors(_ sender: Any) {
-
-        if let selectedCells = roomCollectionView.indexPathsForSelectedItems {
-        // 1
-            let items = selectedCells.map { $0.item }.sorted().reversed()
-          // 2
-            for item in items {
-//                modelData.remove(at: item)
-                //TODO: Cancellare veramente i dati
-          }
-          // 3
-            roomCollectionView.deleteItems(at: selectedCells)
-//            deleteButton.isEnabled = false
-        }
-    }
     
     //Funzione chiamata prima del segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        print(sender)
         var sensor: Sensor? = nil
         if let analogTableCell = sender as? AnalogTableCell {
             sensor = analogTableCell.getSensor()
@@ -182,15 +185,18 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
-    //TODO: CANECLLAZIONE DEI SENSORI!!!
-    
     func setTitle(title: String){
         titleRoom = title
     }
     
 }
 
-class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con CollectionView UITableViewCell
+protocol Updatable {
+    func updateUI(_: APIHelper.PSWSSession.PSWSMessage) -> Void
+}
+
+class AnalogTableCell: UICollectionViewCell, Updatable  {
+    //nota: provare prima con CollectionView UITableViewCell
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var analogView: UIView!
@@ -198,8 +204,11 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
     var sensor: Sensor?
     var nomeSensore: String = ""
     var defaultValueSensor: Double = 0.0
-    var state: FetchedState? {
+    /*var state: FetchedState? {
         return StateModel.shared.current_state
+    }*/
+    var status: FetchedSensorStatus? {
+        return StateModel.shared.current_sensor_status?[sensor!.remoteID!]
     }
     
     func initialize(sensor: Sensor) {
@@ -221,7 +230,6 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
             defaultValueSensor = 400.0
             self.setRate(currentRate: defaultValueSensor)
             self.setInfoSensor(info: String(Int(defaultValueSensor)) + "  lx")
-            
             self.setMaxValue(maxValue: 700)
             self.setStartColor(color: UIColor.yellow)
             self.setEndColor(color: UIColor.yellow)
@@ -235,9 +243,10 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
             self.setEndColor(color: UIColor.systemRed)
             self.setBgColor(color: UIColor.yellow)
         }
-        self.updateUIHelper()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.stateChanged, object: nil)
-        print("notification set")
+        //self.updateUIHelper()
+        //NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.stateChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateStatus), name: NSNotification.Name.sensorStatusChanged, object: nil)
+        //print("notification set")
     }
     
     func setMaxValue(maxValue: Double){
@@ -282,6 +291,38 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
         self.contentView.alpha = 1
     }
     
+    @objc func updateStatus(){
+        if(status?.status=="CONNECTED"){
+            self.setEnabled()
+        } else {
+            self.setDisabled()
+        }
+    }
+    
+    func updateUI(_ msg:APIHelper.PSWSSession.PSWSMessage) {
+        if(msg.type=="sensor_status"){
+            if(msg.value != "CONNECTED"){
+                self.setDisabled()
+                return
+            } else {
+                self.setEnabled()
+                return
+            }
+        } else if (msg.type=="sensor_value") {
+            self.setEnabled()
+            let value = Double(msg.value)!
+            self.setRate(currentRate: value)
+            switch(sensor?.type){
+            case "TEMPERATURE":
+                self.setInfoSensor(info: String(format:"%.1f °C",value))
+            case "LIGHT":
+                self.setInfoSensor(info: String(format:"%.0f lux",value))
+            default:
+                self.setInfoSensor(info: String(value))
+            }
+        }
+    }
+    /*
     @objc func updateUI(notification: Notification){
         updateUIHelper()
     }
@@ -315,31 +356,28 @@ class AnalogTableCell: UICollectionViewCell  { //nota: provare prima con Collect
         default:
             self.setInfoSensor(info: String(data![0].value))
         }
-    }
-    
-    /*override class func awakeFromNib() { INUTILE
-        super.awakeFromNib()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.stateChanged, object: nil)
-        print("awakeFromNib")
     }*/
-    override func prepareForReuse() {
+    /*override func prepareForReuse() {
         NotificationCenter.default.removeObserver(self)
         print("deinit")
-    }
+    }*/
     deinit { //Viene chiamato quando la cella non è più mostrata
         NotificationCenter.default.removeObserver(self)
         print("deinit")
     }
 }
 
-class DigitalTableCell: UICollectionViewCell  {
+class DigitalTableCell: UICollectionViewCell, Updatable  {
     @IBOutlet weak var digitalSensor: UILabel!
     @IBOutlet weak var digitalIconImage: UIImageView!
     @IBOutlet weak var digitalView: UIView!
     
     var sensor: Sensor?
-    var state: FetchedState? {
+    /*var state: FetchedState? {
         return StateModel.shared.current_state
+    }*/
+    var status: FetchedSensorStatus? {
+        return StateModel.shared.current_sensor_status?[sensor!.remoteID!]
     }
     func initialize(sensor: Sensor){
         //Qui viene definito il template del analogView
@@ -353,8 +391,9 @@ class DigitalTableCell: UICollectionViewCell  {
             digitalIconImage.image = UIImage(named: "door-closed")
         }else{
         }
-        updateUIHelper()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.stateChanged, object: nil)
+        /*updateUIHelper()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.stateChanged, object: nil)*/
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateStatus), name: NSNotification.Name.sensorStatusChanged, object: nil)
     }
     
     /*func setNameSensor(nameSensor: String) {
@@ -370,7 +409,38 @@ class DigitalTableCell: UICollectionViewCell  {
         return sensor!.name!
     }
     
-    @objc func updateUI(notification: Notification){
+    @objc func updateStatus(){
+        if(status?.status=="CONNECTED"){
+            self.setEnabled()
+        } else {
+            self.setDisabled()
+        }
+    }
+    
+    func updateUI(_ msg:APIHelper.PSWSSession.PSWSMessage) {
+        if(msg.type=="sensor_status"){
+            if(msg.value != "CONNECTED"){
+                self.setDisabled()
+                return
+            } else {
+                self.setEnabled()
+                return
+            }
+        } else if (msg.type=="sensor_value") {
+            self.setEnabled()
+            if sensor?.type != "DOOR" {
+                return
+            }
+            let value = msg.value
+            if value != "CLOSED" {
+                digitalIconImage.image = UIImage(named: "door-open")
+            } else {
+                digitalIconImage.image = UIImage(named: "door-closed")
+            }
+        }
+    }
+    
+    /*@objc func updateUI(notification: Notification){
         updateUIHelper()
     }
     
@@ -401,7 +471,7 @@ class DigitalTableCell: UICollectionViewCell  {
         } else {
             digitalIconImage.image = UIImage(named: "door-closed")
         }
-    }
+    }*/
     func setDisabled(){
         self.isUserInteractionEnabled=false
         self.contentView.alpha = 0.2
