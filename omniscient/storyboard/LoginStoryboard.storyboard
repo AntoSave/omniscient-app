@@ -265,6 +265,9 @@
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSignup:" destination="gEO-SS-qRt" eventType="touchUpInside" id="pNQ-wW-MQV"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -286,6 +289,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bft-bd-REI"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="Z3R-Zo-DCC" id="YF3-q7-Zt7"/>
+                        <outlet property="passwordTextField" destination="eCC-18-Vz6" id="CQh-ah-8F6"/>
+                        <outlet property="usernameTextField" destination="9AE-Js-GHr" id="53o-ei-VpH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tIl-ma-JdP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

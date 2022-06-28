@@ -86,13 +86,11 @@ struct APITokenResponse: Decodable {
     let accessToken: String
 }
 
-struct APIResponse: Decodable {
+struct APIStatusMessageResponse: Decodable {
     enum status: String, Decodable {
-        case SUCCESS, ERROR, debugging, xcode
+        case SUCCESS, ERROR
     }
-
     let message: String
-    let error: String
 }
 
 class APIHelper{
@@ -215,6 +213,38 @@ class APIHelper{
             print(body)
             let jsonData = body.data(using: .utf8)!
             let payload: APITokenResponse = try! JSONDecoder().decode(APITokenResponse.self, from: jsonData)
+            completion(.success(payload))
+        }.resume()
+    }
+    
+    static func signup(username: String, email: String, password: String, completion: @escaping (Result<APIStatusMessageResponse, Error>) -> Void){
+        let url = URL(string: "https://omniscient-app.herokuapp.com/auth/signup")!
+        var json: [String: Any] = [
+            "username": username,
+            "password": password,
+            "email":email
+        ]
+        let jsonData = try! JSONSerialization.data(withJSONObject: json)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        URLSession.shared.dataTask(with: request){ (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            let res = response as! HTTPURLResponse
+            let body = String(decoding: data!,as: UTF8.self)
+            if(res.statusCode != 200){
+                completion(.failure(NSError(domain: body, code: res.statusCode)))
+                return
+            }
+            print(body)
+            let jsonData = body.data(using: .utf8)!
+            let payload: APIStatusMessageResponse = try! JSONDecoder().decode(APIStatusMessageResponse.self, from: jsonData)
             completion(.success(payload))
         }.resume()
     }
