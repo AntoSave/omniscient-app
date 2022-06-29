@@ -96,7 +96,7 @@ class RoomController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidAppear(_ animated: Bool) {
         print("didAppear",messageRecipients)
         //Controllo lo stato iniziale dei sensori
-        StateModel.shared.fetchSensorStatus()
+        StateModel.shared.fetchState()
         //Sottoscrizione a tutti i topic di interesse
         psws=APIHelper.PSWSSession(onConnect: {
             self.messageRecipients.keys.forEach{x in
@@ -376,8 +376,11 @@ class DigitalTableCell: UICollectionViewCell, Updatable  {
     /*var state: FetchedState? {
         return StateModel.shared.current_state
     }*/
-    var status: FetchedSensorStatus? {
-        return StateModel.shared.current_sensor_status?[sensor!.remoteID!]
+    var connection_status: String? {
+        return StateModel.shared.current_sensor_status?[sensor!.remoteID!]?.status
+    }
+    var door_status: String? {
+        return StateModel.shared.current_state?.digital_sensor_data[sensor!.remoteID!]?.data[0].value
     }
     func initialize(sensor: Sensor){
         //Qui viene definito il template del analogView
@@ -389,11 +392,10 @@ class DigitalTableCell: UICollectionViewCell, Updatable  {
             digitalIconImage.image = UIImage(named: "movement-sensor")
         }else if sensor.type == "DOOR" {
             digitalIconImage.image = UIImage(named: "door-closed")
-        }else{
         }
         /*updateUIHelper()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI(notification:)), name: NSNotification.Name.stateChanged, object: nil)*/
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateStatus), name: NSNotification.Name.sensorStatusChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateStatus), name: NSNotification.Name.stateChanged, object: nil)
     }
     
     /*func setNameSensor(nameSensor: String) {
@@ -410,8 +412,15 @@ class DigitalTableCell: UICollectionViewCell, Updatable  {
     }
     
     @objc func updateStatus(){
-        if(status?.status=="CONNECTED"){
+        if(connection_status=="CONNECTED"){
             self.setEnabled()
+            if(sensor!.type!=="DOOR"){
+                if door_status != "CLOSED" {
+                    digitalIconImage.image = UIImage(named: "door-open")
+                } else {
+                    digitalIconImage.image = UIImage(named: "door-closed")
+                }
+            }
         } else {
             self.setDisabled()
         }
