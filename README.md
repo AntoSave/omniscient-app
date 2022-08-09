@@ -28,7 +28,7 @@ This repository contains the iOS app which allows users to:
 - visualize historical data points from the sensors in from of graphs and histograms.
 
 
-![Historical data from sensors](/assets/images/sensors.png)
+![Historical data from sensors](/assets/images/sensors-2.png)
 
 - enable/disable alarm.
 
