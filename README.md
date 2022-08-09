@@ -1,6 +1,6 @@
 # Omniscient iOS app
 Omniscient is an open source platform for home monitoring and security. It is composed of sensors, alarms, an iOS app and an application server.
-![Managing sensors, rooms and cameras](/assets/images/rooms-sensors.png)
+![Managing sensors, rooms and cameras](/assets/images/rooms-cameras.png)
 ![Enable and disable the alarm](/assets/images/alarm.png)
 ![User login and sign up](/assets/images/login-signup.png)
 ![Istantaneous data from sensors](/assets/images/sensors.png)
