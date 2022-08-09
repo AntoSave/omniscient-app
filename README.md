@@ -7,7 +7,7 @@ This repository contains the iOS app which allows users to:
 - visualize istantaneous data coming from the sensors.
 - visualize historical data points from the sensors in from of graphs and histograms.
 - enable/disable alarm.
-- stream HTTP and RTSP live cameras.
+- stream live camera feeds over HTTP and RTSP.
 The app was developed using Apple's UIKit.
 
 ### Genesis
