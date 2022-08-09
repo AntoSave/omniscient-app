@@ -36,7 +36,9 @@ This repository contains the iOS app which allows users to:
 
 - stream live camera feeds over HTTP and RTSP.
 
-The app was developed using Apple's UIKit.
+![Enable and disable the alarm](/assets/images/camera-1.png)
+
+The app was developed using Apple's UIKit and uses several libraries such as VideoLAN's VLCKit for the camera streaming and danielgindi's Charts for displaying historical data.
 
 ### Genesis
 This repo is part of Omniscient, a project I made in collaboration with @my-rice for my Bachelor's thesis in Computer Engineering.
